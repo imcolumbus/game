@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>매일매일 두뇌 튼튼</title>
     
+    <!-- 홈 화면 아이콘 및 앱 설정 -->
+    <meta name="theme-color" content="#fff7ed">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="두뇌 튼튼">
+    
+    <!-- 아이콘 (Data URI 사용 - 별도 파일 없이 작동) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%2316a34a'/%3E%3Cpath d='M384 224c0-53-43-96-96-96s-96 43-96 96c0 10.6 1.7 20.8 4.9 30.4C183.1 247.1 171.7 243 160 243c-44.2 0-80 35.8-80 80s35.8 80 80 80c9.6 0 18.8-1.7 27.4-4.8C197.8 418.9 220.6 432 246 432c61.9 0 112-50.1 112-112 0-35.3-16.3-67.1-41.9-88.4 39.7-27.1 65.9-72.3 67.9-123.6-1.3.1-2.7.2-4 .2-44.2 0-80-35.8-80-80 0-8.5 1.3-16.6 3.8-24.2C296.2 101.4 286.6 101 277 101c-61.9 0-112 50.1-112 112 0 10.5.9 20.7 2.6 30.6C122.9 253 96 295.6 96 344c0 61.9 50.1 112 112 112 10.3 0 20.3-1.4 29.8-4 17.7 17.6 42.1 28 69.2 28 53 0 96-43 96-96 0-33.5-17.2-63-43.5-80.6z' fill='white'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%2316a34a'/%3E%3Cpath d='M384 224c0-53-43-96-96-96s-96 43-96 96c0 10.6 1.7 20.8 4.9 30.4C183.1 247.1 171.7 243 160 243c-44.2 0-80 35.8-80 80s35.8 80 80 80c9.6 0 18.8-1.7 27.4-4.8C197.8 418.9 220.6 432 246 432c61.9 0 112-50.1 112-112 0-35.3-16.3-67.1-41.9-88.4 39.7-27.1 65.9-72.3 67.9-123.6-1.3.1-2.7.2-4 .2-44.2 0-80-35.8-80-80 0-8.5 1.3-16.6 3.8-24.2C296.2 101.4 286.6 101 277 101c-61.9 0-112 50.1-112 112 0 10.5.9 20.7 2.6 30.6C122.9 253 96 295.6 96 344c0 61.9 50.1 112 112 112 10.3 0 20.3-1.4 29.8-4 17.7 17.6 42.1 28 69.2 28 53 0 96-43 96-96 0-33.5-17.2-63-43.5-80.6z' fill='white'/%3E%3C/svg%3E">
+    
+    <!-- 웹 앱 매니페스트 (안드로이드 설치용) -->
+    <link rel="manifest" href='data:application/manifest+json,{"name":"매일매일 두뇌 튼튼","short_name":"두뇌 튼튼","start_url":".","display":"standalone","background_color":"#fff7ed","theme_color":"#16a34a","icons":[{"src":"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 512 512%27%3E%3Crect width=%27512%27 height=%27512%27 rx=%27100%27 fill=%27%2316a34a%27/%3E%3Cpath d=%27M384 224c0-53-43-96-96-96s-96 43-96 96c0 10.6 1.7 20.8 4.9 30.4C183.1 247.1 171.7 243 160 243c-44.2 0-80 35.8-80 80s35.8 80 80 80c9.6 0 18.8-1.7 27.4-4.8C197.8 418.9 220.6 432 246 432c61.9 0 112-50.1 112-112 0-35.3-16.3-67.1-41.9-88.4 39.7-27.1 65.9-72.3 67.9-123.6-1.3.1-2.7.2-4 .2-44.2 0-80-35.8-80-80 0-8.5 1.3-16.6 3.8-24.2C296.2 101.4 286.6 101 277 101c-61.9 0-112 50.1-112 112 0 10.5.9 20.7 2.6 30.6C122.9 253 96 295.6 96 344c0 61.9 50.1 112 112 112 10.3 0 20.3-1.4 29.8-4 17.7 17.6 42.1 28 69.2 28 53 0 96-43 96-96 0-33.5-17.2-63-43.5-80.6z%27 fill=%27white%27/%3E%3C/svg%3E","sizes":"512x512","type":"image/svg+xml"}]}'>
+
     <!-- React 및 Tailwind CSS 로드 -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -61,6 +74,12 @@
         const PenTool = (props) => <IconBase {...props}><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></IconBase>;
         const FileText = (props) => <IconBase {...props}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></IconBase>;
         const Trash = (props) => <IconBase {...props}><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></IconBase>;
+        
+        // 날씨 아이콘
+        const Cloud = (props) => <IconBase {...props}><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></IconBase>;
+        const Sun = (props) => <IconBase {...props}><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></IconBase>;
+        const CloudRain = (props) => <IconBase {...props}><line x1="16" y1="13" x2="16" y2="21"></line><line x1="8" y1="13" x2="8" y2="21"></line><line x1="12" y1="15" x2="12" y2="23"></line><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path></IconBase>;
+        const Snowflake = (props) => <IconBase {...props}><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line><path d="m20 4-2.5 2.5"/><path d="m4 20 2.5-2.5"/><path d="m4 4 2.5 2.5"/><path d="m20 20-2.5-2.5"/></IconBase>;
 
         // --- 전역 스타일 ---
         const styles = {
@@ -89,12 +108,19 @@
             );
         };
 
-        // --- NEW: 오늘의 기록장 (일기장 기능) ---
+        // --- NEW: 오늘의 기록장 (일기장 기능 - 날씨 추가됨) ---
         const DailyRecord = ({ onBack, playSound }) => {
             const [view, setView] = useState('list'); // 'list', 'write', 'read'
             const [diaries, setDiaries] = useState([]);
-            const [inputData, setInputData] = useState({ date: '', meals: '', activities: '' });
+            const [inputData, setInputData] = useState({ date: '', meals: '', activities: '', weather: '' });
             const [selectedDiary, setSelectedDiary] = useState(null);
+
+            const weatherOptions = [
+                { id: 'sunny', label: '맑음', icon: <Sun className="text-orange-500" /> },
+                { id: 'cloudy', label: '흐림', icon: <Cloud className="text-gray-500" /> },
+                { id: 'rainy', label: '비', icon: <CloudRain className="text-blue-500" /> },
+                { id: 'snowy', label: '눈', icon: <Snowflake className="text-sky-300" /> }
+            ];
 
             useEffect(() => {
                 const saved = localStorage.getItem('brain_training_diaries');
@@ -111,7 +137,7 @@
             const handleWriteClick = () => {
                 playSound('click');
                 const today = new Date().toISOString().split('T')[0];
-                setInputData({ date: today, meals: '', activities: '' });
+                setInputData({ date: today, meals: '', activities: '', weather: '' });
                 setView('write');
             };
 
@@ -153,9 +179,14 @@
                                 <div className="space-y-3">
                                     {diaries.map(diary => (
                                         <button key={diary.id} onClick={() => handleItemClick(diary)} className="w-full bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex justify-between items-center active:bg-gray-50 text-left">
-                                            <div>
-                                                <p className="font-bold text-lg text-gray-800">{diary.date}</p>
-                                                <p className="text-gray-500 text-sm truncate w-48">{diary.meals || "식사 기록 없음"}</p>
+                                            <div className="flex items-center gap-3">
+                                                <div className="bg-gray-100 p-2 rounded-lg">
+                                                    {diary.weather ? weatherOptions.find(w => w.id === diary.weather)?.icon : <Sun className="text-gray-300"/>}
+                                                </div>
+                                                <div>
+                                                    <p className="font-bold text-lg text-gray-800">{diary.date}</p>
+                                                    <p className="text-gray-500 text-sm truncate w-32">{diary.meals || "내용 없음"}</p>
+                                                </div>
                                             </div>
                                             <div className="text-gray-300">❯</div>
                                         </button>
@@ -184,6 +215,23 @@
                                 onChange={(e) => setInputData({...inputData, date: e.target.value})}
                                 className="w-full p-4 text-xl border-2 border-gray-300 rounded-xl bg-white"
                             />
+                        </div>
+
+                        {/* 날씨 선택 */}
+                        <div className="w-full mb-6">
+                            <label className="block text-gray-600 font-bold mb-2 text-xl border-l-4 border-yellow-400 pl-2">오늘의 날씨는?</label>
+                            <div className="flex gap-2">
+                                {weatherOptions.map(opt => (
+                                    <button 
+                                        key={opt.id}
+                                        onClick={() => setInputData({...inputData, weather: opt.id})}
+                                        className={`flex-1 py-3 rounded-xl border-2 flex flex-col items-center justify-center transition-all ${inputData.weather === opt.id ? 'bg-yellow-100 border-yellow-500 ring-2 ring-yellow-200' : 'bg-white border-gray-200'}`}
+                                    >
+                                        <div className="mb-1 transform scale-125">{opt.icon}</div>
+                                        <span className="text-sm font-bold text-gray-700">{opt.label}</span>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
 
                         <div className="w-full mb-6">
@@ -221,6 +269,15 @@
                         <div className="w-full flex justify-between items-center mb-6 mt-2">
                             <h2 className="text-2xl font-bold text-gray-800">{selectedDiary.date}</h2>
                             <button onClick={handleDelete} className="p-2 bg-red-100 rounded-full text-red-500"><Trash size={20}/></button>
+                        </div>
+
+                        {/* 날씨 표시 */}
+                        <div className="w-full mb-6 bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
+                            <h3 className="font-bold text-lg text-yellow-600">오늘의 날씨</h3>
+                            <div className="flex items-center gap-2">
+                               <span className="text-2xl font-bold text-gray-700">{selectedDiary.weather ? weatherOptions.find(w => w.id === selectedDiary.weather)?.label : "기록 없음"}</span>
+                               {selectedDiary.weather && weatherOptions.find(w => w.id === selectedDiary.weather)?.icon}
+                            </div>
                         </div>
 
                         <div className="w-full mb-6 bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
