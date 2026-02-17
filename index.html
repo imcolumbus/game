@@ -29,7 +29,7 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
+        const { useState, useEffect, useRef, useCallback } = React;
 
         // --- 아이콘 컴포넌트 ---
         const IconBase = ({ children, color = "currentColor", size = 24, className = "" }) => (
@@ -48,78 +48,444 @@
         const BookOpen = (props) => <IconBase {...props}><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></IconBase>;
         const Search = (props) => <IconBase {...props}><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></IconBase>;
 
+        // --- 전역 스타일 ---
+        const styles = {
+            container: "min-h-screen flex flex-col items-center p-4 font-sans select-none touch-manipulation pb-10 bg-amber-50",
+            card: "w-full max-w-md bg-white rounded-3xl shadow-xl p-6 flex flex-col items-center transition-all duration-300",
+            button: "w-full py-5 text-xl font-bold rounded-2xl transition-transform active:scale-95 shadow-md flex items-center justify-center gap-2 border-b-4 active:border-b-0 mb-3",
+            bigText: "text-4xl font-black text-gray-800 mb-6 mt-4 leading-tight text-center",
+            instruction: "text-xl text-gray-600 mb-6 text-center font-bold break-keep",
+            feedbackOverlay: "fixed inset-0 flex items-center justify-center bg-black/20 z-50 pointer-events-none animate-fade-in",
+            input: "w-full text-center text-3xl font-bold py-4 border-b-4 border-gray-300 focus:border-green-500 outline-none bg-transparent mb-8"
+        };
+
+        // --- 0. 이름 입력 화면 ---
+        const NameInputScreen = ({ onNameSubmit, playSound }) => {
+            const [inputVal, setInputVal] = useState('');
+
+            return (
+                <div className="flex flex-col items-center w-full animate-zoom-in mt-10">
+                        <div className="bg-green-100 p-6 rounded-full mb-6">
+                        <User size={60} className="text-green-600" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">반갑습니다!<br/>성함이 어떻게 되시나요?</h2>
+                    <input 
+                        type="text" 
+                        className={styles.input}
+                        placeholder="이름 입력"
+                        value={inputVal}
+                        onChange={(e) => setInputVal(e.target.value)}
+                    />
+                    <button 
+                        onClick={() => {
+                            if (inputVal.trim().length > 0) {
+                                playSound('click');
+                                onNameSubmit(inputVal);
+                            }
+                        }}
+                        disabled={inputVal.trim().length === 0}
+                        className={`${styles.button} ${inputVal.trim().length > 0 ? 'bg-green-500 text-white border-green-700' : 'bg-gray-200 text-gray-400 border-gray-300'}`}
+                    >
+                        확인
+                    </button>
+                </div>
+            );
+        };
+
+        // --- 1. 날짜 기억 (Orientation) ---
+        const OrientationGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [qType, setQType] = useState(0); // 0:년, 1:월, 2:일, 3:요일
+            const [options, setOptions] = useState([]);
+            const [questionText, setQuestionText] = useState("");
+            const [correctAnswer, setCorrectAnswer] = useState("");
+            const [processing, setProcessing] = useState(false);
+
+            useEffect(() => {
+                const now = new Date();
+                let ans = "", opts = [], q = "";
+
+                if (qType === 0) {
+                    q = "올해는 몇 년도 인가요?";
+                    const year = now.getFullYear();
+                    ans = `${year}년`;
+                    opts = [year - 1, year, year + 1].map(y => `${y}년`);
+                } else if (qType === 1) {
+                    q = "지금은 몇 월 인가요?";
+                    const month = now.getMonth() + 1;
+                    ans = `${month}월`;
+                    let w1 = month - 1 < 1 ? 12 : month - 1;
+                    let w2 = month + 1 > 12 ? 1 : month + 1;
+                    opts = [w1, month, w2].map(m => `${m}월`);
+                } else if (qType === 2) {
+                    q = "오늘은 며칠 인가요?";
+                    const date = now.getDate();
+                    ans = `${date}일`;
+                    let w1 = date - 1 < 1 ? 30 : date - 1;
+                    let w2 = date + 1 > 31 ? 1 : date + 1;
+                    opts = [w1, date, w2].map(d => `${d}일`);
+                } else if (qType === 3) {
+                    q = "오늘은 무슨 요일 인가요?";
+                    const days = ['일', '월', '화', '수', '목', '금', '토'];
+                    const dayIdx = now.getDay();
+                    ans = `${days[dayIdx]}요일`;
+                    let w1Idx = (dayIdx + 2) % 7;
+                    let w2Idx = (dayIdx + 5) % 7;
+                    opts = [`${days[w1Idx]}요일`, ans, `${days[w2Idx]}요일`];
+                }
+                
+                setQuestionText(q);
+                setCorrectAnswer(ans);
+                setOptions(opts.sort(() => Math.random() - 0.5));
+                setProcessing(false);
+            }, [qType]);
+
+            const handleAnswer = (val) => {
+                if (processing) return; 
+
+                if (val === correctAnswer) {
+                    setProcessing(true);
+                    onCorrect(10); // 10점 획득
+                    
+                    if (qType >= 3) {
+                        setTimeout(onComplete, 1000);
+                    } else {
+                        setTimeout(() => {
+                            setQType(prev => prev + 1);
+                        }, 800);
+                    }
+                } else {
+                    onWrong();
+                }
+            };
+
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in" key={qType}>
+                    <p className={styles.instruction}>1단계: <span className="text-green-600">날짜 기억하기</span> ({qType+1}/4)</p>
+                    <div className="bg-green-50 px-6 py-8 rounded-2xl mb-6 w-full text-center border-2 border-green-100">
+                        <div className="flex justify-center mb-2"><CalendarIcon size={40} className="text-green-600" /></div>
+                        <p className="text-3xl font-bold text-gray-800 break-keep">{questionText}</p>
+                    </div>
+                    <div className="grid grid-cols-1 gap-3 w-full">
+                        {options.map((opt, idx) => (
+                            <button key={idx} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-green-200 text-green-900 hover:bg-green-50`}>{opt}</button>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        // --- 2. 산수 (Math) ---
+        const MathGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [problem, setProblem] = useState({ q: '', a: 0, options: [] });
+            const [count, setCount] = useState(0);
+
+            const generateProblem = () => {
+                const type = Math.random();
+                let qStr = "", ans = 0;
+
+                if (type < 0.4) { // 덧셈
+                    const n1 = Math.floor(Math.random() * 20) + 10;
+                    const n2 = Math.floor(Math.random() * 9) + 1;
+                    ans = n1 + n2;
+                    qStr = `${n1} + ${n2}`;
+                } else if (type < 0.8) { // 뺄셈
+                    const n1 = Math.floor(Math.random() * 20) + 10;
+                    const n2 = Math.floor(Math.random() * 9) + 1;
+                    ans = n1 - n2;
+                    qStr = `${n1} - ${n2}`;
+                } else { // 곱셈
+                        const n1 = Math.floor(Math.random() * 8) + 2; 
+                        const n2 = Math.floor(Math.random() * 8) + 2; 
+                        ans = n1 * n2;
+                        qStr = `${n1} × ${n2}`;
+                }
+
+                let wrong1 = ans + (Math.floor(Math.random() * 5) + 1);
+                let wrong2 = ans - (Math.floor(Math.random() * 5) + 1);
+                if (wrong1 === ans) wrong1 += 1;
+                if (wrong2 === ans) wrong2 -= 1;
+                
+                const opts = [ans, wrong1, wrong2].sort(() => Math.random() - 0.5);
+                setProblem({ q: `${qStr} = ?`, a: ans, options: opts });
+            };
+
+            useEffect(() => { generateProblem(); }, []);
+
+            const handleAnswer = (val) => {
+                if (val === problem.a) {
+                    onCorrect(20);
+                    if (count + 1 >= 5) {
+                        setTimeout(onComplete, 1000);
+                    } else {
+                        setCount(c => c + 1);
+                        generateProblem();
+                    }
+                } else { onWrong(); }
+            };
+
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>2단계: <span className="text-amber-600">계산하기</span> ({count + 1}/5)</p>
+                    <div className="bg-amber-100 px-8 py-8 rounded-2xl mb-8 w-full text-center">
+                        <p className={styles.bigText}>{problem.q}</p>
+                    </div>
+                    <div className="grid grid-cols-1 gap-3 w-full">
+                        {problem.options.map((opt, idx) => (
+                            <button key={idx} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-amber-200 text-amber-900 hover:bg-amber-50`}>{opt}</button>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        // --- 3. 속담 퀴즈 (Word) ---
+        const WordGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [quiz, setQuiz] = useState({ q: '', a: '', options: [] });
+            const [count, setCount] = useState(0);
+
+            const proverbs = [
+                { q: "가는 말이 고와야 [ ? ]", a: "오는 말이 곱다", w: "오는 말이 거칠다" },
+                { q: "누워서 [ ? ] 먹기", a: "떡", w: "밥" },
+                { q: "티끌 모아 [ ? ]", a: "태산", w: "동산" },
+                { q: "등잔 밑이 [ ? ]", a: "어둡다", w: "밝다" },
+                { q: "원숭이도 나무에서 [ ? ]", a: "떨어진다", w: "날아간다" },
+                { q: "세 살 버릇 여든까지 [ ? ]", a: "간다", w: "안 간다" },
+                { q: "소 잃고 [ ? ] 고친다", a: "외양간", w: "대문" }
+            ];
+
+            const generateQuiz = () => {
+                const item = proverbs[Math.floor(Math.random() * proverbs.length)];
+                const opts = [item.a, item.w].sort(() => Math.random() - 0.5);
+                setQuiz({ q: item.q, a: item.a, options: opts });
+            };
+
+            useEffect(() => { generateQuiz(); }, []);
+
+            const handleAnswer = (val) => {
+                if (val === quiz.a) {
+                    onCorrect(20);
+                    if (count + 1 >= 3) {
+                        setTimeout(onComplete, 1000);
+                    } else {
+                        setCount(c => c + 1);
+                        generateQuiz();
+                    }
+                } else { onWrong(); }
+            };
+
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>3단계: <span className="text-purple-600">속담 완성하기</span> ({count + 1}/3)</p>
+                    <div className="bg-purple-50 px-6 py-8 rounded-2xl mb-8 w-full text-center border-2 border-purple-100">
+                        <BookOpen size={40} className="text-purple-600 mx-auto mb-2" />
+                        <p className="text-2xl font-bold text-gray-800 break-keep leading-relaxed">{quiz.q}</p>
+                    </div>
+                    <div className="grid grid-cols-1 gap-3 w-full">
+                        {quiz.options.map((opt, idx) => (
+                            <button key={idx} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-purple-200 text-purple-900 hover:bg-purple-50`}>{opt}</button>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        // --- 4. 다른 그림 찾기 (Spatial) ---
+        const SpatialGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [items, setItems] = useState([]);
+            const [count, setCount] = useState(0);
+
+            const shapes = ['●', '▲', '■', '★', '♥'];
+            const colors = ['text-red-500', 'text-blue-500', 'text-green-500', 'text-yellow-500'];
+
+            const generateLevel = () => {
+                const isShapeDiff = Math.random() > 0.5;
+                let grid = [];
+                let answerIdx = Math.floor(Math.random() * 4); 
+
+                if (isShapeDiff) {
+                    const baseShape = shapes[Math.floor(Math.random() * shapes.length)];
+                    let diffShape = baseShape;
+                    while(diffShape === baseShape) diffShape = shapes[Math.floor(Math.random() * shapes.length)];
+                    
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    for(let i=0; i<4; i++) {
+                        if (i === answerIdx) grid.push({ shape: diffShape, color: color, isAns: true });
+                        else grid.push({ shape: baseShape, color: color, isAns: false });
+                    }
+                } else {
+                    const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                    const baseColorIdx = Math.floor(Math.random() * colors.length);
+                    const baseColor = colors[baseColorIdx];
+                    let diffColor = baseColor;
+                    while(diffColor === baseColor) diffColor = colors[Math.floor(Math.random() * colors.length)];
+
+                    for(let i=0; i<4; i++) {
+                        if (i === answerIdx) grid.push({ shape: shape, color: diffColor, isAns: true });
+                        else grid.push({ shape: shape, color: baseColor, isAns: false });
+                    }
+                }
+                setItems(grid);
+            };
+
+            useEffect(() => { generateLevel(); }, []);
+
+            const handleClick = (isAns) => {
+                if (isAns) {
+                    onCorrect(20);
+                    if (count + 1 >= 3) {
+                        setTimeout(onComplete, 1000);
+                    } else {
+                        setCount(c => c + 1);
+                        generateLevel();
+                    }
+                } else { onWrong(); }
+            };
+
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>4단계: <span className="text-blue-600">다른 것 찾기</span> ({count + 1}/3)</p>
+                    <p className="text-gray-500 mb-6 text-lg">모양이나 색깔이 <span className="font-bold text-black">다른 하나</span>를 누르세요.</p>
+                    
+                    <div className="grid grid-cols-2 gap-4 w-full max-w-[300px]">
+                        {items.map((item, idx) => (
+                            <button 
+                                key={idx} 
+                                onClick={() => handleClick(item.isAns)}
+                                className="bg-white border-2 border-gray-200 rounded-2xl h-32 flex items-center justify-center shadow-sm active:scale-95 transition-transform"
+                            >
+                                <span className={`text-6xl ${item.color}`}>{item.shape}</span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        // --- 5. 순서 기억 (Memory) ---
+        const MemoryGame = ({ onComplete, onCorrect, onWrong, playSound }) => {
+            const [sequence, setSequence] = useState([]);
+            const [playerSequence, setPlayerSequence] = useState([]);
+            const [isPlaying, setIsPlaying] = useState(false);
+            const [activeIndex, setActiveIndex] = useState(null);
+            const [round, setRound] = useState(0);
+
+            const items = [0, 1, 2, 3];
+            const bgColors = ['bg-pink-400', 'bg-yellow-400', 'bg-sky-400', 'bg-emerald-400'];
+
+            const startRound = (level) => {
+                setPlayerSequence([]);
+                setIsPlaying(true);
+                const newSeq = [];
+                for(let i=0; i < level + 3; i++) newSeq.push(Math.floor(Math.random() * 4));
+                setSequence(newSeq);
+                
+                let i = 0;
+                const interval = setInterval(() => {
+                    if (i >= newSeq.length) { clearInterval(interval); setActiveIndex(null); setIsPlaying(false); return; }
+                    setActiveIndex(newSeq[i]);
+                    playSound('click');
+                    setTimeout(() => setActiveIndex(null), 600);
+                    i++;
+                }, 1000);
+            };
+
+            useEffect(() => { startRound(round); }, [round]);
+
+            const handleTap = (idx) => {
+                if (isPlaying) return;
+                setActiveIndex(idx);
+                playSound('click');
+                setTimeout(() => setActiveIndex(null), 200);
+
+                const nextIdx = playerSequence.length;
+                if (sequence[nextIdx] === idx) {
+                    const newPlayerSeq = [...playerSequence, idx];
+                    setPlayerSequence(newPlayerSeq);
+                    if (newPlayerSeq.length === sequence.length) {
+                        onCorrect(30);
+                        if (round + 1 >= 3) {
+                            setTimeout(onComplete, 1000);
+                        } else {
+                            setTimeout(() => setRound(r => r + 1), 1000);
+                        }
+                    }
+                } else {
+                    onWrong();
+                    setPlayerSequence([]);
+                    setTimeout(() => {
+                        let i = 0; setIsPlaying(true);
+                        const interval = setInterval(() => {
+                            if (i >= sequence.length) { clearInterval(interval); setActiveIndex(null); setIsPlaying(false); return; }
+                            setActiveIndex(sequence[i]); playSound('click'); setTimeout(() => setActiveIndex(null), 600); i++;
+                        }, 1000);
+                    }, 1000);
+                }
+            };
+
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>마지막 단계: <span className="text-pink-600">순서 기억하기</span> ({round + 1}/3)</p>
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                        {items.map((item) => (
+                            <button key={item} onClick={() => handleTap(item)} disabled={isPlaying} className={`w-28 h-28 rounded-2xl border-b-8 transition-all active:border-b-0 active:translate-y-2 ${activeIndex === item ? 'scale-105 brightness-110 border-gray-600' : 'border-black/10'} ${bgColors[item]} flex items-center justify-center`}><Star fill="white" size={40} className="text-white/80" /></button>
+                        ))}
+                    </div>
+                    <div className="h-8">{isPlaying ? <span className="text-amber-600 font-bold animate-pulse text-xl">잘 보세요...</span> : <span className="text-green-600 font-bold text-xl">이제 눌러보세요!</span>}</div>
+                </div>
+            );
+        };
+
+        // --- 결과 화면 ---
+        const ResultScreen = ({ score, userName, onRestart, playSound }) => {
+            useEffect(() => { playSound('fanfare'); }, []);
+            return (
+                <div className="flex flex-col items-center animate-zoom-in w-full">
+                    <Trophy size={80} className="text-yellow-500 mb-4 drop-shadow-md" />
+                    <h2 className="text-3xl font-bold text-gray-800 mb-2">운동 완료!</h2>
+                    <p className="text-gray-600 mb-6 text-xl text-center">오늘도 수고하셨습니다,<br/><span className="text-green-600 font-bold">{userName} 어르신!</span></p>
+                    <div className="bg-yellow-50 border-2 border-yellow-200 p-6 rounded-2xl w-full text-center mb-8"><p className="text-gray-500 mb-2">최종 점수</p><p className="text-6xl font-black text-amber-600">{score}점</p></div>
+                    <button onClick={onRestart} className={`${styles.button} bg-green-500 text-white border-green-700`}><RotateCcw size={28} />처음으로 돌아가기</button>
+                </div>
+            );
+        };
+
+        // --- 메인 App 컴포넌트 ---
         const App = () => {
-            const [gameState, setGameState] = useState('nameInput'); // nameInput, intro, orientation, math, word, spatial, memory, result
+            const [gameState, setGameState] = useState('nameInput'); 
             const [userName, setUserName] = useState('');
             const [score, setScore] = useState(0);
-            const [stageProgress, setStageProgress] = useState(0);
             const [feedback, setFeedback] = useState(null); 
             const [soundEnabled, setSoundEnabled] = useState(true);
 
-            // --- 사운드 엔진 ---
-            const playSound = (type) => {
+            // 사운드 함수
+            const playSound = useCallback((type) => {
                 if (!soundEnabled) return;
                 try {
                     const AudioContext = window.AudioContext || window.webkitAudioContext;
                     if (!AudioContext) return;
-                    
                     const ctx = new AudioContext();
                     const osc = ctx.createOscillator();
                     const gain = ctx.createGain();
-                    
                     osc.connect(gain);
                     gain.connect(ctx.destination);
-                    
                     const now = ctx.currentTime;
                     
                     if (type === 'correct') {
-                        osc.type = 'sine';
-                        osc.frequency.setValueAtTime(523.25, now);
-                        osc.frequency.setValueAtTime(659.25, now + 0.1);
-                        osc.frequency.setValueAtTime(783.99, now + 0.2);
-                        gain.gain.setValueAtTime(0.2, now);
-                        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
-                        osc.start(now);
-                        osc.stop(now + 0.6);
+                        osc.type = 'sine'; osc.frequency.setValueAtTime(523.25, now); osc.frequency.setValueAtTime(659.25, now + 0.1); osc.frequency.setValueAtTime(783.99, now + 0.2);
+                        gain.gain.setValueAtTime(0.2, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6); osc.start(now); osc.stop(now + 0.6);
                     } else if (type === 'wrong') {
-                        osc.type = 'sawtooth';
-                        osc.frequency.setValueAtTime(150, now);
-                        osc.frequency.linearRampToValueAtTime(100, now + 0.3);
-                        gain.gain.setValueAtTime(0.2, now);
-                        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
-                        osc.start(now);
-                        osc.stop(now + 0.3);
+                        osc.type = 'sawtooth'; osc.frequency.setValueAtTime(150, now); osc.frequency.linearRampToValueAtTime(100, now + 0.3);
+                        gain.gain.setValueAtTime(0.2, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3); osc.start(now); osc.stop(now + 0.3);
                     } else if (type === 'click') {
-                        osc.type = 'triangle';
-                        osc.frequency.setValueAtTime(800, now);
-                        gain.gain.setValueAtTime(0.05, now);
-                        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
-                        osc.start(now);
-                        osc.stop(now + 0.05);
+                        osc.type = 'triangle'; osc.frequency.setValueAtTime(800, now); gain.gain.setValueAtTime(0.05, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                        osc.start(now); osc.stop(now + 0.05);
                     } else if (type === 'fanfare') {
-                        osc.type = 'square';
-                        osc.frequency.setValueAtTime(523.25, now); 
-                        osc.frequency.setValueAtTime(523.25, now + 0.1);
-                        osc.frequency.setValueAtTime(523.25, now + 0.2);
-                        osc.frequency.setValueAtTime(659.25, now + 0.3);
-                        osc.frequency.setValueAtTime(783.99, now + 0.4); 
-                        gain.gain.setValueAtTime(0.1, now);
-                        gain.gain.exponentialRampToValueAtTime(0.01, now + 1.5);
-                        osc.start(now);
-                        osc.stop(now + 1.5);
+                        osc.type = 'square'; osc.frequency.setValueAtTime(523.25, now); osc.frequency.setValueAtTime(523.25, now + 0.1); osc.frequency.setValueAtTime(523.25, now + 0.2); osc.frequency.setValueAtTime(659.25, now + 0.3); osc.frequency.setValueAtTime(783.99, now + 0.4); 
+                        gain.gain.setValueAtTime(0.1, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 1.5); osc.start(now); osc.stop(now + 1.5);
                     }
                 } catch (e) { console.error(e); }
-            };
-
-            const styles = {
-                container: "min-h-screen flex flex-col items-center p-4 font-sans select-none touch-manipulation pb-10 bg-amber-50",
-                card: "w-full max-w-md bg-white rounded-3xl shadow-xl p-6 flex flex-col items-center transition-all duration-300",
-                button: "w-full py-5 text-xl font-bold rounded-2xl transition-transform active:scale-95 shadow-md flex items-center justify-center gap-2 border-b-4 active:border-b-0 mb-3",
-                bigText: "text-4xl font-black text-gray-800 mb-6 mt-4 leading-tight text-center",
-                instruction: "text-xl text-gray-600 mb-6 text-center font-bold break-keep",
-                feedbackOverlay: "fixed inset-0 flex items-center justify-center bg-black/20 z-50 pointer-events-none animate-fade-in",
-                input: "w-full text-center text-3xl font-bold py-4 border-b-4 border-gray-300 focus:border-green-500 outline-none bg-transparent mb-8"
-            };
+            }, [soundEnabled]);
 
             const showFeedback = (isCorrect) => {
                 playSound(isCorrect ? 'correct' : 'wrong');
@@ -127,433 +493,29 @@
                 setTimeout(() => setFeedback(null), 800);
             };
 
-            // --- 게임 순서 관리 ---
-            // nameInput -> intro -> orientation -> math -> word -> spatial -> memory -> result
-            const nextGameMap = {
-                'orientation': 'math',
-                'math': 'word',
-                'word': 'spatial',
-                'spatial': 'memory',
-                'memory': 'result'
+            const handleCorrect = (points) => {
+                showFeedback(true);
+                setScore(s => s + points);
+            };
+
+            const handleWrong = () => {
+                showFeedback(false);
             };
 
             const handleStageComplete = () => {
+                const nextGameMap = {
+                    'orientation': 'math',
+                    'math': 'word',
+                    'word': 'spatial',
+                    'spatial': 'memory',
+                    'memory': 'result'
+                };
                 const next = nextGameMap[gameState];
-                if (next) {
-                    setGameState(next);
-                    setStageProgress(0);
-                }
+                if (next) setGameState(next);
             };
 
-            // --- 0. 이름 입력 화면 ---
-            const NameInputScreen = () => {
-                const [inputVal, setInputVal] = useState('');
-
-                return (
-                    <div className="flex flex-col items-center w-full animate-zoom-in mt-10">
-                         <div className="bg-green-100 p-6 rounded-full mb-6">
-                            <User size={60} className="text-green-600" />
-                        </div>
-                        <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">반갑습니다!<br/>성함이 어떻게 되시나요?</h2>
-                        <input 
-                            type="text" 
-                            className={styles.input}
-                            placeholder="이름 입력"
-                            value={inputVal}
-                            onChange={(e) => setInputVal(e.target.value)}
-                        />
-                        <button 
-                            onClick={() => {
-                                if (inputVal.trim().length > 0) {
-                                    setUserName(inputVal);
-                                    setGameState('intro');
-                                    playSound('click');
-                                }
-                            }}
-                            disabled={inputVal.trim().length === 0}
-                            className={`${styles.button} ${inputVal.trim().length > 0 ? 'bg-green-500 text-white border-green-700' : 'bg-gray-200 text-gray-400 border-gray-300'}`}
-                        >
-                            확인
-                        </button>
-                    </div>
-                );
-            }
-
-            // --- 1. 날짜 기억 (Orientation) ---
-            const OrientationGame = ({ onComplete }) => {
-                const [qType, setQType] = useState(0); // 0:년, 1:월, 2:일(NEW), 3:요일
-                const [options, setOptions] = useState([]);
-                const [questionText, setQuestionText] = useState("");
-                const [correctAnswer, setCorrectAnswer] = useState("");
-                const [processing, setProcessing] = useState(false);
-
-                useEffect(() => {
-                    const now = new Date();
-                    let ans = "", opts = [], q = "";
-
-                    if (qType === 0) {
-                        q = "올해는 몇 년도 인가요?";
-                        const year = now.getFullYear();
-                        ans = `${year}년`;
-                        opts = [year - 1, year, year + 1].map(y => `${y}년`);
-                    } else if (qType === 1) {
-                        q = "지금은 몇 월 인가요?";
-                        const month = now.getMonth() + 1;
-                        ans = `${month}월`;
-                        let w1 = month - 1 < 1 ? 12 : month - 1;
-                        let w2 = month + 1 > 12 ? 1 : month + 1;
-                        opts = [w1, month, w2].map(m => `${m}월`);
-                    } else if (qType === 2) {
-                        q = "오늘은 며칠 인가요?";
-                        const date = now.getDate();
-                        ans = `${date}일`;
-                        let w1 = date - 1 < 1 ? 30 : date - 1;
-                        let w2 = date + 1 > 31 ? 1 : date + 1;
-                        opts = [w1, date, w2].map(d => `${d}일`);
-                    } else if (qType === 3) {
-                        q = "오늘은 무슨 요일 인가요?";
-                        const days = ['일', '월', '화', '수', '목', '금', '토'];
-                        const dayIdx = now.getDay();
-                        ans = `${days[dayIdx]}요일`;
-                        let w1Idx = (dayIdx + 2) % 7;
-                        let w2Idx = (dayIdx + 5) % 7;
-                        opts = [`${days[w1Idx]}요일`, ans, `${days[w2Idx]}요일`];
-                    }
-                    
-                    setQuestionText(q);
-                    setCorrectAnswer(ans);
-                    setOptions(opts.sort(() => Math.random() - 0.5));
-                    setProcessing(false);
-                }, [qType]);
-
-                const handleAnswer = (val) => {
-                    if (processing) return; 
-
-                    if (val === correctAnswer) {
-                        setProcessing(true);
-                        showFeedback(true);
-                        setScore(s => s + 10);
-                        
-                        // 0, 1, 2, 3 (총 4문제)
-                        if (qType >= 3) {
-                            setTimeout(onComplete, 1000);
-                        } else {
-                            setTimeout(() => {
-                                setQType(prev => prev + 1);
-                            }, 800);
-                        }
-                    } else {
-                        showFeedback(false);
-                    }
-                };
-
-                return (
-                    <div className="w-full flex flex-col items-center animate-fade-in" key={qType}>
-                        <p className={styles.instruction}>1단계: <span className="text-green-600">날짜 기억하기</span> ({qType+1}/4)</p>
-                        <div className="bg-green-50 px-6 py-8 rounded-2xl mb-6 w-full text-center border-2 border-green-100">
-                            <div className="flex justify-center mb-2"><CalendarIcon size={40} className="text-green-600" /></div>
-                            <p className="text-3xl font-bold text-gray-800 break-keep">{questionText}</p>
-                        </div>
-                        <div className="grid grid-cols-1 gap-3 w-full">
-                            {options.map((opt, idx) => (
-                                <button key={idx} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-green-200 text-green-900 hover:bg-green-50`}>{opt}</button>
-                            ))}
-                        </div>
-                    </div>
-                );
-            };
-
-            // --- 2. 산수 (Math) ---
-            const MathGame = ({ onComplete }) => {
-                const [problem, setProblem] = useState({ q: '', a: 0, options: [] });
-                const [count, setCount] = useState(0);
-
-                const generateProblem = () => {
-                    const type = Math.random();
-                    let qStr = "", ans = 0;
-
-                    if (type < 0.4) { // 덧셈 (두자리 + 한자리)
-                        const n1 = Math.floor(Math.random() * 20) + 10; // 10~29
-                        const n2 = Math.floor(Math.random() * 9) + 1;   // 1~9
-                        ans = n1 + n2;
-                        qStr = `${n1} + ${n2}`;
-                    } else if (type < 0.8) { // 뺄셈 (두자리 - 한자리)
-                        const n1 = Math.floor(Math.random() * 20) + 10;
-                        const n2 = Math.floor(Math.random() * 9) + 1;
-                        ans = n1 - n2;
-                        qStr = `${n1} - ${n2}`;
-                    } else { // 쉬운 곱셈 (구구단)
-                         const n1 = Math.floor(Math.random() * 8) + 2; // 2~9
-                         const n2 = Math.floor(Math.random() * 8) + 2; // 2~9
-                         ans = n1 * n2;
-                         qStr = `${n1} × ${n2}`;
-                    }
-
-                    // 오답 생성
-                    let wrong1 = ans + (Math.floor(Math.random() * 5) + 1);
-                    let wrong2 = ans - (Math.floor(Math.random() * 5) + 1);
-                    // 정답과 겹치지 않게 보정
-                    if (wrong1 === ans) wrong1 += 1;
-                    if (wrong2 === ans) wrong2 -= 1;
-                    
-                    const opts = [ans, wrong1, wrong2].sort(() => Math.random() - 0.5);
-                    setProblem({ q: `${qStr} = ?`, a: ans, options: opts });
-                };
-
-                useEffect(() => { generateProblem(); }, []);
-
-                const handleAnswer = (val) => {
-                    if (val === problem.a) {
-                        showFeedback(true);
-                        setScore(s => s + 20); // 점수 상향
-                        if (count + 1 >= 5) { // 5문제
-                            setTimeout(onComplete, 1000);
-                        } else {
-                            setCount(c => c + 1);
-                            generateProblem();
-                        }
-                    } else { showFeedback(false); }
-                };
-
-                return (
-                    <div className="w-full flex flex-col items-center animate-fade-in">
-                        <p className={styles.instruction}>2단계: <span className="text-amber-600">계산하기</span> ({count + 1}/5)</p>
-                        <div className="bg-amber-100 px-8 py-8 rounded-2xl mb-8 w-full text-center">
-                            <p className={styles.bigText}>{problem.q}</p>
-                        </div>
-                        <div className="grid grid-cols-1 gap-3 w-full">
-                            {problem.options.map((opt, idx) => (
-                                <button key={idx} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-amber-200 text-amber-900 hover:bg-amber-50`}>{opt}</button>
-                            ))}
-                        </div>
-                    </div>
-                );
-            };
-
-            // --- 3. 속담 퀴즈 (Word) ---
-            const WordGame = ({ onComplete }) => {
-                const [quiz, setQuiz] = useState({ q: '', a: '', options: [] });
-                const [count, setCount] = useState(0);
-
-                const proverbs = [
-                    { q: "가는 말이 고와야 [ ? ]", a: "오는 말이 곱다", w: "오는 말이 거칠다" },
-                    { q: "누워서 [ ? ] 먹기", a: "떡", w: "밥" },
-                    { q: "티끌 모아 [ ? ]", a: "태산", w: "동산" },
-                    { q: "등잔 밑이 [ ? ]", a: "어둡다", w: "밝다" },
-                    { q: "원숭이도 나무에서 [ ? ]", a: "떨어진다", w: "날아간다" },
-                    { q: "세 살 버릇 여든까지 [ ? ]", a: "간다", w: "안 간다" },
-                    { q: "소 잃고 [ ? ] 고친다", a: "외양간", w: "대문" }
-                ];
-
-                const generateQuiz = () => {
-                    // 랜덤 선택
-                    const item = proverbs[Math.floor(Math.random() * proverbs.length)];
-                    const opts = [item.a, item.w].sort(() => Math.random() - 0.5);
-                    setQuiz({ q: item.q, a: item.a, options: opts });
-                };
-
-                useEffect(() => { generateQuiz(); }, []);
-
-                const handleAnswer = (val) => {
-                    if (val === quiz.a) {
-                        showFeedback(true);
-                        setScore(s => s + 20);
-                        if (count + 1 >= 3) { // 3문제
-                            setTimeout(onComplete, 1000);
-                        } else {
-                            setCount(c => c + 1);
-                            generateQuiz();
-                        }
-                    } else { showFeedback(false); }
-                };
-
-                return (
-                    <div className="w-full flex flex-col items-center animate-fade-in">
-                        <p className={styles.instruction}>3단계: <span className="text-purple-600">속담 완성하기</span> ({count + 1}/3)</p>
-                        <div className="bg-purple-50 px-6 py-8 rounded-2xl mb-8 w-full text-center border-2 border-purple-100">
-                            <BookOpen size={40} className="text-purple-600 mx-auto mb-2" />
-                            <p className="text-2xl font-bold text-gray-800 break-keep leading-relaxed">{quiz.q}</p>
-                        </div>
-                        <div className="grid grid-cols-1 gap-3 w-full">
-                            {quiz.options.map((opt, idx) => (
-                                <button key={idx} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-purple-200 text-purple-900 hover:bg-purple-50`}>{opt}</button>
-                            ))}
-                        </div>
-                    </div>
-                );
-            };
-
-            // --- 4. 다른 그림 찾기 (Spatial) ---
-            const SpatialGame = ({ onComplete }) => {
-                const [items, setItems] = useState([]);
-                const [count, setCount] = useState(0);
-
-                const shapes = ['●', '▲', '■', '★', '♥'];
-                const colors = ['text-red-500', 'text-blue-500', 'text-green-500', 'text-yellow-500'];
-
-                const generateLevel = () => {
-                    // 1. 모양이 다른 것 찾기 or 2. 색깔이 다른 것 찾기
-                    const isShapeDiff = Math.random() > 0.5;
-                    let grid = [];
-                    let answerIdx = Math.floor(Math.random() * 4); // 0~3 중 정답 위치
-
-                    if (isShapeDiff) {
-                        // 모양이 다름, 색은 같음
-                        const baseShape = shapes[Math.floor(Math.random() * shapes.length)];
-                        let diffShape = baseShape;
-                        while(diffShape === baseShape) diffShape = shapes[Math.floor(Math.random() * shapes.length)];
-                        
-                        const color = colors[Math.floor(Math.random() * colors.length)];
-                        
-                        for(let i=0; i<4; i++) {
-                            if (i === answerIdx) grid.push({ shape: diffShape, color: color, isAns: true });
-                            else grid.push({ shape: baseShape, color: color, isAns: false });
-                        }
-                    } else {
-                        // 색이 다름, 모양은 같음
-                        const shape = shapes[Math.floor(Math.random() * shapes.length)];
-                        const baseColorIdx = Math.floor(Math.random() * colors.length);
-                        const baseColor = colors[baseColorIdx];
-                        let diffColor = baseColor;
-                        while(diffColor === baseColor) diffColor = colors[Math.floor(Math.random() * colors.length)];
-
-                        for(let i=0; i<4; i++) {
-                            if (i === answerIdx) grid.push({ shape: shape, color: diffColor, isAns: true });
-                            else grid.push({ shape: shape, color: baseColor, isAns: false });
-                        }
-                    }
-                    setItems(grid);
-                };
-
-                useEffect(() => { generateLevel(); }, []);
-
-                const handleClick = (isAns) => {
-                    if (isAns) {
-                        showFeedback(true);
-                        setScore(s => s + 20);
-                        if (count + 1 >= 3) {
-                            setTimeout(onComplete, 1000);
-                        } else {
-                            setCount(c => c + 1);
-                            generateLevel();
-                        }
-                    } else { showFeedback(false); }
-                };
-
-                return (
-                    <div className="w-full flex flex-col items-center animate-fade-in">
-                        <p className={styles.instruction}>4단계: <span className="text-blue-600">다른 것 찾기</span> ({count + 1}/3)</p>
-                        <p className="text-gray-500 mb-6 text-lg">모양이나 색깔이 <span className="font-bold text-black">다른 하나</span>를 누르세요.</p>
-                        
-                        <div className="grid grid-cols-2 gap-4 w-full max-w-[300px]">
-                            {items.map((item, idx) => (
-                                <button 
-                                    key={idx} 
-                                    onClick={() => handleClick(item.isAns)}
-                                    className="bg-white border-2 border-gray-200 rounded-2xl h-32 flex items-center justify-center shadow-sm active:scale-95 transition-transform"
-                                >
-                                    <span className={`text-6xl ${item.color}`}>{item.shape}</span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                );
-            };
-
-            // --- 5. 순서 기억 (Memory) ---
-            const MemoryGame = ({ onComplete }) => {
-                const [sequence, setSequence] = useState([]);
-                const [playerSequence, setPlayerSequence] = useState([]);
-                const [isPlaying, setIsPlaying] = useState(false);
-                const [activeIndex, setActiveIndex] = useState(null);
-                const [round, setRound] = useState(0);
-
-                const items = [0, 1, 2, 3];
-                const bgColors = ['bg-pink-400', 'bg-yellow-400', 'bg-sky-400', 'bg-emerald-400'];
-
-                const startRound = (level) => {
-                    setPlayerSequence([]);
-                    setIsPlaying(true);
-                    const newSeq = [];
-                    // 레벨 1: 3개, 레벨 2: 4개, 레벨 3: 5개
-                    for(let i=0; i < level + 3; i++) newSeq.push(Math.floor(Math.random() * 4));
-                    setSequence(newSeq);
-                    
-                    let i = 0;
-                    const interval = setInterval(() => {
-                        if (i >= newSeq.length) { clearInterval(interval); setActiveIndex(null); setIsPlaying(false); return; }
-                        setActiveIndex(newSeq[i]);
-                        playSound('click');
-                        setTimeout(() => setActiveIndex(null), 600);
-                        i++;
-                    }, 1000);
-                };
-
-                useEffect(() => { startRound(round); }, [round]);
-
-                const handleTap = (idx) => {
-                    if (isPlaying) return;
-                    setActiveIndex(idx);
-                    playSound('click');
-                    setTimeout(() => setActiveIndex(null), 200);
-
-                    const nextIdx = playerSequence.length;
-                    if (sequence[nextIdx] === idx) {
-                        const newPlayerSeq = [...playerSequence, idx];
-                        setPlayerSequence(newPlayerSeq);
-                        if (newPlayerSeq.length === sequence.length) {
-                            showFeedback(true);
-                            setScore(s => s + 30);
-                            if (round + 1 >= 3) {
-                                setTimeout(onComplete, 1000);
-                            } else {
-                                setTimeout(() => setRound(r => r + 1), 1000);
-                            }
-                        }
-                    } else {
-                        showFeedback(false);
-                        setPlayerSequence([]);
-                        setTimeout(() => {
-                            // 틀리면 다시 보여주기
-                            let i = 0; setIsPlaying(true);
-                            const interval = setInterval(() => {
-                                if (i >= sequence.length) { clearInterval(interval); setActiveIndex(null); setIsPlaying(false); return; }
-                                setActiveIndex(sequence[i]); playSound('click'); setTimeout(() => setActiveIndex(null), 600); i++;
-                            }, 1000);
-                        }, 1000);
-                    }
-                };
-
-                return (
-                    <div className="w-full flex flex-col items-center animate-fade-in">
-                        <p className={styles.instruction}>마지막 단계: <span className="text-pink-600">순서 기억하기</span> ({round + 1}/3)</p>
-                        <div className="grid grid-cols-2 gap-4 mb-6">
-                            {items.map((item) => (
-                                <button key={item} onClick={() => handleTap(item)} disabled={isPlaying} className={`w-28 h-28 rounded-2xl border-b-8 transition-all active:border-b-0 active:translate-y-2 ${activeIndex === item ? 'scale-105 brightness-110 border-gray-600' : 'border-black/10'} ${bgColors[item]} flex items-center justify-center`}><Star fill="white" size={40} className="text-white/80" /></button>
-                            ))}
-                        </div>
-                        <div className="h-8">{isPlaying ? <span className="text-amber-600 font-bold animate-pulse text-xl">잘 보세요...</span> : <span className="text-green-600 font-bold text-xl">이제 눌러보세요!</span>}</div>
-                    </div>
-                );
-            };
-
-            const ResultScreen = () => {
-                useEffect(() => { playSound('fanfare'); }, []);
-                return (
-                    <div className="flex flex-col items-center animate-zoom-in w-full">
-                        <Trophy size={80} className="text-yellow-500 mb-4 drop-shadow-md" />
-                        <h2 className="text-3xl font-bold text-gray-800 mb-2">운동 완료!</h2>
-                        <p className="text-gray-600 mb-6 text-xl text-center">오늘도 수고하셨습니다,<br/><span className="text-green-600 font-bold">{userName} 어르신!</span></p>
-                        <div className="bg-yellow-50 border-2 border-yellow-200 p-6 rounded-2xl w-full text-center mb-8"><p className="text-gray-500 mb-2">최종 점수</p><p className="text-6xl font-black text-amber-600">{score}점</p></div>
-                        <button onClick={() => { setGameState('intro'); setScore(0); setStageProgress(0); }} className={`${styles.button} bg-green-500 text-white border-green-700`}><RotateCcw size={28} />처음으로 돌아가기</button>
-                    </div>
-                );
-            };
-
-            // --- 메인 렌더링 스위치 ---
             return (
                 <div className={styles.container}>
-                    {/* 공통 헤더 (이름 입력 화면 제외) */}
                     {gameState !== 'nameInput' && (
                         <div className="w-full max-w-md px-1 pt-4 pb-2 flex items-center justify-between animate-fade-in">
                             <span className="text-xl font-bold text-amber-800 flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-amber-100">
@@ -569,33 +531,31 @@
                     )}
 
                     <div className={`${styles.card} mt-2 min-h-[550px] justify-start relative pb-12`}>
-                        {gameState === 'nameInput' && <NameInputScreen />}
+                        {gameState === 'nameInput' && <NameInputScreen onNameSubmit={(name) => { setUserName(name); setGameState('intro'); }} playSound={playSound} />}
                         
                         {gameState === 'intro' && (
                             <div className="flex flex-col items-center w-full animate-fade-in">
                                 <div className="bg-green-100 p-4 rounded-full mb-4 mt-4 shadow-sm"><Heart size={48} className="text-green-600" fill="#16a34a" /></div>
                                 <h1 className="text-3xl font-black text-green-800 mb-2 text-center">안녕하세요,<br/><span className="text-4xl">{userName}님!</span></h1>
                                 <p className="text-lg text-green-700 mb-8 font-medium">오늘의 두뇌 운동을 시작할까요?</p>
-                                
                                 <div className="grid grid-cols-2 gap-3 w-full mb-8">
                                     <div className="bg-gray-50 p-3 rounded-xl flex flex-col items-center text-center"><CalendarIcon className="text-green-600 mb-1"/><span className="text-sm font-bold">날짜</span></div>
                                     <div className="bg-gray-50 p-3 rounded-xl flex flex-col items-center text-center"><Star className="text-amber-600 mb-1"/><span className="text-sm font-bold">계산</span></div>
                                     <div className="bg-gray-50 p-3 rounded-xl flex flex-col items-center text-center"><BookOpen className="text-purple-600 mb-1"/><span className="text-sm font-bold">속담</span></div>
                                     <div className="bg-gray-50 p-3 rounded-xl flex flex-col items-center text-center"><Search className="text-blue-600 mb-1"/><span className="text-sm font-bold">찾기</span></div>
                                 </div>
-
                                 <button onClick={() => { setGameState('orientation'); playSound('click'); }} className="w-full py-5 text-2xl font-bold rounded-2xl bg-green-500 text-white shadow-md flex items-center justify-center gap-2 active:scale-95 transition-transform border-b-4 border-green-700 active:border-b-0 active:translate-y-1"><Play fill="white" size={28} />시작하기</button>
                             </div>
                         )}
 
-                        {gameState === 'orientation' && <OrientationGame onComplete={handleStageComplete} />}
-                        {gameState === 'math' && <MathGame onComplete={handleStageComplete} />}
-                        {gameState === 'word' && <WordGame onComplete={handleStageComplete} />}
-                        {gameState === 'spatial' && <SpatialGame onComplete={handleStageComplete} />}
-                        {gameState === 'memory' && <MemoryGame onComplete={handleStageComplete} />}
-                        {gameState === 'result' && <ResultScreen />}
+                        {gameState === 'orientation' && <OrientationGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} />}
+                        {gameState === 'math' && <MathGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} />}
+                        {gameState === 'word' && <WordGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} />}
+                        {gameState === 'spatial' && <SpatialGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} />}
+                        {gameState === 'memory' && <MemoryGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} playSound={playSound} />}
+                        
+                        {gameState === 'result' && <ResultScreen score={score} userName={userName} onRestart={() => { setGameState('intro'); setScore(0); }} playSound={playSound} />}
 
-                        {/* 피드백 오버레이 */}
                         {feedback && (
                             <div className={styles.feedbackOverlay}>
                                 {feedback === 'correct' ? 
