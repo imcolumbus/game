@@ -14,15 +14,18 @@
     <!-- 애니메이션 스타일 정의 -->
     <style>
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        @keyframes bounceShort { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
-        .animate-zoom-in { animation: zoomIn 0.5s ease-out forwards; }
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        @keyframes bounceShort { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        .animate-zoom-in { animation: zoomIn 0.3s ease-out forwards; }
         .animate-bounce-short { animation: bounceShort 0.5s ease-in-out; }
         body { font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; -webkit-tap-highlight-color: transparent; }
         
         /* 입력창 스타일 커스텀 */
         .custom-input:focus { outline: none; border-color: #16a34a; ring: 2px solid #16a34a; }
+        /* 스크롤바 숨김 */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-amber-50">
@@ -54,15 +57,19 @@
         const Target = (props) => <IconBase {...props}><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></IconBase>;
         const Hash = (props) => <IconBase {...props}><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></IconBase>;
         const Compass = (props) => <IconBase {...props}><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></IconBase>;
+        const PenTool = (props) => <IconBase {...props}><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></IconBase>;
+        const Sun = (props) => <IconBase {...props}><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></IconBase>;
+        const Moon = (props) => <IconBase {...props}><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></IconBase>;
+        const Coffee = (props) => <IconBase {...props}><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></IconBase>;
 
-        // --- 전역 스타일 (폰트 사이즈 대폭 확대) ---
+        // --- 전역 스타일 ---
         const styles = {
             container: "min-h-screen flex flex-col items-center p-4 font-sans select-none touch-manipulation pb-10 bg-amber-50",
             card: "w-full max-w-md bg-white rounded-3xl shadow-xl p-6 flex flex-col items-center transition-all duration-300",
-            button: "w-full py-6 text-2xl font-bold rounded-2xl transition-transform active:scale-95 shadow-md flex items-center justify-center gap-2 border-b-4 active:border-b-0 mb-3",
-            bigText: "text-6xl font-black text-gray-800 mb-6 mt-4 leading-tight text-center break-keep",
-            instruction: "text-3xl text-gray-700 mb-4 text-center font-bold break-keep leading-snug bg-amber-100 px-4 py-2 rounded-lg w-full",
-            subText: "text-xl text-gray-500 mb-6 text-center font-medium",
+            button: "w-full py-5 text-xl font-bold rounded-2xl transition-transform active:scale-95 shadow-md flex items-center justify-center gap-2 border-b-4 active:border-b-0 mb-3",
+            bigText: "text-5xl font-black text-gray-800 mb-6 mt-4 leading-tight text-center break-keep",
+            instruction: "text-2xl text-gray-700 mb-4 text-center font-bold break-keep leading-snug bg-amber-100 px-4 py-2 rounded-lg w-full",
+            subText: "text-lg text-gray-500 mb-6 text-center font-medium",
             feedbackOverlay: "fixed inset-0 flex items-center justify-center bg-black/30 z-50 pointer-events-none animate-fade-in",
             input: "w-full text-center text-4xl font-bold py-4 border-b-4 border-gray-300 focus:border-green-500 outline-none bg-transparent mb-8"
         };
@@ -82,8 +89,99 @@
             );
         };
 
+        // --- NEW: 오늘의 기록장 (Daily Record) ---
+        const DailyRecord = ({ onBack, playSound }) => {
+            // 식사 상태: 0=미입력, 1=밥, 2=면/빵, 3=죽/국, 4=안먹음
+            const [meals, setMeals] = useState({ morning: 0, lunch: 0, dinner: 0 });
+            // 활동 상태: 선택된 항목 배열
+            const [activities, setActivities] = useState([]);
+
+            const mealOptions = [
+                { id: 1, label: "밥", icon: "🍚" },
+                { id: 2, label: "면/빵", icon: "🍜" },
+                { id: 3, label: "과일/죽", icon: "🍎" },
+                { id: 4, label: "안먹음", icon: "❌" },
+            ];
+
+            const actOptions = [
+                { id: "walk", label: "산책", icon: "🚶" },
+                { id: "tv", label: "TV 시청", icon: "📺" },
+                { id: "clean", label: "청소", icon: "🧹" },
+                { id: "read", label: "독서", icon: "📖" },
+                { id: "social", label: "모임", icon: "👥" },
+                { id: "nap", label: "낮잠", icon: "💤" },
+                { id: "med", label: "약 복용", icon: "💊" },
+                { id: "gym", label: "운동", icon: "💪" },
+            ];
+
+            const toggleMeal = (time, id) => {
+                playSound('click');
+                setMeals(prev => ({ ...prev, [time]: prev[time] === id ? 0 : id }));
+            };
+
+            const toggleAct = (id) => {
+                playSound('click');
+                setActivities(prev => prev.includes(id) ? prev.filter(a => a !== id) : [...prev, id]);
+            };
+
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in pb-8">
+                    <div className="bg-orange-100 p-3 rounded-full mb-2 mt-2 shadow-sm"><PenTool size={40} className="text-orange-600" /></div>
+                    <h1 className="text-2xl font-black text-gray-800 mb-6 text-center">오늘의 기록장</h1>
+
+                    {/* 식사 기록 */}
+                    <div className="w-full bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-4">
+                        <h3 className="font-bold text-xl text-gray-700 mb-3 border-l-4 border-green-500 pl-2">식사는 하셨나요?</h3>
+                        {['morning', 'lunch', 'dinner'].map((time) => (
+                            <div key={time} className="mb-3 last:mb-0">
+                                <div className="flex items-center gap-2 mb-2">
+                                    {time === 'morning' && <Sun size={20} className="text-orange-500"/>}
+                                    {time === 'lunch' && <Sun size={20} className="text-yellow-500"/>}
+                                    {time === 'dinner' && <Moon size={20} className="text-purple-500"/>}
+                                    <span className="font-bold text-gray-600">
+                                        {time === 'morning' ? "아침" : time === 'lunch' ? "점심" : "저녁"}
+                                    </span>
+                                </div>
+                                <div className="flex gap-2 justify-between">
+                                    {mealOptions.map((opt) => (
+                                        <button 
+                                            key={opt.id} 
+                                            onClick={() => toggleMeal(time, opt.id)}
+                                            className={`flex-1 py-2 rounded-lg text-sm font-bold border-2 transition-all ${meals[time] === opt.id ? 'bg-green-100 border-green-500 text-green-800 scale-105' : 'bg-gray-50 border-gray-100 text-gray-400'}`}
+                                        >
+                                            <span className="text-xl block mb-1">{opt.icon}</span>
+                                            {opt.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* 활동 기록 */}
+                    <div className="w-full bg-white p-4 rounded-2xl shadow-sm border border-gray-100 mb-6">
+                        <h3 className="font-bold text-xl text-gray-700 mb-3 border-l-4 border-blue-500 pl-2">오늘 한 일은?</h3>
+                        <div className="grid grid-cols-4 gap-2">
+                            {actOptions.map((act) => (
+                                <button 
+                                    key={act.id} 
+                                    onClick={() => toggleAct(act.id)}
+                                    className={`aspect-square rounded-xl border-2 flex flex-col items-center justify-center transition-all ${activities.includes(act.id) ? 'bg-blue-100 border-blue-500 text-blue-800' : 'bg-gray-50 border-gray-100 text-gray-400'}`}
+                                >
+                                    <span className="text-2xl mb-1">{act.icon}</span>
+                                    <span className="text-xs font-bold">{act.label}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <button onClick={onBack} className={`${styles.button} bg-gray-500 text-white border-gray-700`}>저장하고 나가기</button>
+                </div>
+            );
+        };
+
         // --- 메뉴 화면 (게임 선택) ---
-        const GameMenu = ({ userName, onStartCourse, onSelectGame }) => {
+        const GameMenu = ({ userName, onStartCourse, onSelectGame, onOpenRecord }) => {
             const games = [
                 { id: 'math', name: '계산 하기', icon: Star, color: 'text-amber-500', bg: 'bg-amber-50', border: 'border-amber-100' },
                 { id: 'word', name: '속담 퀴즈', icon: BookOpen, color: 'text-purple-600', bg: 'bg-purple-50', border: 'border-purple-100' },
@@ -102,10 +200,16 @@
                     <div className="bg-green-100 p-3 rounded-full mb-2 mt-2 shadow-sm"><Heart size={40} className="text-green-600" fill="#16a34a" /></div>
                     <h1 className="text-2xl font-black text-green-800 mb-4 text-center">안녕하세요, {userName}님!</h1>
                     
-                    <button onClick={onStartCourse} className="w-full py-6 text-2xl font-bold rounded-2xl bg-green-500 text-white shadow-lg flex flex-col items-center justify-center gap-1 active:scale-95 transition-transform border-b-4 border-green-700 active:border-b-0 active:translate-y-1 mb-8">
+                    <button onClick={onStartCourse} className="w-full py-6 text-2xl font-bold rounded-2xl bg-green-500 text-white shadow-lg flex flex-col items-center justify-center gap-1 active:scale-95 transition-transform border-b-4 border-green-700 active:border-b-0 active:translate-y-1 mb-6">
                         <div className="flex items-center gap-2"><Play fill="white" size={32} /> 오늘의 추천 코스</div>
                         <span className="text-lg font-normal opacity-90">종합 두뇌 검진 (랜덤 5종)</span>
                     </button>
+
+                    <div className="w-full grid grid-cols-2 gap-3 mb-6">
+                         <button onClick={onOpenRecord} className="col-span-2 py-4 bg-orange-100 rounded-xl border-2 border-orange-200 text-orange-800 font-bold text-xl flex items-center justify-center gap-2 active:scale-95">
+                            <PenTool size={24}/> 오늘의 기록장 쓰기
+                        </button>
+                    </div>
 
                     <div className="w-full text-left mb-4"><span className="text-xl font-bold text-gray-700 border-l-4 border-amber-500 pl-3">원하는 운동 고르기</span></div>
                     
@@ -201,23 +305,62 @@
             );
         };
 
-        // --- 3. 속담 퀴즈 (Word) ---
+        // --- 3. 속담 퀴즈 (Word) - 데이터 50개 이상 보강 ---
         const WordGame = ({ onComplete, onCorrect, onWrong }) => {
             const [quiz, setQuiz] = useState(null);
             const [count, setCount] = useState(0);
             const [quizList, setQuizList] = useState([]);
             const allProverbs = [
-                { q: "가는 말이 고와야 [ ? ]", a: "오는 말이 곱다", w: "오는 말이 거칠다" }, { q: "누워서 [ ? ] 먹기", a: "떡", w: "밥" }, { q: "티끌 모아 [ ? ]", a: "태산", w: "동산" },
-                { q: "등잔 밑이 [ ? ]", a: "어둡다", w: "밝다" }, { q: "원숭이도 나무에서 [ ? ]", a: "떨어진다", w: "날아간다" }, { q: "세 살 버릇 여든까지 [ ? ]", a: "간다", w: "안 간다" },
-                { q: "소 잃고 [ ? ] 고친다", a: "외양간", w: "대문" }, { q: "고생 끝에 [ ? ]이 온다", a: "낙", w: "병" }, { q: "서당 개 삼 년이면 [ ? ]을 읊는다", a: "풍월", w: "노래" },
-                { q: "지렁이도 밟으면 [ ? ]한다", a: "꿈틀", w: "가만" }, { q: "하늘이 무너져도 솟아날 [ ? ]이 있다", a: "구멍", w: "기둥" }, { q: "호랑이도 제 말 하면 [ ? ]", a: "온다", w: "간다" },
-                { q: "바늘 도둑이 [ ? ] 도둑 된다", a: "소", w: "말" }, { q: "열 번 찍어 안 넘어가는 [ ? ] 없다", a: "나무", w: "돌" }, { q: "말 한마디로 [ ? ] 빚 갚는다", a: "천 냥", w: "만 냥" },
-                { q: "작은 고추가 더 [ ? ]", a: "맵다", w: "달다" }, { q: "꿩 먹고 [ ? ] 먹고", a: "알", w: "물" }, { q: "돌다리도 두들겨 보고 [ ? ]", a: "건너라", w: "뛰어라" },
-                { q: "무자식이 [ ? ]자", a: "상팔", w: "하팔" }, { q: "밑 빠진 독에 [ ? ] 붓기", a: "물", w: "술" }, { q: "백지장도 맞들면 [ ? ]", a: "낫다", w: "무겁다" },
-                { q: "비 온 뒤에 땅이 [ ? ]", a: "굳어진다", w: "무너진다" }, { q: "사공이 많으면 배가 [ ? ]로 간다", a: "산", w: "바다" }, { q: "시작이 [ ? ]이다", a: "반", w: "전부" },
-                { q: "아니 땐 굴뚝에 [ ? ] 날까", a: "연기", w: "불" }, { q: "약방에 [ ? ]", a: "감초", w: "인삼" }, { q: "오르지 못할 나무는 [ ? ]도 마라", a: "쳐다보", w: "만지" },
-                { q: "우물 안 [ ? ]", a: "개구리", w: "두꺼비" }, { q: "쥐구멍에도 볕 들 날 [ ? ]", a: "있다", w: "없다" }, { q: "천 리 길도 [ ? ]부터", a: "한 걸음", w: "두 걸음" },
-                { q: "소문난 잔치에 [ ? ] 없다", a: "먹을 것", w: "볼 것" }, { q: "개천에서 [ ? ] 난다", a: "용", w: "뱀" }, { q: "낫 놓고 [ ? ] 자도 모른다", a: "기역", w: "니은" }
+                { q: "가는 말이 고와야 [ ? ]", a: "오는 말이 곱다", w: "오는 말이 거칠다" }, 
+                { q: "누워서 [ ? ] 먹기", a: "떡", w: "밥" }, 
+                { q: "티끌 모아 [ ? ]", a: "태산", w: "동산" },
+                { q: "등잔 밑이 [ ? ]", a: "어둡다", w: "밝다" }, 
+                { q: "원숭이도 나무에서 [ ? ]", a: "떨어진다", w: "날아간다" }, 
+                { q: "세 살 버릇 여든까지 [ ? ]", a: "간다", w: "안 간다" },
+                { q: "소 잃고 [ ? ] 고친다", a: "외양간", w: "대문" }, 
+                { q: "고생 끝에 [ ? ]이 온다", a: "낙", w: "병" }, 
+                { q: "서당 개 삼 년이면 [ ? ]을 읊는다", a: "풍월", w: "노래" },
+                { q: "지렁이도 밟으면 [ ? ]한다", a: "꿈틀", w: "가만" }, 
+                { q: "하늘이 무너져도 솟아날 [ ? ]이 있다", a: "구멍", w: "기둥" }, 
+                { q: "호랑이도 제 말 하면 [ ? ]", a: "온다", w: "간다" },
+                { q: "바늘 도둑이 [ ? ] 도둑 된다", a: "소", w: "말" }, 
+                { q: "열 번 찍어 안 넘어가는 [ ? ] 없다", a: "나무", w: "돌" }, 
+                { q: "말 한마디로 [ ? ] 빚 갚는다", a: "천 냥", w: "만 냥" },
+                { q: "작은 고추가 더 [ ? ]", a: "맵다", w: "달다" }, 
+                { q: "꿩 먹고 [ ? ] 먹고", a: "알", w: "물" }, 
+                { q: "돌다리도 두들겨 보고 [ ? ]", a: "건너라", w: "뛰어라" },
+                { q: "무자식이 [ ? ]자", a: "상팔", w: "하팔" }, 
+                { q: "밑 빠진 독에 [ ? ] 붓기", a: "물", w: "술" }, 
+                { q: "백지장도 맞들면 [ ? ]", a: "낫다", w: "무겁다" },
+                { q: "비 온 뒤에 땅이 [ ? ]", a: "굳어진다", w: "무너진다" }, 
+                { q: "사공이 많으면 배가 [ ? ]로 간다", a: "산", w: "바다" }, 
+                { q: "시작이 [ ? ]이다", a: "반", w: "전부" },
+                { q: "아니 땐 굴뚝에 [ ? ] 날까", a: "연기", w: "불" }, 
+                { q: "약방에 [ ? ]", a: "감초", w: "인삼" }, 
+                { q: "오르지 못할 나무는 [ ? ]도 마라", a: "쳐다보", w: "만지" },
+                { q: "우물 안 [ ? ]", a: "개구리", w: "두꺼비" }, 
+                { q: "쥐구멍에도 볕 들 날 [ ? ]", a: "있다", w: "없다" }, 
+                { q: "천 리 길도 [ ? ]부터", a: "한 걸음", w: "두 걸음" },
+                { q: "소문난 잔치에 [ ? ] 없다", a: "먹을 것", w: "볼 것" }, 
+                { q: "개천에서 [ ? ] 난다", a: "용", w: "뱀" }, 
+                { q: "낫 놓고 [ ? ] 자도 모른다", a: "기역", w: "니은" },
+                { q: "똥 묻은 개가 [ ? ] 묻은 개 나무란다", a: "겨", w: "재" },
+                { q: "말은 청산[ ? ]", a: "유수", w: "명수" },
+                { q: "매도 먼저 맞는 놈이 [ ? ]", a: "낫다", w: "아프다" },
+                { q: "목마른 놈이 [ ? ] 판다", a: "우물", w: "도랑" },
+                { q: "믿는 도끼에 [ ? ] 찍힌다", a: "발등", w: "손등" },
+                { q: "배보다 [ ? ]이 더 크다", a: "배꼽", w: "얼굴" },
+                { q: "사촌이 땅을 사면 [ ? ]가 아프다", a: "배", w: "머리" },
+                { q: "산 입에 [ ? ] 치랴", a: "거미줄", w: "파리" },
+                { q: "새 발의 [ ? ]", a: "피", w: "땀" },
+                { q: "쇠뿔도 단김에 [ ? ]", a: "빼라", w: "잘라라" },
+                { q: "아는 길도 [ ? ] 가라", a: "물어", w: "뛰어" },
+                { q: "얌전한 고양이 [ ? ]에 먼저 올라간다", a: "부뚜막", w: "지붕" },
+                { q: "열 길 물속은 알아도 한 길 [ ? ] 속은 모른다", a: "사람", w: "산" },
+                { q: "웃는 낯에 [ ? ] 못 뱉는다", a: "침", w: "욕" },
+                { q: "윗물이 맑아야 [ ? ]이 맑다", a: "아랫물", w: "뒷물" },
+                { q: "입이 열 개라도 [ ? ]이 없다", a: "할 말", w: "갈 곳" },
+                { q: "자라 보고 놀란 가슴 [ ? ] 보고 놀란다", a: "솥뚜껑", w: "냄비" }
             ];
             useEffect(() => { setQuizList([...allProverbs].sort(() => Math.random() - 0.5).slice(0, 5)); }, []);
             useEffect(() => { if (quizList.length > 0) { const cur = quizList[count]; setQuiz({ ...cur, options: [cur.a, cur.w].sort(() => Math.random() - 0.5) }); } }, [count, quizList]);
@@ -226,7 +369,7 @@
             return (
                 <div className="w-full flex flex-col items-center animate-fade-in">
                     <p className={styles.instruction}>빈 칸에 들어갈 <span className="text-purple-600">속담</span>을 완성하세요.</p>
-                    <div className="bg-purple-50 px-6 py-8 rounded-2xl mb-8 w-full text-center border-2 border-purple-100"><p className="text-4xl font-bold text-gray-800 break-keep leading-relaxed">{quiz.q}</p></div>
+                    <div className="bg-purple-50 px-6 py-8 rounded-2xl mb-8 w-full text-center border-2 border-purple-100"><p className={styles.bigText}>{quiz.q}</p></div>
                     <div className="grid grid-cols-1 gap-3 w-full">{quiz.options.map((opt, idx) => (<button key={idx} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-purple-200 text-purple-900 hover:bg-purple-50`}>{opt}</button>))}</div>
                 </div>
             );
@@ -369,20 +512,22 @@
             );
         }
 
-        // --- 9. 단어 분류 (Category) ---
+        // --- 9. 단어 분류 (Category) - 데이터 보강 ---
         const CategoryGame = ({ onComplete, onCorrect, onWrong }) => {
             const [q, setQ] = useState(null); const [count, setCount] = useState(0);
             const data = [
-                { t: '사과', c: '식물' }, { t: '호랑이', c: '동물' }, { t: '장미', c: '식물' }, { t: '고등어', c: '동물' },
-                { t: '자동차', c: '물건' }, { t: '배추', c: '식물' }, { t: '강아지', c: '동물' }, { t: '책상', c: '물건' },
-                { t: '소나무', c: '식물' }, { t: '텔레비전', c: '물건' }, { t: '독수리', c: '동물' }, { t: '포도', c: '식물' }
+                { t: '사과', c: '과일' }, { t: '배', c: '과일' }, { t: '포도', c: '과일' }, { t: '수박', c: '과일' }, { t: '참외', c: '과일' },
+                { t: '고등어', c: '생선' }, { t: '갈치', c: '생선' }, { t: '오징어', c: '생선' }, { t: '조기', c: '생선' }, { t: '멸치', c: '생선' },
+                { t: '호랑이', c: '동물' }, { t: '사자', c: '동물' }, { t: '강아지', c: '동물' }, { t: '토끼', c: '동물' }, { t: '고양이', c: '동물' },
+                { t: '자동차', c: '탈것' }, { t: '비행기', c: '탈것' }, { t: '자전거', c: '탈것' }, { t: '기차', c: '탈것' }, { t: '버스', c: '탈것' },
+                { t: '바지', c: '옷' }, { t: '치마', c: '옷' }, { t: '양말', c: '옷' }, { t: '장갑', c: '옷' }, { t: '모자', c: '옷' },
+                { t: '냉장고', c: '가전' }, { t: '세탁기', c: '가전' }, { t: 'TV', c: '가전' }, { t: '에어컨', c: '가전' }, { t: '청소기', c: '가전' }
             ];
-            const cats = ['동물', '식물', '물건'];
+            const cats = ['과일', '생선', '동물', '탈것', '옷', '가전'];
             const generate = () => {
                 const item = data[Math.floor(Math.random() * data.length)];
-                // 오답 카테고리 1개 선정
-                let wrongCat = cats[Math.floor(Math.random() * 3)];
-                while(wrongCat === item.c) wrongCat = cats[Math.floor(Math.random() * 3)];
+                let wrongCat = cats[Math.floor(Math.random() * cats.length)];
+                while(wrongCat === item.c) wrongCat = cats[Math.floor(Math.random() * cats.length)];
                 setQ({ item, opts: [item.c, wrongCat].sort(() => Math.random() - 0.5) });
             };
             useEffect(() => { generate(); }, []);
@@ -393,7 +538,7 @@
             return (
                 <div className="w-full flex flex-col items-center animate-fade-in">
                     <p className={styles.instruction}>다음 단어는 무엇인가요?</p>
-                    <div className="bg-rose-50 px-8 py-10 rounded-2xl mb-8 w-full text-center border-2 border-rose-100"><p className="text-6xl font-black text-rose-900">{q.item.t}</p></div>
+                    <div className="bg-rose-50 px-8 py-10 rounded-2xl mb-8 w-full text-center border-2 border-rose-100"><p className={styles.bigText}>{q.item.t}</p></div>
                     <div className="grid grid-cols-2 gap-3 w-full">
                         {q.opts.map((opt, i) => (<button key={i} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-rose-200 text-rose-900 hover:bg-rose-50`}>{opt}</button>))}
                     </div>
@@ -535,7 +680,7 @@
                         <div className="w-full max-w-md px-1 pt-4 pb-2 flex items-center justify-between animate-fade-in">
                             <span className="text-xl font-bold text-amber-800 flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-amber-100"><Heart size={24} className="text-red-500" fill="red" /> {score}점</span>
                             <div className="flex items-center gap-2">
-                                {gameState !== 'menu' && gameState !== 'result' && gameState !== 'orientation' && (<button onClick={goBackToMenu} className="text-gray-400 p-2 bg-white rounded-full shadow-sm border border-gray-100" title="메뉴로"><Home size={20} /></button>)}
+                                {gameState !== 'menu' && gameState !== 'result' && gameState !== 'orientation' && gameState !== 'record' && (<button onClick={goBackToMenu} className="text-gray-400 p-2 bg-white rounded-full shadow-sm border border-gray-100" title="메뉴로"><Home size={20} /></button>)}
                                 <span className="text-sm font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">{userName}님</span>
                                 <button onClick={() => setSoundEnabled(!soundEnabled)} className="text-gray-400 p-2 bg-white rounded-full shadow-sm border border-gray-100">{soundEnabled ? <Volume2 size={20} /> : <div className="relative"><Volume2 size={20} className="opacity-50"/><XIcon size={14} className="absolute -top-1 -right-1"/></div>}</button>
                             </div>
@@ -544,7 +689,8 @@
 
                     <div className={`${styles.card} mt-2 min-h-[550px] justify-start relative pb-12`}>
                         {gameState === 'nameInput' && <NameInputScreen onNameSubmit={(name) => { setUserName(name); setGameState('orientation'); }} playSound={playSound} />}
-                        {gameState === 'menu' && <GameMenu userName={userName} onStartCourse={startDailyCourse} onSelectGame={startSingleGame} />}
+                        {gameState === 'menu' && <GameMenu userName={userName} onStartCourse={startDailyCourse} onSelectGame={startSingleGame} onOpenRecord={() => {setGameState('record'); playSound('click');}} />}
+                        {gameState === 'record' && <DailyRecord onBack={() => {setGameState('menu'); playSound('click');}} playSound={playSound} />}
                         {gameState === 'orientation' && <OrientationGame onComplete={() => { setHasDoneOrientation(true); setGameState('menu'); }} onCorrect={handleCorrect} onWrong={handleWrong} />}
                         
                         {gameState === 'math' && <MathGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} />}
