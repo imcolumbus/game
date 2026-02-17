@@ -92,9 +92,9 @@
             );
         };
 
-        // --- 1. 날짜 기억 (Orientation) ---
+        // --- 1. 날짜 기억 (Orientation) - 고정 순서 ---
         const OrientationGame = ({ onComplete, onCorrect, onWrong }) => {
-            const [qType, setQType] = useState(0); // 0:년, 1:월, 2:일, 3:요일
+            const [qType, setQType] = useState(0); 
             const [options, setOptions] = useState([]);
             const [questionText, setQuestionText] = useState("");
             const [correctAnswer, setCorrectAnswer] = useState("");
@@ -141,21 +141,12 @@
 
             const handleAnswer = (val) => {
                 if (processing) return; 
-
                 if (val === correctAnswer) {
                     setProcessing(true);
-                    onCorrect(10); // 10점 획득
-                    
-                    if (qType >= 3) {
-                        setTimeout(onComplete, 1000);
-                    } else {
-                        setTimeout(() => {
-                            setQType(prev => prev + 1);
-                        }, 800);
-                    }
-                } else {
-                    onWrong();
-                }
+                    onCorrect(10); 
+                    if (qType >= 3) { setTimeout(onComplete, 1000); } 
+                    else { setTimeout(() => { setQType(prev => prev + 1); }, 800); }
+                } else { onWrong(); }
             };
 
             return (
@@ -194,17 +185,16 @@
                     ans = n1 - n2;
                     qStr = `${n1} - ${n2}`;
                 } else { // 곱셈
-                        const n1 = Math.floor(Math.random() * 8) + 2; 
-                        const n2 = Math.floor(Math.random() * 8) + 2; 
-                        ans = n1 * n2;
-                        qStr = `${n1} × ${n2}`;
+                    const n1 = Math.floor(Math.random() * 8) + 2; 
+                    const n2 = Math.floor(Math.random() * 8) + 2; 
+                    ans = n1 * n2;
+                    qStr = `${n1} × ${n2}`;
                 }
 
                 let wrong1 = ans + (Math.floor(Math.random() * 5) + 1);
                 let wrong2 = ans - (Math.floor(Math.random() * 5) + 1);
                 if (wrong1 === ans) wrong1 += 1;
                 if (wrong2 === ans) wrong2 -= 1;
-                
                 const opts = [ans, wrong1, wrong2].sort(() => Math.random() - 0.5);
                 setProblem({ q: `${qStr} = ?`, a: ans, options: opts });
             };
@@ -214,18 +204,14 @@
             const handleAnswer = (val) => {
                 if (val === problem.a) {
                     onCorrect(20);
-                    if (count + 1 >= 5) {
-                        setTimeout(onComplete, 1000);
-                    } else {
-                        setCount(c => c + 1);
-                        generateProblem();
-                    }
+                    if (count + 1 >= 5) { setTimeout(onComplete, 1000); } 
+                    else { setCount(c => c + 1); generateProblem(); }
                 } else { onWrong(); }
             };
 
             return (
                 <div className="w-full flex flex-col items-center animate-fade-in">
-                    <p className={styles.instruction}>2단계: <span className="text-amber-600">계산하기</span> ({count + 1}/5)</p>
+                    <p className={styles.instruction}>두뇌 운동: <span className="text-amber-600">계산하기</span> ({count + 1}/5)</p>
                     <div className="bg-amber-100 px-8 py-8 rounded-2xl mb-8 w-full text-center">
                         <p className={styles.bigText}>{problem.q}</p>
                     </div>
@@ -238,44 +224,73 @@
             );
         };
 
-        // --- 3. 속담 퀴즈 (Word) ---
+        // --- 3. 속담 퀴즈 (Word) - 데이터 대폭 추가 및 셔플 ---
         const WordGame = ({ onComplete, onCorrect, onWrong }) => {
-            const [quiz, setQuiz] = useState({ q: '', a: '', options: [] });
+            const [quiz, setQuiz] = useState(null);
             const [count, setCount] = useState(0);
+            const [quizList, setQuizList] = useState([]);
 
-            const proverbs = [
+            // 30개 이상의 속담 데이터
+            const allProverbs = [
                 { q: "가는 말이 고와야 [ ? ]", a: "오는 말이 곱다", w: "오는 말이 거칠다" },
                 { q: "누워서 [ ? ] 먹기", a: "떡", w: "밥" },
                 { q: "티끌 모아 [ ? ]", a: "태산", w: "동산" },
                 { q: "등잔 밑이 [ ? ]", a: "어둡다", w: "밝다" },
                 { q: "원숭이도 나무에서 [ ? ]", a: "떨어진다", w: "날아간다" },
                 { q: "세 살 버릇 여든까지 [ ? ]", a: "간다", w: "안 간다" },
-                { q: "소 잃고 [ ? ] 고친다", a: "외양간", w: "대문" }
+                { q: "소 잃고 [ ? ] 고친다", a: "외양간", w: "대문" },
+                { q: "고생 끝에 [ ? ]이 온다", a: "낙", w: "병" },
+                { q: "서당 개 삼 년이면 [ ? ]을 읊는다", a: "풍월", w: "노래" },
+                { q: "지렁이도 밟으면 [ ? ]한다", a: "꿈틀", w: "가만" },
+                { q: "하늘이 무너져도 솟아날 [ ? ]이 있다", a: "구멍", w: "기둥" },
+                { q: "호랑이도 제 말 하면 [ ? ]", a: "온다", w: "간다" },
+                { q: "바늘 도둑이 [ ? ] 도둑 된다", a: "소", w: "말" },
+                { q: "열 번 찍어 안 넘어가는 [ ? ] 없다", a: "나무", w: "돌" },
+                { q: "말 한마디로 [ ? ] 빚 갚는다", a: "천 냥", w: "만 냥" },
+                { q: "작은 고추가 더 [ ? ]", a: "맵다", w: "달다" },
+                { q: "꿩 먹고 [ ? ] 먹고", a: "알", w: "물" },
+                { q: "돌다리도 두들겨 보고 [ ? ]", a: "건너라", w: "뛰어라" },
+                { q: "무자식이 [ ? ]자", a: "상팔", w: "하팔" },
+                { q: "밑 빠진 독에 [ ? ] 붓기", a: "물", w: "술" },
+                { q: "백지장도 맞들면 [ ? ]", a: "낫다", w: "무겁다" },
+                { q: "비 온 뒤에 땅이 [ ? ]", a: "굳어진다", w: "무너진다" },
+                { q: "사공이 많으면 배가 [ ? ]로 간다", a: "산", w: "바다" },
+                { q: "시작이 [ ? ]이다", a: "반", w: "전부" },
+                { q: "아니 땐 굴뚝에 [ ? ] 날까", a: "연기", w: "불" },
+                { q: "약방에 [ ? ]", a: "감초", w: "인삼" },
+                { q: "오르지 못할 나무는 [ ? ]도 마라", a: "쳐다보", w: "만지" },
+                { q: "우물 안 [ ? ]", a: "개구리", w: "두꺼비" },
+                { q: "쥐구멍에도 볕 들 날 [ ? ]", a: "있다", w: "없다" },
+                { q: "천 리 길도 [ ? ]부터", a: "한 걸음", w: "두 걸음" }
             ];
 
-            const generateQuiz = () => {
-                const item = proverbs[Math.floor(Math.random() * proverbs.length)];
-                const opts = [item.a, item.w].sort(() => Math.random() - 0.5);
-                setQuiz({ q: item.q, a: item.a, options: opts });
-            };
+            // 시작할 때 셔플해서 3개만 뽑음
+            useEffect(() => {
+                const shuffled = [...allProverbs].sort(() => Math.random() - 0.5);
+                setQuizList(shuffled.slice(0, 5)); // 5개 정도 여유있게 준비
+            }, []);
 
-            useEffect(() => { generateQuiz(); }, []);
+            useEffect(() => {
+                if (quizList.length > 0) {
+                    const currentItem = quizList[count];
+                    const opts = [currentItem.a, currentItem.w].sort(() => Math.random() - 0.5);
+                    setQuiz({ ...currentItem, options: opts });
+                }
+            }, [count, quizList]);
 
             const handleAnswer = (val) => {
                 if (val === quiz.a) {
                     onCorrect(20);
-                    if (count + 1 >= 3) {
-                        setTimeout(onComplete, 1000);
-                    } else {
-                        setCount(c => c + 1);
-                        generateQuiz();
-                    }
+                    if (count + 1 >= 3) { setTimeout(onComplete, 1000); } 
+                    else { setCount(c => c + 1); }
                 } else { onWrong(); }
             };
 
+            if (!quiz) return null;
+
             return (
                 <div className="w-full flex flex-col items-center animate-fade-in">
-                    <p className={styles.instruction}>3단계: <span className="text-purple-600">속담 완성하기</span> ({count + 1}/3)</p>
+                    <p className={styles.instruction}>두뇌 운동: <span className="text-purple-600">속담 완성하기</span> ({count + 1}/3)</p>
                     <div className="bg-purple-50 px-6 py-8 rounded-2xl mb-8 w-full text-center border-2 border-purple-100">
                         <BookOpen size={40} className="text-purple-600 mx-auto mb-2" />
                         <p className="text-2xl font-bold text-gray-800 break-keep leading-relaxed">{quiz.q}</p>
@@ -306,9 +321,7 @@
                     const baseShape = shapes[Math.floor(Math.random() * shapes.length)];
                     let diffShape = baseShape;
                     while(diffShape === baseShape) diffShape = shapes[Math.floor(Math.random() * shapes.length)];
-                    
                     const color = colors[Math.floor(Math.random() * colors.length)];
-                    
                     for(let i=0; i<4; i++) {
                         if (i === answerIdx) grid.push({ shape: diffShape, color: color, isAns: true });
                         else grid.push({ shape: baseShape, color: color, isAns: false });
@@ -319,7 +332,6 @@
                     const baseColor = colors[baseColorIdx];
                     let diffColor = baseColor;
                     while(diffColor === baseColor) diffColor = colors[Math.floor(Math.random() * colors.length)];
-
                     for(let i=0; i<4; i++) {
                         if (i === answerIdx) grid.push({ shape: shape, color: diffColor, isAns: true });
                         else grid.push({ shape: shape, color: baseColor, isAns: false });
@@ -333,20 +345,15 @@
             const handleClick = (isAns) => {
                 if (isAns) {
                     onCorrect(20);
-                    if (count + 1 >= 3) {
-                        setTimeout(onComplete, 1000);
-                    } else {
-                        setCount(c => c + 1);
-                        generateLevel();
-                    }
+                    if (count + 1 >= 3) { setTimeout(onComplete, 1000); } 
+                    else { setCount(c => c + 1); generateLevel(); }
                 } else { onWrong(); }
             };
 
             return (
                 <div className="w-full flex flex-col items-center animate-fade-in">
-                    <p className={styles.instruction}>4단계: <span className="text-blue-600">다른 것 찾기</span> ({count + 1}/3)</p>
+                    <p className={styles.instruction}>두뇌 운동: <span className="text-blue-600">다른 것 찾기</span> ({count + 1}/3)</p>
                     <p className="text-gray-500 mb-6 text-lg">모양이나 색깔이 <span className="font-bold text-black">다른 하나</span>를 누르세요.</p>
-                    
                     <div className="grid grid-cols-2 gap-4 w-full max-w-[300px]">
                         {items.map((item, idx) => (
                             <button 
@@ -404,11 +411,8 @@
                     setPlayerSequence(newPlayerSeq);
                     if (newPlayerSeq.length === sequence.length) {
                         onCorrect(30);
-                        if (round + 1 >= 3) {
-                            setTimeout(onComplete, 1000);
-                        } else {
-                            setTimeout(() => setRound(r => r + 1), 1000);
-                        }
+                        if (round + 1 >= 3) { setTimeout(onComplete, 1000); } 
+                        else { setTimeout(() => setRound(r => r + 1), 1000); }
                     }
                 } else {
                     onWrong();
@@ -453,6 +457,9 @@
         // --- 메인 App 컴포넌트 ---
         const App = () => {
             const [gameState, setGameState] = useState('nameInput'); 
+            const [gameQueue, setGameQueue] = useState([]); // 랜덤 게임 순서 저장
+            const [currentQueueIdx, setCurrentQueueIdx] = useState(0);
+            
             const [userName, setUserName] = useState('');
             const [score, setScore] = useState(0);
             const [feedback, setFeedback] = useState(null); 
@@ -502,16 +509,22 @@
                 showFeedback(false);
             };
 
+            // 게임 시작 시 순서 섞기
+            const startGame = () => {
+                // 고정: 날짜(orientation) -> 랜덤(math, word, spatial, memory) -> 결과(result)
+                const randomGames = ['math', 'word', 'spatial', 'memory'].sort(() => Math.random() - 0.5);
+                setGameQueue(['orientation', ...randomGames, 'result']);
+                setCurrentQueueIdx(0);
+                setGameState('orientation');
+                playSound('click');
+            };
+
             const handleStageComplete = () => {
-                const nextGameMap = {
-                    'orientation': 'math',
-                    'math': 'word',
-                    'word': 'spatial',
-                    'spatial': 'memory',
-                    'memory': 'result'
-                };
-                const next = nextGameMap[gameState];
-                if (next) setGameState(next);
+                const nextIdx = currentQueueIdx + 1;
+                if (nextIdx < gameQueue.length) {
+                    setCurrentQueueIdx(nextIdx);
+                    setGameState(gameQueue[nextIdx]);
+                }
             };
 
             return (
@@ -544,7 +557,7 @@
                                     <div className="bg-gray-50 p-3 rounded-xl flex flex-col items-center text-center"><BookOpen className="text-purple-600 mb-1"/><span className="text-sm font-bold">속담</span></div>
                                     <div className="bg-gray-50 p-3 rounded-xl flex flex-col items-center text-center"><Search className="text-blue-600 mb-1"/><span className="text-sm font-bold">찾기</span></div>
                                 </div>
-                                <button onClick={() => { setGameState('orientation'); playSound('click'); }} className="w-full py-5 text-2xl font-bold rounded-2xl bg-green-500 text-white shadow-md flex items-center justify-center gap-2 active:scale-95 transition-transform border-b-4 border-green-700 active:border-b-0 active:translate-y-1"><Play fill="white" size={28} />시작하기</button>
+                                <button onClick={startGame} className="w-full py-5 text-2xl font-bold rounded-2xl bg-green-500 text-white shadow-md flex items-center justify-center gap-2 active:scale-95 transition-transform border-b-4 border-green-700 active:border-b-0 active:translate-y-1"><Play fill="white" size={28} />시작하기</button>
                             </div>
                         )}
 
