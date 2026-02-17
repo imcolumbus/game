@@ -154,7 +154,7 @@
                          <div className="bg-green-100 p-6 rounded-full mb-6">
                             <User size={60} className="text-green-600" />
                         </div>
-                        <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">어르신의 성함이<br/>어떻게 되시나요?</h2>
+                        <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">반갑습니다!<br/>성함이 어떻게 되시나요?</h2>
                         <input 
                             type="text" 
                             className={styles.input}
@@ -181,7 +181,7 @@
 
             // --- 1. 날짜 기억 (Orientation) ---
             const OrientationGame = ({ onComplete }) => {
-                const [qType, setQType] = useState(0); // 0:년, 1:월, 2:요일
+                const [qType, setQType] = useState(0); // 0:년, 1:월, 2:일(NEW), 3:요일
                 const [options, setOptions] = useState([]);
                 const [questionText, setQuestionText] = useState("");
                 const [correctAnswer, setCorrectAnswer] = useState("");
@@ -204,6 +204,13 @@
                         let w2 = month + 1 > 12 ? 1 : month + 1;
                         opts = [w1, month, w2].map(m => `${m}월`);
                     } else if (qType === 2) {
+                        q = "오늘은 며칠 인가요?";
+                        const date = now.getDate();
+                        ans = `${date}일`;
+                        let w1 = date - 1 < 1 ? 30 : date - 1;
+                        let w2 = date + 1 > 31 ? 1 : date + 1;
+                        opts = [w1, date, w2].map(d => `${d}일`);
+                    } else if (qType === 3) {
                         q = "오늘은 무슨 요일 인가요?";
                         const days = ['일', '월', '화', '수', '목', '금', '토'];
                         const dayIdx = now.getDay();
@@ -212,6 +219,7 @@
                         let w2Idx = (dayIdx + 5) % 7;
                         opts = [`${days[w1Idx]}요일`, ans, `${days[w2Idx]}요일`];
                     }
+                    
                     setQuestionText(q);
                     setCorrectAnswer(ans);
                     setOptions(opts.sort(() => Math.random() - 0.5));
@@ -219,15 +227,15 @@
                 }, [qType]);
 
                 const handleAnswer = (val) => {
-                    if (processing) return; // 중복 클릭 방지
+                    if (processing) return; 
 
                     if (val === correctAnswer) {
                         setProcessing(true);
                         showFeedback(true);
                         setScore(s => s + 10);
                         
-                        // 3문제(0,1,2) 완료 시
-                        if (qType >= 2) {
+                        // 0, 1, 2, 3 (총 4문제)
+                        if (qType >= 3) {
                             setTimeout(onComplete, 1000);
                         } else {
                             setTimeout(() => {
@@ -240,8 +248,8 @@
                 };
 
                 return (
-                    <div className="w-full flex flex-col items-center animate-fade-in">
-                        <p className={styles.instruction}>1단계: <span className="text-green-600">날짜 기억하기</span> ({qType+1}/3)</p>
+                    <div className="w-full flex flex-col items-center animate-fade-in" key={qType}>
+                        <p className={styles.instruction}>1단계: <span className="text-green-600">날짜 기억하기</span> ({qType+1}/4)</p>
                         <div className="bg-green-50 px-6 py-8 rounded-2xl mb-6 w-full text-center border-2 border-green-100">
                             <div className="flex justify-center mb-2"><CalendarIcon size={40} className="text-green-600" /></div>
                             <p className="text-3xl font-bold text-gray-800 break-keep">{questionText}</p>
