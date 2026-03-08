@@ -11,20 +11,16 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="두뇌 튼튼">
     
-    <!-- 아이콘 (Data URI 사용 - 별도 파일 없이 작동) -->
+    <!-- 아이콘 -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%2316a34a'/%3E%3Cpath d='M384 224c0-53-43-96-96-96s-96 43-96 96c0 10.6 1.7 20.8 4.9 30.4C183.1 247.1 171.7 243 160 243c-44.2 0-80 35.8-80 80s35.8 80 80 80c9.6 0 18.8-1.7 27.4-4.8C197.8 418.9 220.6 432 246 432c61.9 0 112-50.1 112-112 0-35.3-16.3-67.1-41.9-88.4 39.7-27.1 65.9-72.3 67.9-123.6-1.3.1-2.7.2-4 .2-44.2 0-80-35.8-80-80 0-8.5 1.3-16.6 3.8-24.2C296.2 101.4 286.6 101 277 101c-61.9 0-112 50.1-112 112 0 10.5.9 20.7 2.6 30.6C122.9 253 96 295.6 96 344c0 61.9 50.1 112 112 112 10.3 0 20.3-1.4 29.8-4 17.7 17.6 42.1 28 69.2 28 53 0 96-43 96-96 0-33.5-17.2-63-43.5-80.6z' fill='white'/%3E%3C/svg%3E">
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%2316a34a'/%3E%3Cpath d='M384 224c0-53-43-96-96-96s-96 43-96 96c0 10.6 1.7 20.8 4.9 30.4C183.1 247.1 171.7 243 160 243c-44.2 0-80 35.8-80 80s35.8 80 80 80c9.6 0 18.8-1.7 27.4-4.8C197.8 418.9 220.6 432 246 432c61.9 0 112-50.1 112-112 0-35.3-16.3-67.1-41.9-88.4 39.7-27.1 65.9-72.3 67.9-123.6-1.3.1-2.7.2-4 .2-44.2 0-80-35.8-80-80 0-8.5 1.3-16.6 3.8-24.2C296.2 101.4 286.6 101 277 101c-61.9 0-112 50.1-112 112 0 10.5.9 20.7 2.6 30.6C122.9 253 96 295.6 96 344c0 61.9 50.1 112 112 112 10.3 0 20.3-1.4 29.8-4 17.7 17.6 42.1 28 69.2 28 53 0 96-43 96-96 0-33.5-17.2-63-43.5-80.6z' fill='white'/%3E%3C/svg%3E">
-    
-    <!-- 웹 앱 매니페스트 (안드로이드 설치용) -->
     <link rel="manifest" href='data:application/manifest+json,{"name":"매일매일 두뇌 튼튼","short_name":"두뇌 튼튼","start_url":".","display":"standalone","background_color":"#fff7ed","theme_color":"#16a34a","icons":[{"src":"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 512 512%27%3E%3Crect width=%27512%27 height=%27512%27 rx=%27100%27 fill=%27%2316a34a%27/%3E%3Cpath d=%27M384 224c0-53-43-96-96-96s-96 43-96 96c0 10.6 1.7 20.8 4.9 30.4C183.1 247.1 171.7 243 160 243c-44.2 0-80 35.8-80 80s35.8 80 80 80c9.6 0 18.8-1.7 27.4-4.8C197.8 418.9 220.6 432 246 432c61.9 0 112-50.1 112-112 0-35.3-16.3-67.1-41.9-88.4 39.7-27.1 65.9-72.3 67.9-123.6-1.3.1-2.7.2-4 .2-44.2 0-80-35.8-80-80 0-8.5 1.3-16.6 3.8-24.2C296.2 101.4 286.6 101 277 101c-61.9 0-112 50.1-112 112 0 10.5.9 20.7 2.6 30.6C122.9 253 96 295.6 96 344c0 61.9 50.1 112 112 112 10.3 0 20.3-1.4 29.8-4 17.7 17.6 42.1 28 69.2 28 53 0 96-43 96-96 0-33.5-17.2-63-43.5-80.6z%27 fill=%27white%27/%3E%3C/svg%3E","sizes":"512x512","type":"image/svg+xml"}]}'>
 
-    <!-- React 및 Tailwind CSS 로드 -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 애니메이션 스타일 정의 -->
     <style>
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes zoomIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
@@ -33,11 +29,7 @@
         .animate-zoom-in { animation: zoomIn 0.3s ease-out forwards; }
         .animate-bounce-short { animation: bounceShort 0.5s ease-in-out; }
         body { font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; -webkit-tap-highlight-color: transparent; }
-        
-        /* 입력창 스타일 커스텀 */
-        .custom-input:focus { outline: none; border-color: #16a34a; ring: 2px solid #16a34a; }
-        textarea:focus { outline: none; border-color: #16a34a; ring: 2px solid #16a34a; }
-        /* 스크롤바 숨김 */
+        .custom-input:focus, textarea:focus { outline: none; border-color: #16a34a; ring: 2px solid #16a34a; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
@@ -48,7 +40,7 @@
     <script type="text/babel">
         const { useState, useEffect, useRef, useCallback } = React;
 
-        // --- 아이콘 컴포넌트 ---
+        // --- 아이콘 모음 ---
         const IconBase = ({ children, color = "currentColor", size = 24, className = "" }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>{children}</svg>
         );
@@ -76,26 +68,26 @@
         const Trash = (props) => <IconBase {...props}><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></IconBase>;
         const Download = (props) => <IconBase {...props}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></IconBase>;
         const Upload = (props) => <IconBase {...props}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></IconBase>;
-        
-        // 날씨 아이콘
+        const Banknote = (props) => <IconBase {...props}><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></IconBase>;
+        const Eye = (props) => <IconBase {...props}><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></IconBase>;
         const Cloud = (props) => <IconBase {...props}><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></IconBase>;
         const Sun = (props) => <IconBase {...props}><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></IconBase>;
         const CloudRain = (props) => <IconBase {...props}><line x1="16" y1="13" x2="16" y2="21"></line><line x1="8" y1="13" x2="8" y2="21"></line><line x1="12" y1="15" x2="12" y2="23"></line><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path></IconBase>;
         const Snowflake = (props) => <IconBase {...props}><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line><path d="m20 4-2.5 2.5"/><path d="m4 20 2.5-2.5"/><path d="m4 4 2.5 2.5"/><path d="m20 20-2.5-2.5"/></IconBase>;
 
-        // --- 전역 스타일 ---
+        // --- 전역 스타일 (폰트 최적화) ---
         const styles = {
             container: "min-h-screen flex flex-col items-center p-4 font-sans select-none touch-manipulation pb-10 bg-amber-50",
             card: "w-full max-w-md bg-white rounded-3xl shadow-xl p-6 flex flex-col items-center transition-all duration-300",
             button: "w-full py-5 text-xl font-bold rounded-2xl transition-transform active:scale-95 shadow-md flex items-center justify-center gap-2 border-b-4 active:border-b-0 mb-3",
-            bigText: "text-5xl font-black text-gray-800 mb-6 mt-4 leading-tight text-center break-keep",
-            instruction: "text-2xl text-gray-700 mb-4 text-center font-bold break-keep leading-snug bg-amber-100 px-4 py-2 rounded-lg w-full",
-            subText: "text-lg text-gray-500 mb-6 text-center font-medium",
+            bigText: "text-4xl font-black text-gray-800 mb-6 mt-4 leading-tight text-center break-keep",
+            instruction: "text-xl text-gray-700 mb-4 text-center font-bold break-keep leading-snug bg-amber-100 px-4 py-2 rounded-lg w-full",
+            subText: "text-base text-gray-500 mb-6 text-center font-medium",
             feedbackOverlay: "fixed inset-0 flex items-center justify-center bg-black/30 z-50 pointer-events-none animate-fade-in",
-            input: "w-full text-center text-4xl font-bold py-4 border-b-4 border-gray-300 focus:border-green-500 outline-none bg-transparent mb-8"
+            input: "w-full text-center text-3xl font-bold py-4 border-b-4 border-gray-300 focus:border-green-500 outline-none bg-transparent mb-8"
         };
 
-        const praises = ["정말 대단하세요!", "최고입니다!", "아주 훌륭해요!", "뇌가 젊어지고 있어요!", "완벽합니다!", "참 잘하셨어요!", "실력이 좋으시네요!"];
+        const praises = ["정말 대단하세요!", "최고입니다!", "아주 훌륭해요!", "뇌가 젊어지고 있어요!", "완벽합니다!", "참 잘하셨어요!", "실력이 좋으시네요!", "놀라운 집중력입니다!"];
 
         // --- 0. 이름 입력 화면 ---
         const NameInputScreen = ({ onNameSubmit, playSound }) => {
@@ -110,9 +102,9 @@
             );
         };
 
-        // --- NEW: 오늘의 기록장 (일기장 기능 - 백업 기능 추가됨) ---
+        // --- 기록장 (일기장) ---
         const DailyRecord = ({ onBack, playSound }) => {
-            const [view, setView] = useState('list'); // 'list', 'write', 'read'
+            const [view, setView] = useState('list'); 
             const [diaries, setDiaries] = useState([]);
             const [inputData, setInputData] = useState({ date: '', meals: '', activities: '', weather: '' });
             const [selectedDiary, setSelectedDiary] = useState(null);
@@ -127,9 +119,7 @@
 
             useEffect(() => {
                 const saved = localStorage.getItem('brain_training_diaries');
-                if (saved) {
-                    try { setDiaries(JSON.parse(saved)); } catch (e) { console.error(e); }
-                }
+                if (saved) { try { setDiaries(JSON.parse(saved)); } catch (e) {} }
             }, []);
 
             const saveToStorage = (newDiaries) => {
@@ -153,12 +143,6 @@
                 setView('list');
             };
 
-            const handleItemClick = (diary) => {
-                playSound('click');
-                setSelectedDiary(diary);
-                setView('read');
-            };
-
             const handleDelete = () => {
                 if(confirm('이 기록을 삭제하시겠습니까?')) {
                     playSound('click');
@@ -168,50 +152,18 @@
                 }
             };
 
-            const exportData = () => {
-                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(diaries));
-                const downloadAnchorNode = document.createElement('a');
-                downloadAnchorNode.setAttribute("href",     dataStr);
-                downloadAnchorNode.setAttribute("download", "두뇌튼튼_일기백업_" + new Date().toISOString().slice(0,10) + ".json");
-                document.body.appendChild(downloadAnchorNode); 
-                downloadAnchorNode.click();
-                downloadAnchorNode.remove();
-            };
-
-            const importData = (event) => {
-                const fileReader = new FileReader();
-                fileReader.readAsText(event.target.files[0], "UTF-8");
-                fileReader.onload = e => {
-                    try {
-                        const loadedData = JSON.parse(e.target.result);
-                        if (Array.isArray(loadedData)) {
-                            if(confirm('기존 데이터를 덮어쓰고 백업 파일을 불러오시겠습니까?')) {
-                                saveToStorage(loadedData);
-                                alert("데이터 복원이 완료되었습니다.");
-                            }
-                        } else {
-                            alert("올바른 백업 파일이 아닙니다.");
-                        }
-                    } catch (err) {
-                        alert("파일을 읽는 중 오류가 발생했습니다.");
-                    }
-                };
-            };
-
-            // 1. 목록 화면
             if (view === 'list') {
                 return (
                     <div className="w-full flex flex-col items-center animate-fade-in pb-8 h-full">
                         <div className="bg-orange-100 p-3 rounded-full mb-2 mt-2 shadow-sm"><FileText size={40} className="text-orange-600" /></div>
                         <h1 className="text-2xl font-black text-gray-800 mb-6 text-center">오늘의 기록장</h1>
-                        
                         <div className="w-full flex-1 overflow-y-auto mb-4 min-h-[300px]">
                             {diaries.length === 0 ? (
-                                <p className="text-gray-400 text-center mt-10 text-xl">작성된 일기가 없습니다.<br/>아래 버튼을 눌러 써보세요.</p>
+                                <p className="text-gray-400 text-center mt-10 text-lg">작성된 일기가 없습니다.<br/>아래 버튼을 눌러 써보세요.</p>
                             ) : (
                                 <div className="space-y-3">
                                     {diaries.map(diary => (
-                                        <button key={diary.id} onClick={() => handleItemClick(diary)} className="w-full bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex justify-between items-center active:bg-gray-50 text-left">
+                                        <button key={diary.id} onClick={() => {playSound('click'); setSelectedDiary(diary); setView('read');}} className="w-full bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex justify-between items-center active:bg-gray-50 text-left">
                                             <div className="flex items-center gap-3">
                                                 <div className="bg-gray-100 p-2 rounded-lg">
                                                     {diary.weather ? weatherOptions.find(w => w.id === diary.weather)?.icon : <Sun className="text-gray-300"/>}
@@ -227,85 +179,46 @@
                                 </div>
                             )}
                         </div>
-
                         <button onClick={handleWriteClick} className={`${styles.button} bg-green-500 text-white border-green-700 mb-2`}>새 일기 쓰기</button>
-                        <button onClick={onBack} className="text-gray-500 underline text-lg p-2">나가기</button>
-
-                        <div className="flex gap-2 w-full mt-4 border-t border-gray-200 pt-4">
-                            <button onClick={exportData} className="flex-1 py-3 bg-gray-100 text-gray-600 rounded-xl text-sm font-bold flex items-center justify-center gap-1">
-                                <Download size={16}/> 백업 저장
-                            </button>
-                            <button onClick={() => fileInputRef.current.click()} className="flex-1 py-3 bg-gray-100 text-gray-600 rounded-xl text-sm font-bold flex items-center justify-center gap-1">
-                                <Upload size={16}/> 백업 불러오기
-                            </button>
-                            <input type="file" ref={fileInputRef} onChange={importData} style={{display:'none'}} accept=".json"/>
-                        </div>
                     </div>
                 );
             }
 
-            // 2. 작성 화면
             if (view === 'write') {
                 return (
                     <div className="w-full flex flex-col items-center animate-fade-in pb-4 h-full overflow-y-auto">
                         <h2 className="text-2xl font-bold text-gray-800 mb-4 mt-2">일기 작성</h2>
-                        
                         <div className="w-full mb-6">
                             <label className="block text-gray-600 font-bold mb-2 text-lg">날짜</label>
-                            <input 
-                                type="date" 
-                                value={inputData.date} 
-                                onChange={(e) => setInputData({...inputData, date: e.target.value})}
-                                className="w-full p-4 text-xl border-2 border-gray-300 rounded-xl bg-white"
-                            />
+                            <input type="date" value={inputData.date} onChange={(e) => setInputData({...inputData, date: e.target.value})} className="w-full p-4 text-xl border-2 border-gray-300 rounded-xl bg-white" />
                         </div>
-
-                        {/* 날씨 선택 */}
                         <div className="w-full mb-6">
-                            <label className="block text-gray-600 font-bold mb-2 text-xl border-l-4 border-yellow-400 pl-2">오늘의 날씨는?</label>
+                            <label className="block text-gray-600 font-bold mb-2 text-lg border-l-4 border-yellow-400 pl-2">오늘의 날씨는?</label>
                             <div className="flex gap-2">
                                 {weatherOptions.map(opt => (
-                                    <button 
-                                        key={opt.id}
-                                        onClick={() => setInputData({...inputData, weather: opt.id})}
-                                        className={`flex-1 py-3 rounded-xl border-2 flex flex-col items-center justify-center transition-all ${inputData.weather === opt.id ? 'bg-yellow-100 border-yellow-500 ring-2 ring-yellow-200' : 'bg-white border-gray-200'}`}
-                                    >
+                                    <button key={opt.id} onClick={() => setInputData({...inputData, weather: opt.id})} className={`flex-1 py-3 rounded-xl border-2 flex flex-col items-center justify-center transition-all ${inputData.weather === opt.id ? 'bg-yellow-100 border-yellow-500 ring-2 ring-yellow-200' : 'bg-white border-gray-200'}`}>
                                         <div className="mb-1 transform scale-125">{opt.icon}</div>
                                         <span className="text-sm font-bold text-gray-700">{opt.label}</span>
                                     </button>
                                 ))}
                             </div>
                         </div>
-
                         <div className="w-full mb-6">
-                            <label className="block text-gray-600 font-bold mb-2 text-xl border-l-4 border-orange-400 pl-2">오늘의 식사는?</label>
-                            <textarea 
-                                className="w-full h-32 p-4 text-xl border-2 border-orange-200 rounded-xl bg-orange-50 focus:bg-white resize-none"
-                                placeholder="아침, 점심, 저녁에 드신 음식을 적어보세요."
-                                value={inputData.meals}
-                                onChange={(e) => setInputData({...inputData, meals: e.target.value})}
-                            />
+                            <label className="block text-gray-600 font-bold mb-2 text-lg border-l-4 border-orange-400 pl-2">오늘의 식사는?</label>
+                            <textarea className="w-full h-24 p-3 text-lg border-2 border-orange-200 rounded-xl bg-orange-50 focus:bg-white resize-none" placeholder="아침, 점심, 저녁에 드신 음식을 적어보세요." value={inputData.meals} onChange={(e) => setInputData({...inputData, meals: e.target.value})} />
                         </div>
-
                         <div className="w-full mb-6">
-                            <label className="block text-gray-600 font-bold mb-2 text-xl border-l-4 border-blue-400 pl-2">오늘의 한 일은?</label>
-                            <textarea 
-                                className="w-full h-32 p-4 text-xl border-2 border-blue-200 rounded-xl bg-blue-50 focus:bg-white resize-none"
-                                placeholder="산책, TV 시청, 친구 만남 등 오늘 하신 일을 적어보세요."
-                                value={inputData.activities}
-                                onChange={(e) => setInputData({...inputData, activities: e.target.value})}
-                            />
+                            <label className="block text-gray-600 font-bold mb-2 text-lg border-l-4 border-blue-400 pl-2">오늘의 한 일은?</label>
+                            <textarea className="w-full h-24 p-3 text-lg border-2 border-blue-200 rounded-xl bg-blue-50 focus:bg-white resize-none" placeholder="산책, TV 시청, 친구 만남 등 하신 일을 적어보세요." value={inputData.activities} onChange={(e) => setInputData({...inputData, activities: e.target.value})} />
                         </div>
-
                         <div className="flex gap-2 w-full mt-auto">
-                            <button onClick={() => setView('list')} className="flex-1 py-4 text-xl font-bold bg-gray-200 text-gray-600 rounded-xl">취소</button>
-                            <button onClick={handleSave} className="flex-1 py-4 text-xl font-bold bg-green-500 text-white rounded-xl shadow-md">저장하기</button>
+                            <button onClick={() => setView('list')} className="flex-1 py-4 text-lg font-bold bg-gray-200 text-gray-600 rounded-xl">취소</button>
+                            <button onClick={handleSave} className="flex-1 py-4 text-lg font-bold bg-green-500 text-white rounded-xl shadow-md">저장하기</button>
                         </div>
                     </div>
                 );
             }
 
-            // 3. 읽기 화면
             if (view === 'read' && selectedDiary) {
                 return (
                     <div className="w-full flex flex-col items-center animate-fade-in pb-4 h-full overflow-y-auto">
@@ -313,26 +226,21 @@
                             <h2 className="text-2xl font-bold text-gray-800">{selectedDiary.date}</h2>
                             <button onClick={handleDelete} className="p-2 bg-red-100 rounded-full text-red-500"><Trash size={20}/></button>
                         </div>
-
-                        {/* 날씨 표시 */}
-                        <div className="w-full mb-6 bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
+                        <div className="w-full mb-4 bg-white p-4 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
                             <h3 className="font-bold text-lg text-yellow-600">오늘의 날씨</h3>
                             <div className="flex items-center gap-2">
-                               <span className="text-2xl font-bold text-gray-700">{selectedDiary.weather ? weatherOptions.find(w => w.id === selectedDiary.weather)?.label : "기록 없음"}</span>
+                               <span className="text-xl font-bold text-gray-700">{selectedDiary.weather ? weatherOptions.find(w => w.id === selectedDiary.weather)?.label : "기록 없음"}</span>
                                {selectedDiary.weather && weatherOptions.find(w => w.id === selectedDiary.weather)?.icon}
                             </div>
                         </div>
-
-                        <div className="w-full mb-6 bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
+                        <div className="w-full mb-4 bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
                             <h3 className="font-bold text-lg text-orange-600 mb-2 border-b pb-1">오늘의 식사</h3>
-                            <p className="text-xl text-gray-700 whitespace-pre-wrap leading-relaxed">{selectedDiary.meals || "기록 없음"}</p>
+                            <p className="text-lg text-gray-700 whitespace-pre-wrap leading-relaxed">{selectedDiary.meals || "기록 없음"}</p>
                         </div>
-
-                        <div className="w-full mb-8 bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
+                        <div className="w-full mb-6 bg-white p-4 rounded-2xl border border-gray-200 shadow-sm">
                             <h3 className="font-bold text-lg text-blue-600 mb-2 border-b pb-1">오늘의 한 일</h3>
-                            <p className="text-xl text-gray-700 whitespace-pre-wrap leading-relaxed">{selectedDiary.activities || "기록 없음"}</p>
+                            <p className="text-lg text-gray-700 whitespace-pre-wrap leading-relaxed">{selectedDiary.activities || "기록 없음"}</p>
                         </div>
-
                         <button onClick={() => setView('list')} className={`${styles.button} bg-gray-500 text-white border-gray-700 mt-auto`}>목록으로</button>
                     </div>
                 );
@@ -340,11 +248,13 @@
             return null;
         };
 
-        // --- 메뉴 화면 (게임 선택) ---
+        // --- 메뉴 화면 (게임 12종) ---
         const GameMenu = ({ userName, onStartCourse, onSelectGame, onOpenRecord }) => {
             const games = [
                 { id: 'math', name: '계산 하기', icon: Star, color: 'text-amber-500', bg: 'bg-amber-50', border: 'border-amber-100' },
                 { id: 'word', name: '속담 퀴즈', icon: BookOpen, color: 'text-purple-600', bg: 'bg-purple-50', border: 'border-purple-100' },
+                { id: 'money', name: '돈 계산', icon: Banknote, color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-100' },
+                { id: 'wordMemory', name: '단어 기억', icon: Eye, color: 'text-sky-600', bg: 'bg-sky-50', border: 'border-sky-100' },
                 { id: 'spatial', name: '다른 그림', icon: Search, color: 'text-blue-600', bg: 'bg-blue-50', border: 'border-blue-100' },
                 { id: 'stroop', name: '색깔 판단', icon: Palette, color: 'text-indigo-600', bg: 'bg-indigo-50', border: 'border-indigo-100' },
                 { id: 'memory', name: '순서 기억', icon: RotateCcw, color: 'text-pink-500', bg: 'bg-pink-50', border: 'border-pink-100' },
@@ -362,7 +272,7 @@
                     
                     <button onClick={onStartCourse} className="w-full py-6 text-2xl font-bold rounded-2xl bg-green-500 text-white shadow-lg flex flex-col items-center justify-center gap-1 active:scale-95 transition-transform border-b-4 border-green-700 active:border-b-0 active:translate-y-1 mb-6">
                         <div className="flex items-center gap-2"><Play fill="white" size={32} /> 오늘의 추천 코스</div>
-                        <span className="text-lg font-normal opacity-90">종합 두뇌 검진 (랜덤 5종)</span>
+                        <span className="text-base font-normal opacity-90">종합 두뇌 검진 (랜덤 5종)</span>
                     </button>
 
                     <div className="w-full grid grid-cols-2 gap-3 mb-6">
@@ -371,13 +281,13 @@
                         </button>
                     </div>
 
-                    <div className="w-full text-left mb-4"><span className="text-xl font-bold text-gray-700 border-l-4 border-amber-500 pl-3">원하는 운동 고르기</span></div>
+                    <div className="w-full text-left mb-3"><span className="text-xl font-bold text-gray-700 border-l-4 border-amber-500 pl-3">원하는 운동 고르기 (12종)</span></div>
                     
                     <div className="grid grid-cols-2 gap-3 w-full">
                         {games.map(game => (
                             <button key={game.id} onClick={() => onSelectGame(game.id)} className={`p-4 rounded-xl border-2 ${game.border} hover:${game.bg} flex flex-col items-center shadow-sm active:scale-95 bg-white transition-colors`}>
-                                <game.icon className={`${game.color} mb-2`} size={36}/>
-                                <span className="font-bold text-xl text-gray-800">{game.name}</span>
+                                <game.icon className={`${game.color} mb-2`} size={32}/>
+                                <span className="font-bold text-lg text-gray-800">{game.name}</span>
                             </button>
                         ))}
                     </div>
@@ -385,7 +295,7 @@
             );
         };
 
-        // --- 1. 날짜 기억 (Orientation - Mandatory) ---
+        // --- 1. 날짜 기억 (Orientation - Mandatory once a day) ---
         const OrientationGame = ({ onComplete, onCorrect, onWrong }) => {
             const [qType, setQType] = useState(0); 
             const [options, setOptions] = useState([]);
@@ -465,62 +375,29 @@
             );
         };
 
-        // --- 3. 속담 퀴즈 (Word) - 데이터 50개 이상 보강 ---
+        // --- 3. 속담 퀴즈 (Word) - 데이터 대폭 확장 ---
         const WordGame = ({ onComplete, onCorrect, onWrong }) => {
             const [quiz, setQuiz] = useState(null);
             const [count, setCount] = useState(0);
             const [quizList, setQuizList] = useState([]);
             const allProverbs = [
-                { q: "가는 말이 고와야 [ ? ]", a: "오는 말이 곱다", w: "오는 말이 거칠다" }, 
-                { q: "누워서 [ ? ] 먹기", a: "떡", w: "밥" }, 
-                { q: "티끌 모아 [ ? ]", a: "태산", w: "동산" },
-                { q: "등잔 밑이 [ ? ]", a: "어둡다", w: "밝다" }, 
-                { q: "원숭이도 나무에서 [ ? ]", a: "떨어진다", w: "날아간다" }, 
-                { q: "세 살 버릇 여든까지 [ ? ]", a: "간다", w: "안 간다" },
-                { q: "소 잃고 [ ? ] 고친다", a: "외양간", w: "대문" }, 
-                { q: "고생 끝에 [ ? ]이 온다", a: "낙", w: "병" }, 
-                { q: "서당 개 삼 년이면 [ ? ]을 읊는다", a: "풍월", w: "노래" },
-                { q: "지렁이도 밟으면 [ ? ]한다", a: "꿈틀", w: "가만" }, 
-                { q: "하늘이 무너져도 솟아날 [ ? ]이 있다", a: "구멍", w: "기둥" }, 
-                { q: "호랑이도 제 말 하면 [ ? ]", a: "온다", w: "간다" },
-                { q: "바늘 도둑이 [ ? ] 도둑 된다", a: "소", w: "말" }, 
-                { q: "열 번 찍어 안 넘어가는 [ ? ] 없다", a: "나무", w: "돌" }, 
-                { q: "말 한마디로 [ ? ] 빚 갚는다", a: "천 냥", w: "만 냥" },
-                { q: "작은 고추가 더 [ ? ]", a: "맵다", w: "달다" }, 
-                { q: "꿩 먹고 [ ? ] 먹고", a: "알", w: "물" }, 
-                { q: "돌다리도 두들겨 보고 [ ? ]", a: "건너라", w: "뛰어라" },
-                { q: "무자식이 [ ? ]자", a: "상팔", w: "하팔" }, 
-                { q: "밑 빠진 독에 [ ? ] 붓기", a: "물", w: "술" }, 
-                { q: "백지장도 맞들면 [ ? ]", a: "낫다", w: "무겁다" },
-                { q: "비 온 뒤에 땅이 [ ? ]", a: "굳어진다", w: "무너진다" }, 
-                { q: "사공이 많으면 배가 [ ? ]로 간다", a: "산", w: "바다" }, 
-                { q: "시작이 [ ? ]이다", a: "반", w: "전부" },
-                { q: "아니 땐 굴뚝에 [ ? ] 날까", a: "연기", w: "불" }, 
-                { q: "약방에 [ ? ]", a: "감초", w: "인삼" }, 
-                { q: "오르지 못할 나무는 [ ? ]도 마라", a: "쳐다보", w: "만지" },
-                { q: "우물 안 [ ? ]", a: "개구리", w: "두꺼비" }, 
-                { q: "쥐구멍에도 볕 들 날 [ ? ]", a: "있다", w: "없다" }, 
-                { q: "천 리 길도 [ ? ]부터", a: "한 걸음", w: "두 걸음" },
-                { q: "소문난 잔치에 [ ? ] 없다", a: "먹을 것", w: "볼 것" }, 
-                { q: "개천에서 [ ? ] 난다", a: "용", w: "뱀" }, 
-                { q: "낫 놓고 [ ? ] 자도 모른다", a: "기역", w: "니은" },
-                { q: "똥 묻은 개가 [ ? ] 묻은 개 나무란다", a: "겨", w: "재" },
-                { q: "말은 청산[ ? ]", a: "유수", w: "명수" },
-                { q: "매도 먼저 맞는 놈이 [ ? ]", a: "낫다", w: "아프다" },
-                { q: "목마른 놈이 [ ? ] 판다", a: "우물", w: "도랑" },
-                { q: "믿는 도끼에 [ ? ] 찍힌다", a: "발등", w: "손등" },
-                { q: "배보다 [ ? ]이 더 크다", a: "배꼽", w: "얼굴" },
-                { q: "사촌이 땅을 사면 [ ? ]가 아프다", a: "배", w: "머리" },
-                { q: "산 입에 [ ? ] 치랴", a: "거미줄", w: "파리" },
-                { q: "새 발의 [ ? ]", a: "피", w: "땀" },
-                { q: "쇠뿔도 단김에 [ ? ]", a: "빼라", w: "잘라라" },
-                { q: "아는 길도 [ ? ] 가라", a: "물어", w: "뛰어" },
-                { q: "얌전한 고양이 [ ? ]에 먼저 올라간다", a: "부뚜막", w: "지붕" },
-                { q: "열 길 물속은 알아도 한 길 [ ? ] 속은 모른다", a: "사람", w: "산" },
-                { q: "웃는 낯에 [ ? ] 못 뱉는다", a: "침", w: "욕" },
-                { q: "윗물이 맑아야 [ ? ]이 맑다", a: "아랫물", w: "뒷물" },
-                { q: "입이 열 개라도 [ ? ]이 없다", a: "할 말", w: "갈 곳" },
-                { q: "자라 보고 놀란 가슴 [ ? ] 보고 놀란다", a: "솥뚜껑", w: "냄비" }
+                { q: "가는 말이 고와야 [ ? ]", a: "오는 말이 곱다", w: "오는 말이 거칠다" }, { q: "누워서 [ ? ] 먹기", a: "떡", w: "밥" }, { q: "티끌 모아 [ ? ]", a: "태산", w: "동산" },
+                { q: "등잔 밑이 [ ? ]", a: "어둡다", w: "밝다" }, { q: "원숭이도 나무에서 [ ? ]", a: "떨어진다", w: "날아간다" }, { q: "세 살 버릇 여든까지 [ ? ]", a: "간다", w: "안 간다" },
+                { q: "소 잃고 [ ? ] 고친다", a: "외양간", w: "대문" }, { q: "고생 끝에 [ ? ]이 온다", a: "낙", w: "병" }, { q: "서당 개 삼 년이면 [ ? ]을 읊는다", a: "풍월", w: "노래" },
+                { q: "지렁이도 밟으면 [ ? ]한다", a: "꿈틀", w: "가만" }, { q: "하늘이 무너져도 솟아날 [ ? ]이 있다", a: "구멍", w: "기둥" }, { q: "호랑이도 제 말 하면 [ ? ]", a: "온다", w: "간다" },
+                { q: "바늘 도둑이 [ ? ] 도둑 된다", a: "소", w: "말" }, { q: "열 번 찍어 안 넘어가는 [ ? ] 없다", a: "나무", w: "돌" }, { q: "말 한마디로 [ ? ] 빚 갚는다", a: "천 냥", w: "만 냥" },
+                { q: "작은 고추가 더 [ ? ]", a: "맵다", w: "달다" }, { q: "꿩 먹고 [ ? ] 먹고", a: "알", w: "물" }, { q: "돌다리도 두들겨 보고 [ ? ]", a: "건너라", w: "뛰어라" },
+                { q: "무자식이 [ ? ]자", a: "상팔", w: "하팔" }, { q: "밑 빠진 독에 [ ? ] 붓기", a: "물", w: "술" }, { q: "백지장도 맞들면 [ ? ]", a: "낫다", w: "무겁다" },
+                { q: "비 온 뒤에 땅이 [ ? ]", a: "굳어진다", w: "무너진다" }, { q: "사공이 많으면 배가 [ ? ]로 간다", a: "산", w: "바다" }, { q: "시작이 [ ? ]이다", a: "반", w: "전부" },
+                { q: "아니 땐 굴뚝에 [ ? ] 날까", a: "연기", w: "불" }, { q: "약방에 [ ? ]", a: "감초", w: "인삼" }, { q: "오르지 못할 나무는 [ ? ]도 마라", a: "쳐다보", w: "만지" },
+                { q: "우물 안 [ ? ]", a: "개구리", w: "두꺼비" }, { q: "쥐구멍에도 볕 들 날 [ ? ]", a: "있다", w: "없다" }, { q: "천 리 길도 [ ? ]부터", a: "한 걸음", w: "두 걸음" },
+                { q: "소문난 잔치에 [ ? ] 없다", a: "먹을 것", w: "볼 것" }, { q: "개천에서 [ ? ] 난다", a: "용", w: "뱀" }, { q: "낫 놓고 [ ? ] 자도 모른다", a: "기역", w: "니은" },
+                { q: "똥 묻은 개가 [ ? ] 묻은 개 나무란다", a: "겨", w: "재" }, { q: "말은 청산[ ? ]", a: "유수", w: "명수" }, { q: "매도 먼저 맞는 놈이 [ ? ]", a: "낫다", w: "아프다" },
+                { q: "목마른 놈이 [ ? ] 판다", a: "우물", w: "도랑" }, { q: "믿는 도끼에 [ ? ] 찍힌다", a: "발등", w: "손등" }, { q: "배보다 [ ? ]이 더 크다", a: "배꼽", w: "얼굴" },
+                { q: "사촌이 땅을 사면 [ ? ]가 아프다", a: "배", w: "머리" }, { q: "산 입에 [ ? ] 치랴", a: "거미줄", w: "파리" }, { q: "새 발의 [ ? ]", a: "피", w: "땀" },
+                { q: "쇠뿔도 단김에 [ ? ]", a: "빼라", w: "잘라라" }, { q: "아는 길도 [ ? ] 가라", a: "물어", w: "뛰어" }, { q: "얌전한 고양이 [ ? ]에 먼저 올라간다", a: "부뚜막", w: "지붕" },
+                { q: "열 길 물속은 알아도 한 길 [ ? ] 속은 모른다", a: "사람", w: "산" }, { q: "웃는 낯에 [ ? ] 못 뱉는다", a: "침", w: "욕" }, { q: "윗물이 맑아야 [ ? ]이 맑다", a: "아랫물", w: "뒷물" },
+                { q: "입이 열 개라도 [ ? ]이 없다", a: "할 말", w: "갈 곳" }, { q: "자라 보고 놀란 가슴 [ ? ] 보고 놀란다", a: "솥뚜껑", w: "냄비" }
             ];
             useEffect(() => { setQuizList([...allProverbs].sort(() => Math.random() - 0.5).slice(0, 5)); }, []);
             useEffect(() => { if (quizList.length > 0) { const cur = quizList[count]; setQuiz({ ...cur, options: [cur.a, cur.w].sort(() => Math.random() - 0.5) }); } }, [count, quizList]);
@@ -535,11 +412,13 @@
             );
         };
 
-        // --- 4. 다른 그림 찾기 (Spatial) ---
+        // --- 4. 다른 그림 찾기 (Spatial) - 다양성 확장 ---
         const SpatialGame = ({ onComplete, onCorrect, onWrong }) => {
             const [items, setItems] = useState([]);
             const [count, setCount] = useState(0);
-            const shapes = ['●', '▲', '■', '★', '♥', '♦']; const colors = ['text-red-500', 'text-blue-500', 'text-green-500', 'text-yellow-500', 'text-purple-500'];
+            const shapes = ['●', '▲', '■', '★', '♥', '♦', '♣', '♠', '✿']; 
+            const colors = ['text-red-500', 'text-blue-500', 'text-green-500', 'text-yellow-500', 'text-purple-500', 'text-orange-500', 'text-pink-500', 'text-teal-500'];
+            
             const generateLevel = () => {
                 const isShapeDiff = Math.random() > 0.5; let grid = []; let answerIdx = Math.floor(Math.random() * 4); 
                 if (isShapeDiff) {
@@ -567,7 +446,12 @@
         const StroopGame = ({ onComplete, onCorrect, onWrong }) => {
             const [question, setQuestion] = useState(null);
             const [count, setCount] = useState(0);
-            const colorMap = [{ text: '빨강', class: 'text-red-500' }, { text: '파랑', class: 'text-blue-600' }, { text: '초록', class: 'text-green-600' }, { text: '노랑', class: 'text-yellow-500' }, { text: '검정', class: 'text-gray-900' }];
+            const colorMap = [
+                { text: '빨강', class: 'text-red-500' }, { text: '파랑', class: 'text-blue-600' }, 
+                { text: '초록', class: 'text-green-600' }, { text: '노랑', class: 'text-yellow-500' }, 
+                { text: '검정', class: 'text-gray-900' }, { text: '보라', class: 'text-purple-600' }, 
+                { text: '주황', class: 'text-orange-500' }
+            ];
             const generateQuestion = () => {
                 const textIdx = Math.floor(Math.random() * colorMap.length); let colorIdx = Math.floor(Math.random() * colorMap.length); while(colorIdx === textIdx) colorIdx = Math.floor(Math.random() * colorMap.length);
                 const correctVal = colorMap[colorIdx].text; const options = colorMap.map(c => c.text).sort(() => Math.random() - 0.5).slice(0, 4); if (!options.includes(correctVal)) options[0] = correctVal;
@@ -580,7 +464,7 @@
                 <div className="w-full flex flex-col items-center animate-fade-in">
                     <p className={styles.instruction}>글자의 <span className="text-indigo-600">색깔</span>이 무엇인지 고르세요.</p>
                     <p className={styles.subText}>(글자 내용에 속지 마세요!)</p>
-                    <div className="bg-gray-100 px-8 py-10 rounded-2xl mb-8 w-full text-center border-2 border-gray-200"><p className={`text-7xl font-black ${question.colorClass}`}>{question.text}</p></div>
+                    <div className="bg-gray-100 px-8 py-10 rounded-2xl mb-8 w-full text-center border-2 border-gray-200"><p className={`text-6xl font-black ${question.colorClass}`}>{question.text}</p></div>
                     <div className="grid grid-cols-2 gap-3 w-full">{question.options.map((opt, idx) => (<button key={idx} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-indigo-200 text-indigo-900 hover:bg-indigo-50`}>{opt}</button>))}</div>
                 </div>
             );
@@ -601,7 +485,7 @@
                 <div className="w-full flex flex-col items-center animate-fade-in">
                     <p className={styles.instruction}>세 숫자 중 <span className="text-teal-600">{q.isMax ? "가장 큰" : "가장 작은"}</span> 숫자를 누르세요.</p>
                     <div className="grid grid-cols-1 gap-4 w-full mt-4">
-                        {q.nums.map((n, i) => (<button key={i} onClick={() => handleAnswer(n)} className={`${styles.button} bg-white border-teal-200 text-teal-900 text-6xl h-32`}>{n}</button>))}
+                        {q.nums.map((n, i) => (<button key={i} onClick={() => handleAnswer(n)} className={`${styles.button} bg-white border-teal-200 text-teal-900 text-5xl h-32`}>{n}</button>))}
                     </div>
                 </div>
             );
@@ -630,7 +514,7 @@
             if(!q) return null;
             return (
                 <div className="w-full flex flex-col items-center animate-fade-in">
-                    <p className={styles.instruction}><span className="text-orange-600 font-bold text-4xl">{q.cpu}</span>를 상대로 <br/><span className={`text-5xl ${q.isWin ? 'text-blue-600' : 'text-red-600'}`}>{q.isWin ? "이기세요!" : "지세요!"}</span></p>
+                    <p className={styles.instruction}><span className="text-orange-600 font-bold text-3xl">{q.cpu}</span>를 상대로 <br/><span className={`text-4xl ${q.isWin ? 'text-blue-600' : 'text-red-600'}`}>{q.isWin ? "이기세요!" : "지세요!"}</span></p>
                     <div className="flex gap-2 w-full mt-8">
                         {rps.map((r, i) => (<button key={i} onClick={() => handleAnswer(r)} className={`${styles.button} bg-white border-orange-200 text-orange-900`}>{r}</button>))}
                     </div>
@@ -656,7 +540,6 @@
                     onCorrect(20);
                     if (count + 1 >= 3) setTimeout(onComplete, 1000); else { setCount(c => c + 1); startWait(); }
                 } else {
-                    // Early click
                     clearTimeout(timerRef.current);
                     onWrong();
                     setTimeout(startWait, 500);
@@ -666,24 +549,24 @@
                 <div className="w-full flex flex-col items-center animate-fade-in">
                     <p className={styles.instruction}>배경이 <span className="text-green-600">초록색</span>이 되면<br/>빠르게 누르세요!</p>
                     <button onMouseDown={handleClick} onTouchStart={handleClick} className={`w-full h-64 rounded-3xl shadow-xl flex items-center justify-center transition-colors duration-200 ${state === 'ready' ? 'bg-green-500 border-b-8 border-green-700' : 'bg-gray-200 border-b-8 border-gray-300'}`}>
-                        {state === 'ready' ? <span className="text-white text-6xl font-black">지금!!!</span> : <span className="text-gray-400 text-4xl font-bold">기다리세요...</span>}
+                        {state === 'ready' ? <span className="text-white text-5xl font-black">지금!!!</span> : <span className="text-gray-400 text-3xl font-bold">기다리세요...</span>}
                     </button>
                 </div>
             );
         }
 
-        // --- 9. 단어 분류 (Category) - 데이터 보강 ---
+        // --- 9. 단어 분류 (Category) - 데이터 60개 이상 보강 ---
         const CategoryGame = ({ onComplete, onCorrect, onWrong }) => {
             const [q, setQ] = useState(null); const [count, setCount] = useState(0);
             const data = [
-                { t: '사과', c: '과일' }, { t: '배', c: '과일' }, { t: '포도', c: '과일' }, { t: '수박', c: '과일' }, { t: '참외', c: '과일' },
-                { t: '고등어', c: '생선' }, { t: '갈치', c: '생선' }, { t: '오징어', c: '생선' }, { t: '조기', c: '생선' }, { t: '멸치', c: '생선' },
-                { t: '호랑이', c: '동물' }, { t: '사자', c: '동물' }, { t: '강아지', c: '동물' }, { t: '토끼', c: '동물' }, { t: '고양이', c: '동물' },
-                { t: '자동차', c: '탈것' }, { t: '비행기', c: '탈것' }, { t: '자전거', c: '탈것' }, { t: '기차', c: '탈것' }, { t: '버스', c: '탈것' },
-                { t: '바지', c: '옷' }, { t: '치마', c: '옷' }, { t: '양말', c: '옷' }, { t: '장갑', c: '옷' }, { t: '모자', c: '옷' },
-                { t: '냉장고', c: '가전' }, { t: '세탁기', c: '가전' }, { t: 'TV', c: '가전' }, { t: '에어컨', c: '가전' }, { t: '청소기', c: '가전' }
+                { t: '사과', c: '과일' }, { t: '배', c: '과일' }, { t: '포도', c: '과일' }, { t: '수박', c: '과일' }, { t: '바나나', c: '과일' }, { t: '귤', c: '과일' }, { t: '딸기', c: '과일' }, { t: '복숭아', c: '과일' }, { t: '오렌지', c: '과일' }, { t: '키위', c: '과일' },
+                { t: '배추', c: '채소' }, { t: '무', c: '채소' }, { t: '양파', c: '채소' }, { t: '마늘', c: '채소' }, { t: '파', c: '채소' }, { t: '당근', c: '채소' }, { t: '오이', c: '채소' }, { t: '감자', c: '채소' }, { t: '고구마', c: '채소' }, { t: '호박', c: '채소' },
+                { t: '개', c: '동물' }, { t: '고양이', c: '동물' }, { t: '소', c: '동물' }, { t: '말', c: '동물' }, { t: '돼지', c: '동물' }, { t: '호랑이', c: '동물' }, { t: '사자', c: '동물' }, { t: '코끼리', c: '동물' }, { t: '기린', c: '동물' }, { t: '원숭이', c: '동물' },
+                { t: '참새', c: '새' }, { t: '비둘기', c: '새' }, { t: '까치', c: '새' }, { t: '독수리', c: '새' }, { t: '까마귀', c: '새' }, { t: '닭', c: '새' }, { t: '오리', c: '새' }, { t: '거위', c: '새' }, { t: '타조', c: '새' }, { t: '펭귄', c: '새' },
+                { t: '가위', c: '물건' }, { t: '풀', c: '물건' }, { t: '책', c: '물건' }, { t: '연필', c: '물건' }, { t: '지우개', c: '물건' }, { t: '안경', c: '물건' }, { t: '시계', c: '물건' }, { t: '지갑', c: '물건' }, { t: '가방', c: '물건' }, { t: '우산', c: '물건' },
+                { t: 'TV', c: '가전' }, { t: '냉장고', c: '가전' }, { t: '세탁기', c: '가전' }, { t: '에어컨', c: '가전' }, { t: '청소기', c: '가전' }, { t: '선풍기', c: '가전' }, { t: '전자레인지', c: '가전' }, { t: '컴퓨터', c: '가전' }, { t: '전화기', c: '가전' }, { t: '다리미', c: '가전' }
             ];
-            const cats = ['과일', '생선', '동물', '탈것', '옷', '가전'];
+            const cats = ['과일', '채소', '동물', '새', '물건', '가전'];
             const generate = () => {
                 const item = data[Math.floor(Math.random() * data.length)];
                 let wrongCat = cats[Math.floor(Math.random() * cats.length)];
@@ -706,35 +589,133 @@
             );
         }
 
-        // --- 10. 방향 찾기 (Direction) ---
+        // --- 10. 방향 찾기 (Direction) - 8방향 보강 ---
         const DirectionGame = ({ onComplete, onCorrect, onWrong }) => {
             const [q, setQ] = useState(null); const [count, setCount] = useState(0);
-            const dirs = ['왼쪽', '오른쪽', '위', '아래'];
-            const arrows = {'왼쪽':'←', '오른쪽':'→', '위':'↑', '아래':'↓'};
+            const dirs = ['왼쪽', '오른쪽', '위', '아래', '왼쪽 위', '오른쪽 위', '왼쪽 아래', '오른쪽 아래'];
+            const arrows = {'왼쪽':'←', '오른쪽':'→', '위':'↑', '아래':'↓', '왼쪽 위':'↖', '오른쪽 위':'↗', '왼쪽 아래':'↙', '오른쪽 아래':'↘'};
             
             const generate = () => {
-                const target = dirs[Math.floor(Math.random()*4)];
-                setQ(target);
+                const target = dirs[Math.floor(Math.random()*dirs.length)];
+                const opts = [target];
+                while(opts.length < 4) {
+                    let fake = dirs[Math.floor(Math.random()*dirs.length)];
+                    if(!opts.includes(fake)) opts.push(fake);
+                }
+                setQ({ target, opts: opts.sort(() => Math.random() - 0.5) });
             };
             useEffect(() => { generate(); }, []);
             
             const handleAnswer = (val) => {
-                if (val === q) { onCorrect(20); if (count + 1 >= 5) setTimeout(onComplete, 1000); else { setCount(c => c + 1); generate(); } } else onWrong();
+                if (val === q.target) { onCorrect(20); if (count + 1 >= 5) setTimeout(onComplete, 1000); else { setCount(c => c + 1); generate(); } } else onWrong();
             };
             
             if(!q) return null;
             return (
                 <div className="w-full flex flex-col items-center animate-fade-in">
                     <p className={styles.instruction}>화살표의 <span className="text-cyan-600">방향</span>을 고르세요.</p>
-                    <div className="bg-cyan-50 px-8 py-8 rounded-2xl mb-8 w-full text-center border-2 border-cyan-100"><p className="text-8xl font-black text-cyan-900">{arrows[q]}</p></div>
+                    <div className="bg-cyan-50 px-8 py-8 rounded-2xl mb-8 w-full text-center border-2 border-cyan-100"><p className="text-7xl font-black text-cyan-900">{arrows[q.target]}</p></div>
                     <div className="grid grid-cols-2 gap-3 w-full">
-                        {dirs.map((d, i) => (<button key={i} onClick={() => handleAnswer(d)} className={`${styles.button} bg-white border-cyan-200 text-cyan-900`}>{d}</button>))}
+                        {q.opts.map((d, i) => (<button key={i} onClick={() => handleAnswer(d)} className={`${styles.button} bg-white border-cyan-200 text-cyan-900 text-lg py-4`}>{d}</button>))}
                     </div>
                 </div>
             );
         }
 
-        // --- 5. 순서 기억 (Memory) ---
+        // --- NEW 11. 돈 계산 (Money) ---
+        const MoneyGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [q, setQ] = useState(null); const [count, setCount] = useState(0);
+            
+            const generate = () => {
+                const types = [
+                    { name: '만 원', val: 10000, unit: '장' },
+                    { name: '천 원', val: 1000, unit: '장' },
+                    { name: '5백 원', val: 500, unit: '개' },
+                    { name: '1백 원', val: 100, unit: '개' }
+                ];
+                const selectedTypes = [...types].sort(() => Math.random() - 0.5).slice(0, Math.floor(Math.random()*2) + 2);
+                let total = 0; let textParts = [];
+                selectedTypes.forEach(t => {
+                    const qty = Math.floor(Math.random() * 4) + 1;
+                    total += t.val * qty; textParts.push(`${t.name} ${qty}${t.unit}`);
+                });
+                const qStr = textParts.join(', ') + '는 총 얼마일까요?';
+
+                let opts = [total];
+                while(opts.length < 4) {
+                    let diff = (Math.floor(Math.random() * 5) + 1) * (selectedTypes[selectedTypes.length-1].val);
+                    let fake = Math.random() > 0.5 ? total + diff : total - diff;
+                    if (fake > 0 && !opts.includes(fake)) opts.push(fake);
+                }
+                setQ({ str: qStr, ans: total, opts: opts.sort(() => Math.random() - 0.5) });
+            };
+            useEffect(() => { generate(); }, []);
+            
+            const handleAnswer = (val) => {
+                if (val === q.ans) { onCorrect(20); if (count + 1 >= 3) setTimeout(onComplete, 1000); else { setCount(c => c + 1); generate(); } } else onWrong();
+            };
+            
+            if(!q) return null;
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>모두 더하면 <span className="text-emerald-600">얼마</span>일까요?</p>
+                    <div className="bg-emerald-50 px-6 py-8 rounded-2xl mb-8 w-full text-center border-2 border-emerald-100"><p className="text-3xl font-bold text-gray-800 break-keep leading-relaxed">{q.str}</p></div>
+                    <div className="grid grid-cols-2 gap-3 w-full">
+                        {q.opts.map((opt, i) => (<button key={i} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-emerald-200 text-emerald-900`}>{opt.toLocaleString()}원</button>))}
+                    </div>
+                </div>
+            );
+        }
+
+        // --- NEW 12. 단어 기억 (Word Memory) ---
+        const WordMemoryGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [state, setState] = useState('memorize'); // memorize, question
+            const [q, setQ] = useState(null); const [count, setCount] = useState(0);
+            const timerRef = useRef(null);
+
+            const words = ['사과', '기차', '호랑이', '피아노', '바다', '우산', '안경', '지갑', '나비', '구두', '모자', '가방', '시계', '연필', '의자', '책상', '수박', '포도', '비행기', '자전거'];
+
+            const generate = () => {
+                const shuffled = [...words].sort(() => Math.random() - 0.5);
+                const targetWords = shuffled.slice(0, 3);
+                const wrongWords = shuffled.slice(3, 6);
+                const questionWord = targetWords[Math.floor(Math.random() * targetWords.length)];
+                let opts = [questionWord, ...wrongWords.slice(0, 3)].sort(() => Math.random() - 0.5);
+
+                setQ({ targets: targetWords, ans: questionWord, opts });
+                setState('memorize');
+
+                timerRef.current = setTimeout(() => { setState('question'); }, 4000); // 4초간 보여줌
+            };
+            useEffect(() => { generate(); return () => clearTimeout(timerRef.current); }, []);
+
+            const handleAnswer = (val) => {
+                if (val === q.ans) { onCorrect(30); if (count + 1 >= 3) setTimeout(onComplete, 1000); else { setCount(c => c + 1); generate(); } } else onWrong();
+            };
+
+            if(!q) return null;
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    {state === 'memorize' ? (
+                        <>
+                            <p className={styles.instruction}>다음 세 단어를 <span className="text-sky-600">기억</span>하세요.</p>
+                            <div className="flex flex-col gap-4 w-full mt-4">
+                                {q.targets.map((w, i) => <div key={i} className="bg-sky-50 py-4 rounded-xl text-center border-2 border-sky-100 text-3xl font-bold text-sky-900">{w}</div>)}
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <p className={styles.instruction}>방금 본 <span className="text-sky-600">단어</span>는 무엇인가요?</p>
+                            <div className="grid grid-cols-2 gap-4 w-full mt-8">
+                                {q.opts.map((opt, i) => (<button key={i} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-sky-200 text-sky-900`}>{opt}</button>))}
+                            </div>
+                        </>
+                    )}
+                </div>
+            );
+        }
+
+        // --- 11. 순서 기억 (Memory) ---
         const MemoryGame = ({ onComplete, onCorrect, onWrong, playSound }) => {
             const [sequence, setSequence] = useState([]); const [playerSequence, setPlayerSequence] = useState([]);
             const [isPlaying, setIsPlaying] = useState(false); const [activeIndex, setActiveIndex] = useState(null); const [round, setRound] = useState(0);
@@ -777,7 +758,7 @@
                     <Trophy size={80} className="text-yellow-500 mb-4 drop-shadow-md" />
                     <h2 className="text-3xl font-bold text-gray-800 mb-2">운동 완료!</h2>
                     <p className="text-gray-600 mb-6 text-xl text-center">오늘도 수고하셨습니다,<br/><span className="text-green-600 font-bold">{userName} 님!</span></p>
-                    <div className="bg-yellow-50 border-2 border-yellow-200 p-6 rounded-2xl w-full text-center mb-8"><p className="text-gray-500 mb-2">획득 점수</p><p className="text-6xl font-black text-amber-600">{score}점</p></div>
+                    <div className="bg-yellow-50 border-2 border-yellow-200 p-6 rounded-2xl w-full text-center mb-8"><p className="text-gray-500 mb-2">획득 점수</p><p className="text-5xl font-black text-amber-600">{score}점</p></div>
                     <button onClick={onRestart} className={`${styles.button} bg-green-500 text-white border-green-700`}><RotateCcw size={28} />{mode === 'single' ? '메뉴로 돌아가기' : '처음으로 돌아가기'}</button>
                 </div>
             );
@@ -785,15 +766,49 @@
 
         // --- 메인 App 컴포넌트 ---
         const App = () => {
-            const [gameState, setGameState] = useState('nameInput'); 
+            const [gameState, setGameState] = useState('loading'); 
             const [gameQueue, setGameQueue] = useState([]); 
             const [currentQueueIdx, setCurrentQueueIdx] = useState(0);
             const [gameMode, setGameMode] = useState('course'); 
             const [userName, setUserName] = useState('');
             const [score, setScore] = useState(0);
-            const [feedback, setFeedback] = useState(null); // { type: 'correct'|'wrong', msg: string }
+            const [feedback, setFeedback] = useState(null);
             const [soundEnabled, setSoundEnabled] = useState(true);
-            const [hasDoneOrientation, setHasDoneOrientation] = useState(false);
+
+            // 초기 데이터 확인 (이름, 날짜 기억)
+            useEffect(() => {
+                const today = new Date().toISOString().split('T')[0];
+                const savedUser = localStorage.getItem('brain_training_user');
+                if (savedUser) {
+                    try {
+                        const parsed = JSON.parse(savedUser);
+                        if (parsed.userName) {
+                            setUserName(parsed.userName);
+                            if (parsed.lastOrientationDate === today) {
+                                setGameState('menu'); // 당일 완료시 패스
+                            } else {
+                                setGameState('orientation'); // 이름은 알지만 날짜 확인 필요
+                            }
+                        } else { setGameState('nameInput'); }
+                    } catch(e) { setGameState('nameInput'); }
+                } else { setGameState('nameInput'); }
+            }, []);
+
+            const handleNameSubmit = (name) => {
+                setUserName(name);
+                localStorage.setItem('brain_training_user', JSON.stringify({ userName: name, lastOrientationDate: '' }));
+                setGameState('orientation');
+            };
+
+            const handleOrientationComplete = () => {
+                const today = new Date().toISOString().split('T')[0];
+                localStorage.setItem('brain_training_user', JSON.stringify({ userName: userName, lastOrientationDate: today }));
+                if (gameQueue.length > 0) {
+                    handleStageComplete();
+                } else {
+                    setGameState('menu');
+                }
+            };
 
             const playSound = useCallback((type) => {
                 if (!soundEnabled) return;
@@ -817,7 +832,7 @@
             const handleWrong = () => { showFeedback(false); };
 
             const startDailyCourse = () => {
-                const allGames = ['math', 'word', 'spatial', 'stroop', 'memory', 'number', 'rps', 'reaction', 'category', 'direction'];
+                const allGames = ['math', 'word', 'money', 'wordMemory', 'spatial', 'stroop', 'memory', 'number', 'rps', 'reaction', 'category', 'direction'];
                 const randomGames = allGames.sort(() => Math.random() - 0.5).slice(0, 5);
                 setGameQueue([...randomGames, 'result']);
                 setCurrentQueueIdx(0); setScore(0); setGameMode('course'); setGameState(randomGames[0]); playSound('click');
@@ -834,6 +849,8 @@
             
             const goBackToMenu = () => { if (confirm('메뉴 화면으로 돌아가시겠습니까?')) { setGameState('menu'); setScore(0); } };
 
+            if (gameState === 'loading') return <div className={styles.container}></div>;
+
             return (
                 <div className={styles.container}>
                     {gameState !== 'nameInput' && (
@@ -848,13 +865,15 @@
                     )}
 
                     <div className={`${styles.card} mt-2 min-h-[550px] justify-start relative pb-12`}>
-                        {gameState === 'nameInput' && <NameInputScreen onNameSubmit={(name) => { setUserName(name); setGameState('orientation'); }} playSound={playSound} />}
+                        {gameState === 'nameInput' && <NameInputScreen onNameSubmit={handleNameSubmit} playSound={playSound} />}
                         {gameState === 'menu' && <GameMenu userName={userName} onStartCourse={startDailyCourse} onSelectGame={startSingleGame} onOpenRecord={() => {setGameState('record'); playSound('click');}} />}
                         {gameState === 'record' && <DailyRecord onBack={() => {setGameState('menu'); playSound('click');}} playSound={playSound} />}
-                        {gameState === 'orientation' && <OrientationGame onComplete={() => { setHasDoneOrientation(true); setGameState('menu'); }} onCorrect={handleCorrect} onWrong={handleWrong} />}
+                        {gameState === 'orientation' && <OrientationGame onComplete={handleOrientationComplete} onCorrect={handleCorrect} onWrong={handleWrong} />}
                         
                         {gameState === 'math' && <MathGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} />}
                         {gameState === 'word' && <WordGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} />}
+                        {gameState === 'money' && <MoneyGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} />}
+                        {gameState === 'wordMemory' && <WordMemoryGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} playSound={playSound} />}
                         {gameState === 'spatial' && <SpatialGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} />}
                         {gameState === 'stroop' && <StroopGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} />}
                         {gameState === 'memory' && <MemoryGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} playSound={playSound} />}
