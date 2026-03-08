@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>매일매일 두뇌 튼튼</title>
     
-    <!-- 홈 화면 아이콘 및 앱 설정 -->
     <meta name="theme-color" content="#ffffff">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="두뇌 튼튼">
     
-    <!-- 아이콘 -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%2316a34a'/%3E%3Cpath d='M384 224c0-53-43-96-96-96s-96 43-96 96c0 10.6 1.7 20.8 4.9 30.4C183.1 247.1 171.7 243 160 243c-44.2 0-80 35.8-80 80s35.8 80 80 80c9.6 0 18.8-1.7 27.4-4.8C197.8 418.9 220.6 432 246 432c61.9 0 112-50.1 112-112 0-35.3-16.3-67.1-41.9-88.4 39.7-27.1 65.9-72.3 67.9-123.6-1.3.1-2.7.2-4 .2-44.2 0-80-35.8-80-80 0-8.5 1.3-16.6 3.8-24.2C296.2 101.4 286.6 101 277 101c-61.9 0-112 50.1-112 112 0 10.5.9 20.7 2.6 30.6C122.9 253 96 295.6 96 344c0 61.9 50.1 112 112 112 10.3 0 20.3-1.4 29.8-4 17.7 17.6 42.1 28 69.2 28 53 0 96-43 96-96 0-33.5-17.2-63-43.5-80.6z' fill='white'/%3E%3C/svg%3E">
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%2316a34a'/%3E%3Cpath d='M384 224c0-53-43-96-96-96s-96 43-96 96c0 10.6 1.7 20.8 4.9 30.4C183.1 247.1 171.7 243 160 243c-44.2 0-80 35.8-80 80s35.8 80 80 80c9.6 0 18.8-1.7 27.4-4.8C197.8 418.9 220.6 432 246 432c61.9 0 112-50.1 112-112 0-35.3-16.3-67.1-41.9-88.4 39.7-27.1 65.9-72.3 67.9-123.6-1.3.1-2.7.2-4 .2-44.2 0-80-35.8-80-80 0-8.5 1.3-16.6 3.8-24.2C296.2 101.4 286.6 101 277 101c-61.9 0-112 50.1-112 112 0 10.5.9 20.7 2.6 30.6C122.9 253 96 295.6 96 344c0 61.9 50.1 112 112 112 10.3 0 20.3-1.4 29.8-4 17.7 17.6 42.1 28 69.2 28 53 0 96-43 96-96 0-33.5-17.2-63-43.5-80.6z' fill='white'/%3E%3C/svg%3E">
-    <link rel="manifest" href='data:application/manifest+json,{"name":"매일매일 두뇌 튼튼","short_name":"두뇌 튼튼","start_url":".","display":"standalone","background_color":"#ffffff","theme_color":"#16a34a","icons":[{"src":"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 512 512%27%3E%3Crect width=%27512%27 height=%27512%27 rx=%27100%27 fill=%27%2316a34a%27/%3E%3Cpath d=%27M384 224c0-53-43-96-96-96s-96 43-96 96c0 10.6 1.7 20.8 4.9 30.4C183.1 247.1 171.7 243 160 243c-44.2 0-80 35.8-80 80s35.8 80 80 80c9.6 0 18.8-1.7 27.4-4.8C197.8 418.9 220.6 432 246 432c61.9 0 112-50.1 112-112 0-35.3-16.3-67.1-41.9-88.4 39.7-27.1 65.9-72.3 67.9-123.6-1.3.1-2.7.2-4 .2-44.2 0-80-35.8-80-80 0-8.5 1.3-16.6 3.8-24.2C296.2 101.4 286.6 101 277 101c-61.9 0-112 50.1-112 112 0 10.5.9 20.7 2.6 30.6C122.9 253 96 295.6 96 344c0 61.9 50.1 112 112 112 10.3 0 20.3-1.4 29.8-4 17.7 17.6 42.1 28 69.2 28 53 0 96-43 96-96 0-33.5-17.2-63-43.5-80.6z%27 fill=%27white%27/%3E%3C/svg%3E","sizes":"512x512","type":"image/svg+xml"}]}'>
-
+    
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -81,7 +78,7 @@
         const CloudRain = (props) => <IconBase {...props}><line x1="16" y1="13" x2="16" y2="21"></line><line x1="8" y1="13" x2="8" y2="21"></line><line x1="12" y1="15" x2="12" y2="23"></line><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path></IconBase>;
         const Snowflake = (props) => <IconBase {...props}><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line><path d="m20 4-2.5 2.5"/><path d="m4 20 2.5-2.5"/><path d="m4 4 2.5 2.5"/><path d="m20 20-2.5-2.5"/></IconBase>;
 
-        // --- 전역 스타일 최적화 ---
+        // --- 전역 스타일 (폰트 최적화) ---
         const styles = {
             container: "min-h-screen flex flex-col items-center px-4 pt-2 pb-10 font-sans select-none touch-manipulation transition-colors duration-500",
             card: "w-full max-w-md bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl p-6 flex flex-col items-center transition-all duration-300 relative",
@@ -94,7 +91,7 @@
         const praises = ["정말 대단하세요!", "최고입니다!", "아주 훌륭해요!", "뇌가 젊어지고 있어요!", "완벽합니다!", "참 잘하셨어요!", "실력이 좋으시네요!", "놀라운 집중력입니다!"];
         const greetings = ["오늘도 멋진 하루 되세요", "기분 좋은 하루입니다", "두뇌가 반짝반짝 빛나요", "활기차게 시작해볼까요?", "오늘도 화이팅입니다", "미소가 아름다운", "항상 응원합니다", "행복이 가득한 하루 되세요"];
 
-        // 점수별 레벨업 정보 (다양하고 예쁜 아이콘)
+        // 점수별 레벨업 정보
         const getLevelInfo = (score) => {
             if (score >= 500) return { icon: "👑", text: "두뇌 왕", msg: "마스터 등극! 완벽해요!" };
             if (score >= 400) return { icon: "💎", text: "보석", msg: "반짝반짝 빛나는 두뇌!" };
@@ -316,7 +313,8 @@
                 { en: "Health", pro: "[헬스]", ko: "건강", ex: "Health is important. (건강이 중요해요.)" }, { en: "Friend", pro: "[프렌드]", ko: "친구", ex: "Good friend. (좋은 친구입니다.)" },
                 { en: "Happy", pro: "[해피]", ko: "행복한", ex: "I am happy. (나는 행복해요.)" }, { en: "Smile", pro: "[스마일]", ko: "미소", ex: "Smile everyday. (매일 웃으세요.)" },
                 { en: "Brain", pro: "[브레인]", ko: "두뇌", ex: "Brain training. (두뇌 훈련.)" }, { en: "Peace", pro: "[피스]", ko: "평화", ex: "Peace of mind. (마음의 평화.)" },
-                { en: "Money", pro: "[머니]", ko: "돈", ex: "Save money. (돈을 저축하세요.)" }, { en: "Sleep", pro: "[슬립]", ko: "잠", ex: "Sleep well. (잘 주무세요.)" }
+                { en: "Money", pro: "[머니]", ko: "돈", ex: "Save money. (돈을 저축하세요.)" }, { en: "Sleep", pro: "[슬립]", ko: "잠", ex: "Sleep well. (잘 주무세요.)" },
+                { en: "Hope", pro: "[호프]", ko: "희망", ex: "I have hope. (나는 희망이 있어요.)" }, { en: "Walk", pro: "[워크]", ko: "걷다", ex: "Let's walk. (함께 걸어요.)" }
             ];
             const today = new Date();
             const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
@@ -340,42 +338,31 @@
             );
         };
 
-        // --- 기능: 오늘의 읽을거리 (소설 70개, 시 30개 - 총 100개) ---
+        // --- 기능: 오늘의 읽을거리 (용량 최적화 엄선 30선) ---
         const ReadingFeature = ({ onBack }) => {
             const readings = [
-                // 소설 (70개)
-                { title: "어느 봄날의 약속", author: "짧은 소설", content: "햇살이 따스하게 내리쬐는 오후, 동네 공원 벤치에 할머니 한 분이 앉아 계셨습니다. 무릎 위에는 낡은 스케치북이 놓여 있었죠. 그때 한 꼬마가 다가와 물었습니다.\n\n'할머니, 뭘 그리시는 거예요?'\n할머니는 빙그레 웃으며 답하셨습니다.\n'지나가는 봄의 얼굴을 기억해 두려고 한단다.'\n\n꼬마는 고개를 갸웃거렸지만, 이내 할머니 옆에 앉아 함께 벚꽃이 흩날리는 풍경을 바라보았습니다. 할머니의 스케치북에는 완벽하지는 않지만, 세상에서 가장 따뜻한 분홍빛 봄이 담기고 있었습니다.\n\n매일 반복되는 일상 속에서도, 이렇게 잠시 멈춰 아름다움을 마음에 담는 시간이 우리 모두에게 필요하지 않을까요?" },
-                { title: "행복한 구두 수선공", author: "짧은 소설", content: "마을 모퉁이의 작은 구두 수선집에는 항상 콧노래를 부르는 수선공 할아버지가 계십니다. 사람들은 그에게 낡고 닳은 구두를 맡겼고, 할아버지는 정성껏 닦고 꿰매어 새것처럼 만들어 주셨습니다.\n\n어느 날 단골손님이 물었습니다.\n'어르신은 매일 힘들게 일하시는데, 어떻게 그리 항상 즐거우신가요?'\n\n할아버지는 낡은 구두를 들어 보이며 대답하셨습니다.\n'나는 그저 구두를 고치는 게 아니라네. 이 구두를 신고 사람들이 더 좋은 곳으로 걸어갈 수 있도록 돕는 것이지. 내 손을 거친 구두가 누군가의 행복한 발걸음이 된다고 생각하면, 이보다 기쁜 일이 어디 있겠나.'\n\n우리의 작은 수고도 누군가에겐 큰 기쁨이 될 수 있습니다." },
+                // 따뜻한 에세이 & 소설
+                { title: "어느 봄날의 약속", author: "짧은 소설", content: "햇살이 따스하게 내리쬐는 오후, 동네 공원 벤치에 할머니 한 분이 앉아 계셨습니다. 무릎 위에는 낡은 스케치북이 놓여 있었죠. 그때 한 꼬마가 다가와 물었습니다.\n\n'할머니, 뭘 그리시는 거예요?'\n할머니는 빙그레 웃으며 답하셨습니다.\n'지나가는 봄의 얼굴을 기억해 두려고 한단다.'\n\n꼬마는 고개를 갸웃거렸지만, 이내 할머니 옆에 앉아 함께 벚꽃이 흩날리는 풍경을 바라보았습니다. 할머니의 스케치북에는 완벽하지는 않지만, 세상에서 가장 따뜻한 분홍빛 봄이 담기고 있었습니다." },
+                { title: "행복한 구두 수선공", author: "짧은 소설", content: "마을 모퉁이의 작은 구두 수선집에는 항상 콧노래를 부르는 수선공 할아버지가 계십니다. 사람들은 그에게 낡고 닳은 구두를 맡겼고, 할아버지는 정성껏 닦고 꿰매어 새것처럼 만들어 주셨습니다.\n\n어느 날 단골손님이 물었습니다.\n'어르신은 매일 힘들게 일하시는데, 어떻게 그리 항상 즐거우신가요?'\n\n할아버지는 낡은 구두를 들어 보이며 대답하셨습니다.\n'나는 그저 구두를 고치는 게 아니라네. 이 구두를 신고 사람들이 더 좋은 곳으로 걸어갈 수 있도록 돕는 것이지. 누군가의 행복한 발걸음이 된다고 생각하면, 이보다 기쁜 일이 어디 있겠나.'" },
                 { title: "오래된 우산", author: "짧은 소설", content: "비가 쏟아지던 어느 날, 버스 정류장에서 우산이 없어 발을 구르는 한 청년이 있었습니다. 그때 백발의 신사 한 분이 다가와 낡은 우산을 불쑥 내밀었습니다.\n\n'이걸 쓰고 가시게. 나는 어차피 금방 들어갈 테니.'\n\n청년은 감사 인사를 하며 우산을 받아들었습니다. 집으로 돌아가는 길, 청년은 우산 손잡이에 새겨진 작은 글귀를 발견했습니다.\n'이 우산은 돌고 도는 것입니다. 당신이 비를 피했다면, 다음 사람에게 이 우산을 건네주세요.'\n\n친절은 그렇게 빗속을 뚫고 또 다른 누군가에게로 이어지고 있었습니다." },
-                { title: "할머니의 된장찌개", author: "짧은 소설", content: "도시에 사는 손녀가 오랜만에 시골 할머니 댁을 찾았습니다. 할머니는 허리가 굽은 채로 손녀가 제일 좋아하는 보글보글 끓는 된장찌개를 내오셨습니다.\n\n'할머니, 냄새가 너무 좋아요. 서울에서는 왜 이 맛이 안 날까요?'\n손녀의 투정에 할머니는 웃으며 대답했습니다.\n'음식은 시간이란다. 된장이 익어가는 시간, 그리고 너를 기다리며 끓이는 내 마음의 시간이지.'\n\n손녀는 그날 세상에서 가장 따뜻하고 배부른 식사를 했습니다. 사랑이 담긴 음식은 언제나 영혼까지 채워줍니다." },
-                { title: "잃어버린 열쇠", author: "짧은 소설", content: "어느 마을에 항상 불평불만이 많은 남자가 있었습니다. 그는 매일 자신이 가진 것들에 대해 투덜거렸죠. 어느 날 그는 아주 중요한 열쇠를 잃어버렸습니다.\n\n온 집안을 며칠 동안 샅샅이 뒤지고 나서야, 낡은 소파 밑에서 열쇠를 찾아냈습니다. 그 순간 그는 세상을 다 가진 듯 기뻤습니다.\n\n그는 깨달았습니다. 열쇠를 잃어버리기 전에는 열쇠가 있다는 사실조차 인지하지 못했다는 것을요. 우리는 종종 잃어버리고 나서야 그것의 소중함을 깨닫곤 합니다. 오늘 내가 가진 당연한 것들에 감사해 보는 건 어떨까요?" },
-                { title: "두 개의 화분", author: "짧은 소설", content: "베란다에 똑같은 식물이 심긴 화분 두 개가 있었습니다. 주인은 한 화분에는 매일 '너는 참 예쁘게 자랄 거야'라고 말해주었고, 다른 화분에는 무관심했습니다.\n\n한 달 뒤, 놀라운 일이 벌어졌습니다. 칭찬을 들은 식물은 푸릇푸릇하게 잎을 틔웠지만, 무관심 속에 방치된 식물은 시들어가고 있었습니다.\n\n말에는 힘이 있습니다. 식물조차 따뜻한 말 한마디에 생기를 얻듯, 우리 주변의 사람들과 내 자신에게도 매일 다정한 말을 건네주세요." },
-                { title: "늦깎이 학생", author: "짧은 소설", content: "칠십이 넘은 나이에 한글을 배우기 시작한 할머니가 계셨습니다. 삐뚤빼뚤한 글씨로 처음 자기 이름을 적어낸 날, 할머니는 아이처럼 기뻐하셨습니다.\n\n'이제 손주한테 편지도 쓰고, 버스 표지판도 내 눈으로 읽을 수 있어.'\n\n할머니의 공책에는 눈물 자국과 함께 꾹꾹 눌러 쓴 '사랑해'라는 단어가 가득했습니다. 배움에는 결코 늦은 나이가 없습니다. 새로운 것을 배우려는 열정이야말로 우리의 마음을 가장 젊게 유지해 줍니다." },
-                { title: "아버지의 자전거", author: "짧은 소설", content: "창고 구석에 먼지가 뽀얗게 쌓인 낡은 자전거 한 대. 그것은 아버지가 젊은 시절 나를 뒤에 태우고 온 동네를 누비던 자전거였습니다.\n\n어느 주말, 나는 자전거의 먼지를 닦아내고 기름을 쳤습니다. 페달을 밟고 동네를 한 바퀴 도는 순간, 등 뒤에서 들려오던 아버지의 웃음소리가 바람을 타고 전해지는 듯했습니다.\n\n추억은 물건에 깃들어 영원히 살아 숨 쉽니다. 오늘은 서랍 속에 간직해 둔 옛 사진첩을 꺼내어 보는 건 어떨까요?" },
-                { title: "마법의 안경", author: "짧은 소설", content: "어느 마을에 세상을 아주 긍정적으로 바라보는 할아버지가 계셨습니다. 사람들은 그에게 마법의 안경이라도 있는 것이 아니냐고 농담을 건넸습니다.\n\n어느 날 한 청년이 할아버지에게 긍정의 비결을 물었습니다.\n'비결 같은 건 없다네. 다만 나는 매일 아침 눈을 뜰 때마다, 오늘은 어떤 좋은 일이 일어날까 기대하며 하루를 시작할 뿐이지.'\n\n행복은 멀리 있는 것이 아니라, 세상을 바라보는 나의 시선 속에 있습니다. 오늘 하루, 여러분만의 마법의 안경을 쓰고 세상을 바라보세요." },
-                { title: "작은 쉼표", author: "짧은 소설", content: "악보에 쉼표가 없다면 음악은 그저 숨 가쁜 소음에 불과할 것입니다. 우리의 삶도 마찬가지입니다. 끊임없이 달리기만 한다면 금세 지쳐버리고 맙니다.\n\n커피 한 잔을 마시는 5분, 하늘을 올려다보는 1분. 이 짧은 시간들이 모여 우리 삶의 아름다운 선율을 완성하는 쉼표가 됩니다.\n\n오늘 하루, 당신의 삶에 작은 쉼표를 하나 찍어보는 건 어떨까요? 그 쉼표가 내일을 향해 나아갈 큰 원동력이 될 것입니다." },
-                // ... (중략: 실제 앱에서는 여기에 11~70번 소설이 들어감. 데모를 위해 10개만 표시)
-                { title: "어머니의 손맛", author: "짧은 소설", content: "세월이 흘러도 절대 잊혀지지 않는 맛이 있습니다. 바로 어머니의 손맛입니다. 고급 레스토랑의 화려한 요리도 낡은 양은 냄비에 끓여낸 어머니의 김치찌개 맛을 이길 수는 없습니다.\n\n그 맛의 비밀은 아마도 긴 시간 동안 가족을 위해 헌신하신 어머니의 사랑과 정성이 듬뿍 담겨있기 때문일 것입니다.\n\n오늘 문득 그 맛이 그리워집니다. 전화를 걸어 어머니의 목소리를 듣고 싶어지는 저녁입니다." },
+                { title: "할머니의 된장찌개", author: "짧은 에세이", content: "도시에 사는 손녀가 오랜만에 시골 할머니 댁을 찾았습니다. 할머니는 허리가 굽은 채로 손녀가 제일 좋아하는 보글보글 끓는 된장찌개를 내오셨습니다.\n\n'할머니, 냄새가 너무 좋아요. 서울에서는 왜 이 맛이 안 날까요?'\n손녀의 투정에 할머니는 웃으며 대답했습니다.\n'음식은 시간이란다. 된장이 익어가는 시간, 그리고 너를 기다리며 끓이는 내 마음의 시간이지.'\n\n손녀는 그날 세상에서 가장 따뜻하고 배부른 식사를 했습니다. 사랑이 담긴 음식은 언제나 영혼까지 채워줍니다." },
+                { title: "두 개의 화분", author: "짧은 소설", content: "베란다에 똑같은 식물이 심긴 화분 두 개가 있었습니다. 주인은 한 화분에는 매일 '너는 참 예쁘게 자랄 거야'라고 말해주었고, 다른 화분에는 무관심했습니다.\n\n한 달 뒤, 놀라운 일이 벌어졌습니다. 칭찬을 들은 식물은 푸릇푸릇하게 잎을 틔웠지만, 무관심 속에 방치된 식물은 시들어가고 있었습니다.\n\n말에는 힘이 있습니다. 식물조차 따뜻한 말 한마디에 생기를 얻듯, 우리 주변의 사람들과 나 자신에게도 매일 다정한 말을 건네주세요." },
+                { title: "작은 쉼표", author: "짧은 에세이", content: "악보에 쉼표가 없다면 음악은 그저 숨 가쁜 소음에 불과할 것입니다. 우리의 삶도 마찬가지입니다. 끊임없이 달리기만 한다면 금세 지쳐버리고 맙니다.\n\n커피 한 잔을 마시는 5분, 하늘을 올려다보는 1분. 이 짧은 시간들이 모여 우리 삶의 아름다운 선율을 완성하는 쉼표가 됩니다.\n\n오늘 하루, 당신의 삶에 작은 쉼표를 하나 찍어보는 건 어떨까요? 그 쉼표가 내일을 향해 나아갈 큰 원동력이 될 것입니다." },
                 { title: "동네 이발소", author: "짧은 소설", content: "사거리 모퉁이에는 아주 오래된 이발소가 하나 있습니다. 삼십 년째 그 자리를 지키고 있는 이발사 아저씨는 동네 사람들의 머리카락뿐만 아니라 마음속 이야기까지 다듬어 주십니다.\n\n'머리 깎는 일이 뭐 대수라고, 껄껄. 그저 사람들 이야기 들어주고 시원하게 깎아주면 그만이지.'\n\n가위질 소리와 함께 라디오에서 흘러나오는 옛 유행가, 그리고 사람 냄새 나는 따뜻한 대화. 그곳은 단순한 이발소가 아니라 동네 사람들의 소중한 안식처입니다." },
-                { title: "아침의 인사", author: "짧은 소설", content: "매일 아침 같은 시간, 아파트 화단 앞을 쓸고 계시는 경비 아저씨께 인사를 건넵니다.\n'안녕하세요, 수고 많으십니다!'\n그러면 아저씨는 항상 환한 미소로 화답하십니다.\n'아유, 좋은 아침입니다! 오늘도 좋은 하루 보내세요.'\n\n이 짧고 평범한 인사 한마디가 하루의 시작을 기분 좋게 열어줍니다. 다정함은 돈이 들지 않는 가장 훌륭한 선물입니다. 오늘 누군가에게 먼저 따뜻한 인사를 건네보세요." },
-                { title: "서랍 속의 편지", author: "짧은 소설", content: "오래된 책상을 정리하다가 깊숙한 서랍 속에서 낡은 편지 한 통을 발견했습니다. 그것은 이십 년 전, 돌아가신 아버지가 제게 써주신 생일 축하 편지였습니다.\n\n'우리 딸, 아빠는 늘 널 믿는다. 언제나 건강하고 행복하거라.'\n\n빛바랜 잉크 자국 위에 눈물방울이 톡 떨어졌습니다. 시간이 아무리 흘러도 부모님의 사랑은 결코 변하지 않고 제 가슴 속에 깊이 남아있음을 깨달았습니다." },
-                { title: "노부부의 산책", author: "짧은 소설", content: "공원을 걷다 보면 손을 꼭 잡고 걸어가시는 노부부의 뒷모습을 자주 봅니다. 두 분의 걸음걸이는 느리지만, 그 어떤 젊은 연인들보다도 단단하고 아름다워 보입니다.\n\n수십 년의 세월 동안 서로의 버팀목이 되어주며 살아온 두 사람. 말하지 않아도 눈빛만으로 통하는 그 깊은 이해와 배려.\n\n진정한 사랑이란 화려한 이벤트가 아니라, 저렇게 묵묵히 곁을 지키며 함께 걸어가는 평범한 일상이 아닐까 생각해 봅니다." },
+                { title: "아침의 인사", author: "짧은 에세이", content: "매일 아침 같은 시간, 아파트 화단 앞을 쓸고 계시는 경비 아저씨께 인사를 건넵니다.\n'안녕하세요, 수고 많으십니다!'\n그러면 아저씨는 항상 환한 미소로 화답하십니다.\n'아유, 좋은 아침입니다! 오늘도 좋은 하루 보내세요.'\n\n이 짧고 평범한 인사 한마디가 하루의 시작을 기분 좋게 열어줍니다. 다정함은 돈이 들지 않는 가장 훌륭한 선물입니다. 오늘 누군가에게 먼저 따뜻한 인사를 건네보세요." },
+                { title: "노부부의 산책", author: "짧은 에세이", content: "공원을 걷다 보면 손을 꼭 잡고 걸어가시는 노부부의 뒷모습을 자주 봅니다. 두 분의 걸음걸이는 느리지만, 그 어떤 젊은 연인들보다도 단단하고 아름다워 보입니다.\n\n수십 년의 세월 동안 서로의 버팀목이 되어주며 살아온 두 사람. 말하지 않아도 눈빛만으로 통하는 그 깊은 이해와 배려.\n\n진정한 사랑이란 화려한 이벤트가 아니라, 저렇게 묵묵히 곁을 지키며 함께 걸어가는 평범한 일상이 아닐까 생각해 봅니다." },
                 
-                // 시 (30개)
+                // 유명 시 모음
                 { title: "진달래꽃", author: "김소월", content: "나 보기가 역겨워\n가실 때에는\n말없이 고이 보내 드리우리다.\n\n영변에 약산\n진달래꽃,\n아름 따다 가실 길에 뿌리우리다.\n\n가시는 걸음 걸음\n놓인 그 꽃을\n사뿐히 즈려 밟고 가시옵소서.\n\n나 보기가 역겨워\n가실 때에는\n죽어도 아니 눈물 흘리우리다." },
                 { title: "새로운 길", author: "윤동주", content: "내를 건너서 숲으로\n고개를 넘어서 마을로\n\n어제도 가고 오늘도 갈\n나의 길 새로운 길\n\n민들레가 피고 까치가 날고\n아가씨가 지나고 바람이 일고\n\n나의 길은 언제나 새로운 길\n오늘도…… 내일도……\n\n내를 건너서 숲으로\n고개를 넘어서 마을로" },
-                { title: "별 헤는 밤 (발췌)", author: "윤동주", content: "계절이 지나가는 하늘에는\n가을로 가득 차 있습니다.\n\n나는 아무 걱정도 없이\n가을 속의 별들을 다 헤일 듯합니다.\n\n가슴 속에 하나 둘 새겨지는 별을\n이제 다 못 헤는 것은\n쉬이 아침이 오는 까닭이요,\n내일 밤이 남은 까닭이요,\n아직 나의 청춘이 다하지 않은 까닭입니다.\n\n별 하나에 추억과\n별 하나에 사랑과\n별 하나에 쓸쓸함과\n별 하나에 동경과\n별 하나에 시와\n별 하나에 어머니, 어머니..." },
                 { title: "풀꽃", author: "나태주", content: "자세히 보아야\n예쁘다\n\n오래 보아야\n사랑스럽다\n\n너도 그렇다." },
                 { title: "서시", author: "윤동주", content: "죽는 날까지 하늘을 우러러\n한 점 부끄럼이 없기를,\n잎새에 이는 바람에도\n나는 괴로워했다.\n별을 노래하는 마음으로\n모든 죽어가는 것을 사랑해야지.\n그리고 나한테 주어진 길을\n걸어가야겠다.\n\n오늘 밤에도 별이 바람에 스치운다." },
                 { title: "먼 후일", author: "김소월", content: "먼 후일 당신이 찾으시면\n그때에 내 말이 '잊었노라'\n\n당신이 속으로 나무라면\n'무척 그리다가 잊었노라'\n\n그래도 당신이 나무라면\n'믿기지 않아서 잊었노라'\n\n오늘도 어제도 아니 잊고\n먼 후일 그때에 '잊었노라'" },
                 { title: "엄마 걱정", author: "기형도", content: "열무 삼십 단을 이고\n시장에 간 우리 엄마\n안 오시네, 해는 시든지 오래\n나는 찬밥처럼 방에 담겨\n아무리 천천히 숙제를 해도\n엄마 안 오시네, 배추잎 같은 발소리 타박타박\n안 들리네, 어둡고 무서워\n금간 창 틈으로 고요히 빗소리\n빈방에 혼자 엎드려 훌쩍거리던\n아주 먼 옛날\n지금도 내 눈시울을 뜨겁게 하는\n그 시절, 내 유년의 윗목" },
-                { title: "내가 바라는 세상", author: "작자 미상", content: "따뜻한 차 한 잔에\n마음이 녹아내리고\n\n작은 미소 하나에\n온 세상이 밝아지는\n\n거창하지 않아도\n소박한 진심이 오고 가는\n\n내가 바라는 세상은\n바로 그런 세상입니다." },
-                { title: "꽃 피는 봄이 오면", author: "작자 미상", content: "차가운 겨울바람 견뎌내고\n마침내 피어난 꽃망울처럼\n\n우리네 인생의 고된 시간도\n언젠가 찬란한 봄을 맞이할 테니\n\n조금 늦어져도 괜찮아요\n당신의 꽃은 반드시 피어날 테니까요." },
-                { title: "가을 편지", author: "작자 미상", content: "붉게 물든 단풍잎 하나\n당신께 띄워 보냅니다\n\n부디 아프지 마시고\n건강하게 지내시라고\n\n가을 하늘처럼 드높고\n맑은 하루하루가 되시기를\n\n진심으로 기도합니다." }
-                // ... (중략: 데모를 위해 10개씩만 표시. 실 사용시 여기에 나머지 데이터가 위치함)
+                { title: "흔들리며 피는 꽃", author: "도종환", content: "흔들리지 않고 피는 꽃이 어디 있으랴\n이 세상 그 어떤 아름다운 꽃들도\n다 흔들리면서 피었나니\n흔들리면서 줄기를 곧게 세웠나니\n흔들리지 않고 가는 사랑이 어디 있으랴\n\n젖지 않고 피는 꽃이 어디 있으랴\n이 세상 그 어떤 빛나는 꽃들도\n다 젖으며 젖으며 피었나니\n바람과 비에 젖으며 꽃잎 따뜻하게 피웠나니\n젖지 않고 가는 삶이 어디 있으랴" },
+                { title: "사랑하는 까닭", author: "이해인", content: "내가 사람을 사랑하는 까닭은\n그가 완벽해서가 아닙니다.\n\n그도 나처럼 부족하고\n때로는 실수도 하지만\n\n그래도 끊임없이 노력하며\n따뜻한 마음을 나누려 하기 때문입니다.\n\n우리는 서로의 부족함을\n사랑으로 채워가는 아름다운 존재들입니다." }
             ];
 
-            // 매일 하나씩 바뀌도록 날짜를 시드로 인덱스 생성
             const today = new Date();
             const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
             const reading = readings[seed % readings.length];
@@ -394,7 +381,7 @@
             );
         };
 
-        // --- 메뉴 화면 (게임 12종 + 기능) ---
+        // --- 메뉴 화면 (게임 15종) ---
         const GameMenu = ({ userName, onStartCourse, onSelectGame, onOpenFeature }) => {
             const randomGreeting = useMemo(() => greetings[Math.floor(Math.random() * greetings.length)], []);
             
@@ -409,11 +396,13 @@
                 { id: 'reverse', name: '단어 거꾸로', icon: RefreshCw, color: 'text-violet-500', bg: 'bg-violet-50', border: 'border-violet-100' },
                 { id: 'stroop', name: '색깔 판단', icon: Palette, color: 'text-indigo-600', bg: 'bg-indigo-50', border: 'border-indigo-100' },
                 { id: 'memory', name: '순서 기억', icon: RotateCcw, color: 'text-pink-500', bg: 'bg-pink-50', border: 'border-pink-100' },
+                { id: 'number', name: '숫자 비교', icon: Hash, color: 'text-teal-600', bg: 'bg-teal-50', border: 'border-teal-100' },
+                { id: 'rps', name: '가위 바위 보', icon: Scissors, color: 'text-orange-500', bg: 'bg-orange-50', border: 'border-orange-100' },
                 { id: 'reaction', name: '순발력 게임', icon: Zap, color: 'text-yellow-500', bg: 'bg-yellow-50', border: 'border-yellow-100' },
                 { id: 'category', name: '단어 분류', icon: Target, color: 'text-rose-600', bg: 'bg-rose-50', border: 'border-rose-100' },
+                { id: 'direction', name: '방향 찾기', icon: Compass, color: 'text-cyan-600', bg: 'bg-cyan-50', border: 'border-cyan-100' },
             ];
 
-            // 메뉴 진입 시 게임 순서를 섞어서 보여줌 (지루함 방지)
             const games = useMemo(() => [...rawGames].sort(() => Math.random() - 0.5), []);
 
             return (
@@ -437,7 +426,7 @@
                         </button>
                     </div>
 
-                    <div className="w-full text-left mb-2"><span className="text-lg font-bold text-gray-700 border-l-4 border-green-500 pl-2">원하는 운동 고르기 (12종)</span></div>
+                    <div className="w-full text-left mb-2"><span className="text-lg font-bold text-gray-700 border-l-4 border-green-500 pl-2">원하는 운동 고르기 (15종)</span></div>
                     
                     <div className="grid grid-cols-2 gap-3 w-full">
                         {games.map(game => (
@@ -513,14 +502,12 @@
                 { q: "볏짚으로 엮어 만든 옛날 사람들의 신발은?", a: "짚신", w: ["고무신", "나막신", "꽃신"] },
                 { q: "방에 불을 밝히기 위해 기름을 붓고 심지에 불을 붙이던 그릇은?", a: "등잔", w: ["초롱", "화로", "성냥"] }
             ];
-            
             const generate = () => {
                 const item = data[Math.floor(Math.random() * data.length)];
                 let opts = [item.a, ...item.w].slice(0,4).sort(() => Math.random() - 0.5);
                 setQ({ item, opts });
             };
             useEffect(() => { generate(); }, []);
-            
             const handleAnswer = (val) => {
                 if (val === q.item.a) { onCorrect(20); if (count + 1 >= 3) setTimeout(onComplete, 1000); else { setCount(c => c + 1); generate(); } } else onWrong();
             };
@@ -542,7 +529,7 @@
 
         // --- NEW 게임 2: 장보기 메모 (Grocery) ---
         const GroceryGame = ({ onComplete, onCorrect, onWrong, playSound }) => {
-            const [state, setState] = useState('memorize'); // memorize, recall
+            const [state, setState] = useState('memorize');
             const [q, setQ] = useState(null); const [count, setCount] = useState(0);
             const [selected, setSelected] = useState([]);
             const timerRef = useRef(null);
@@ -559,32 +546,23 @@
                 const targets = shuffled.slice(0, 3);
                 const options = shuffled.slice(0, 9).sort(() => Math.random() - 0.5);
                 setQ({ targets, options });
-                setSelected([]);
-                setState('memorize');
+                setSelected([]); setState('memorize');
                 timerRef.current = setTimeout(() => { setState('recall'); }, 4000);
             };
             useEffect(() => { generate(); return () => clearTimeout(timerRef.current); }, []);
 
             const toggleSelect = (id) => {
-                if (selected.includes(id)) {
-                    setSelected(selected.filter(s => s !== id));
-                } else {
-                    const newSel = [...selected, id];
-                    setSelected(newSel);
-                    if (newSel.length === 3) { // 3개 모두 선택 시 자동 확인
+                if (selected.includes(id)) { setSelected(selected.filter(s => s !== id)); } 
+                else {
+                    const newSel = [...selected, id]; setSelected(newSel);
+                    if (newSel.length === 3) {
                         const targetIds = q.targets.map(t => t.id);
                         const isCorrect = newSel.every(s => targetIds.includes(s));
-                        if (isCorrect) {
-                            onCorrect(30);
-                            if (count + 1 >= 2) setTimeout(onComplete, 1000); else setTimeout(generate, 1000);
-                        } else {
-                            onWrong();
-                            setSelected([]); // 틀리면 초기화
-                        }
+                        if (isCorrect) { onCorrect(30); if (count + 1 >= 2) setTimeout(onComplete, 1000); else setTimeout(generate, 1000); } 
+                        else { onWrong(); setSelected([]); }
                     }
                 }
             };
-
             if(!q) return null;
 
             return (
@@ -605,13 +583,8 @@
                             <p className={styles.instruction}>아까 본 물건 <span className="text-green-600">3가지</span>를 장바구니에 담으세요.</p>
                             <div className="grid grid-cols-3 gap-2 w-full mt-2">
                                 {q.options.map((item) => (
-                                    <button 
-                                        key={item.id} 
-                                        onClick={() => { playSound('click'); toggleSelect(item.id); }} 
-                                        className={`py-6 rounded-xl border-2 flex flex-col items-center justify-center transition-all ${selected.includes(item.id) ? 'bg-green-100 border-green-500 ring-2 ring-green-300' : 'bg-white border-gray-200 active:bg-gray-50'}`}
-                                    >
-                                        <span className="text-4xl mb-1">{item.emoji}</span>
-                                        <span className="text-sm font-bold text-gray-700">{item.name}</span>
+                                    <button key={item.id} onClick={() => { playSound('click'); toggleSelect(item.id); }} className={`py-6 rounded-xl border-2 flex flex-col items-center justify-center transition-all ${selected.includes(item.id) ? 'bg-green-100 border-green-500 ring-2 ring-green-300' : 'bg-white border-gray-200 active:bg-gray-50'}`}>
+                                        <span className="text-4xl mb-1">{item.emoji}</span><span className="text-sm font-bold text-gray-700">{item.name}</span>
                                     </button>
                                 ))}
                             </div>
@@ -629,23 +602,20 @@
             const generate = () => {
                 const target = words[Math.floor(Math.random() * words.length)];
                 const reversed = target.split('').reverse().join('');
-                
-                // 오답 만들기 (비슷한 글자 조합)
-                let opts = [target];
-                const chars = target.split('');
-                while(opts.length < 4) {
-                    let fake = chars.sort(() => Math.random() - 0.5).join('');
+                let opts = [target]; const chars = target.split('');
+                let attempts = 0;
+                while(opts.length < 4 && attempts < 20) {
+                    attempts++;
+                    let fake = [...chars].sort(() => Math.random() - 0.5).join('');
                     if (!opts.includes(fake) && fake !== reversed) opts.push(fake);
                 }
-                setQ({ reversed, ans: target, opts: opts.sort(() => Math.random() - 0.5) });
+                while(opts.length < 4) opts.push(words[Math.floor(Math.random()*words.length)]); // fallback
+                setQ({ reversed, ans: target, opts: opts.slice(0,4).sort(() => Math.random() - 0.5) });
             };
             useEffect(() => { generate(); }, []);
-            
-            const handleAnswer = (val) => {
-                if (val === q.ans) { onCorrect(20); if (count + 1 >= 3) setTimeout(onComplete, 1000); else { setCount(c => c + 1); generate(); } } else onWrong();
-            };
-            
+            const handleAnswer = (val) => { if (val === q.ans) { onCorrect(20); if (count + 1 >= 3) setTimeout(onComplete, 1000); else { setCount(c => c + 1); generate(); } } else onWrong(); };
             if(!q) return null;
+
             return (
                 <div className="w-full flex flex-col items-center animate-fade-in">
                     <p className={styles.instruction}>글자를 거꾸로 읽으면 <span className="text-violet-600">무슨 단어</span>일까요?</p>
@@ -659,12 +629,293 @@
             );
         };
 
+        // --- 2. 산수 (Math) ---
+        const MathGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [problem, setProblem] = useState({ q: '', a: 0, options: [] });
+            const [count, setCount] = useState(0);
+            const generateProblem = () => {
+                const type = Math.random(); let qStr = "", ans = 0;
+                if (type < 0.4) { const n1 = Math.floor(Math.random() * 20) + 10; const n2 = Math.floor(Math.random() * 9) + 1; ans = n1 + n2; qStr = `${n1} + ${n2}`; } 
+                else if (type < 0.8) { const n1 = Math.floor(Math.random() * 20) + 10; const n2 = Math.floor(Math.random() * 9) + 1; ans = n1 - n2; qStr = `${n1} - ${n2}`; } 
+                else { const n1 = Math.floor(Math.random() * 8) + 2; const n2 = Math.floor(Math.random() * 8) + 2; ans = n1 * n2; qStr = `${n1} × ${n2}`; }
+                const opts = [ans, ans + Math.floor(Math.random()*5)+1, ans - Math.floor(Math.random()*5)-1].sort(() => Math.random() - 0.5);
+                setProblem({ q: `${qStr} = ?`, a: ans, options: opts });
+            };
+            useEffect(() => { generateProblem(); }, []);
+            const handleAnswer = (val) => { if (val === problem.a) { onCorrect(20); if (count + 1 >= 5) { setTimeout(onComplete, 1000); } else { setCount(c => c + 1); generateProblem(); } } else { onWrong(); } };
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>간단한 <span className="text-amber-600">계산 문제</span>입니다.</p>
+                    <div className="bg-amber-100 px-8 py-8 rounded-2xl mb-8 w-full text-center"><p className="text-5xl font-black text-gray-800">{problem.q}</p></div>
+                    <div className="grid grid-cols-1 gap-3 w-full">{problem.options.map((opt, idx) => (<button key={idx} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-amber-200 text-amber-900 hover:bg-amber-50`}>{opt}</button>))}</div>
+                </div>
+            );
+        };
+
+        // --- 3. 속담 퀴즈 (Word) ---
+        const WordGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [quiz, setQuiz] = useState(null); const [count, setCount] = useState(0); const [quizList, setQuizList] = useState([]);
+            const allProverbs = [
+                { q: "가는 말이 고와야 [ ? ]", a: "오는 말이 곱다", w: "오는 말이 거칠다" }, { q: "누워서 [ ? ] 먹기", a: "떡", w: "밥" }, { q: "티끌 모아 [ ? ]", a: "태산", w: "동산" },
+                { q: "등잔 밑이 [ ? ]", a: "어둡다", w: "밝다" }, { q: "원숭이도 나무에서 [ ? ]", a: "떨어진다", w: "날아간다" }, { q: "세 살 버릇 여든까지 [ ? ]", a: "간다", w: "안 간다" },
+                { q: "소 잃고 [ ? ] 고친다", a: "외양간", w: "대문" }, { q: "고생 끝에 [ ? ]이 온다", a: "낙", w: "병" }, { q: "서당 개 삼 년이면 [ ? ]을 읊는다", a: "풍월", w: "노래" },
+                { q: "지렁이도 밟으면 [ ? ]한다", a: "꿈틀", w: "가만" }, { q: "하늘이 무너져도 솟아날 [ ? ]이 있다", a: "구멍", w: "기둥" }, { q: "호랑이도 제 말 하면 [ ? ]", a: "온다", w: "간다" },
+                { q: "바늘 도둑이 [ ? ] 도둑 된다", a: "소", w: "말" }, { q: "열 번 찍어 안 넘어가는 [ ? ] 없다", a: "나무", w: "돌" }, { q: "말 한마디로 [ ? ] 빚 갚는다", a: "천 냥", w: "만 냥" },
+                { q: "작은 고추가 더 [ ? ]", a: "맵다", w: "달다" }, { q: "꿩 먹고 [ ? ] 먹고", a: "알", w: "물" }, { q: "돌다리도 두들겨 보고 [ ? ]", a: "건너라", w: "뛰어라" },
+                { q: "무자식이 [ ? ]자", a: "상팔", w: "하팔" }, { q: "밑 빠진 독에 [ ? ] 붓기", a: "물", w: "술" }, { q: "백지장도 맞들면 [ ? ]", a: "낫다", w: "무겁다" },
+                { q: "비 온 뒤에 땅이 [ ? ]", a: "굳어진다", w: "무너진다" }, { q: "사공이 많으면 배가 [ ? ]로 간다", a: "산", w: "바다" }, { q: "시작이 [ ? ]이다", a: "반", w: "전부" },
+                { q: "아니 땐 굴뚝에 [ ? ] 날까", a: "연기", w: "불" }, { q: "약방에 [ ? ]", a: "감초", w: "인삼" }, { q: "오르지 못할 나무는 [ ? ]도 마라", a: "쳐다보", w: "만지" },
+                { q: "우물 안 [ ? ]", a: "개구리", w: "두꺼비" }, { q: "쥐구멍에도 볕 들 날 [ ? ]", a: "있다", w: "없다" }, { q: "천 리 길도 [ ? ]부터", a: "한 걸음", w: "두 걸음" }
+            ];
+            useEffect(() => { setQuizList([...allProverbs].sort(() => Math.random() - 0.5).slice(0, 5)); }, []);
+            useEffect(() => { if (quizList.length > 0) { const cur = quizList[count]; setQuiz({ ...cur, options: [cur.a, cur.w].sort(() => Math.random() - 0.5) }); } }, [count, quizList]);
+            const handleAnswer = (val) => { if (val === quiz.a) { onCorrect(20); if (count + 1 >= 3) { setTimeout(onComplete, 1000); } else { setCount(c => c + 1); } } else { onWrong(); } };
+            if (!quiz) return null;
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>빈 칸에 들어갈 <span className="text-purple-600">속담</span>을 완성하세요.</p>
+                    <div className="bg-purple-50 px-6 py-8 rounded-2xl mb-8 w-full text-center border-2 border-purple-100"><p className="text-3xl font-black text-gray-800 break-keep leading-relaxed">{quiz.q}</p></div>
+                    <div className="grid grid-cols-1 gap-3 w-full">{quiz.options.map((opt, idx) => (<button key={idx} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-purple-200 text-purple-900 hover:bg-purple-50`}>{opt}</button>))}</div>
+                </div>
+            );
+        };
+
+        // --- 4. 다른 그림 찾기 (Spatial) ---
+        const SpatialGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [items, setItems] = useState([]); const [count, setCount] = useState(0);
+            const shapes = ['●', '▲', '■', '★', '♥', '♦', '♣', '♠', '✿']; const colors = ['text-red-500', 'text-blue-500', 'text-green-500', 'text-yellow-500', 'text-purple-500', 'text-orange-500', 'text-pink-500', 'text-teal-500'];
+            const generateLevel = () => {
+                const isShapeDiff = Math.random() > 0.5; let grid = []; let answerIdx = Math.floor(Math.random() * 4); 
+                if (isShapeDiff) {
+                    const baseShape = shapes[Math.floor(Math.random() * shapes.length)]; let diffShape = baseShape; while(diffShape === baseShape) diffShape = shapes[Math.floor(Math.random() * shapes.length)]; const color = colors[Math.floor(Math.random() * colors.length)];
+                    for(let i=0; i<4; i++) grid.push({ shape: i===answerIdx?diffShape:baseShape, color: color, isAns: i===answerIdx });
+                } else {
+                    const shape = shapes[Math.floor(Math.random() * shapes.length)]; const baseColorIdx = Math.floor(Math.random() * colors.length); const baseColor = colors[baseColorIdx]; let diffColor = baseColor; while(diffColor === baseColor) diffColor = colors[Math.floor(Math.random() * colors.length)];
+                    for(let i=0; i<4; i++) grid.push({ shape: shape, color: i===answerIdx?diffColor:baseColor, isAns: i===answerIdx });
+                }
+                setItems(grid);
+            };
+            useEffect(() => { generateLevel(); }, []);
+            const handleClick = (isAns) => { if (isAns) { onCorrect(20); if (count + 1 >= 3) { setTimeout(onComplete, 1000); } else { setCount(c => c + 1); generateLevel(); } } else { onWrong(); } };
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>모양이나 색깔이 <span className="text-blue-600">다른 하나</span>를 누르세요.</p>
+                    <div className="grid grid-cols-2 gap-4 w-full max-w-[340px]">{items.map((item, idx) => (<button key={idx} onClick={() => handleClick(item.isAns)} className="bg-white border-2 border-gray-200 rounded-2xl h-36 flex items-center justify-center shadow-sm active:scale-95 transition-transform"><span className={`text-7xl ${item.color}`}>{item.shape}</span></button>))}</div>
+                </div>
+            );
+        };
+
+        // --- 5. 색깔 글자 찾기 (Stroop) ---
+        const StroopGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [question, setQuestion] = useState(null); const [count, setCount] = useState(0);
+            const colorMap = [{ text: '빨강', class: 'text-red-500' }, { text: '파랑', class: 'text-blue-600' }, { text: '초록', class: 'text-green-600' }, { text: '노랑', class: 'text-yellow-500' }, { text: '검정', class: 'text-gray-900' }, { text: '보라', class: 'text-purple-600' }, { text: '주황', class: 'text-orange-500' }];
+            const generateQuestion = () => {
+                const textIdx = Math.floor(Math.random() * colorMap.length); let colorIdx = Math.floor(Math.random() * colorMap.length); while(colorIdx === textIdx) colorIdx = Math.floor(Math.random() * colorMap.length);
+                const correctVal = colorMap[colorIdx].text; const options = colorMap.map(c => c.text).sort(() => Math.random() - 0.5).slice(0, 4); if (!options.includes(correctVal)) options[0] = correctVal;
+                setQuestion({ text: colorMap[textIdx].text, colorClass: colorMap[colorIdx].class, answer: correctVal, options: options.sort(() => Math.random() - 0.5) });
+            };
+            useEffect(() => { generateQuestion(); }, []);
+            const handleAnswer = (val) => { if (val === question.answer) { onCorrect(20); if (count + 1 >= 5) { setTimeout(onComplete, 1000); } else { setCount(c => c + 1); generateQuestion(); } } else { onWrong(); } };
+            if (!question) return null;
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>글자의 <span className="text-indigo-600">색깔</span>이 무엇인지 고르세요.</p>
+                    <p className={styles.subText}>(글자 내용에 속지 마세요!)</p>
+                    <div className="bg-gray-100 px-8 py-10 rounded-2xl mb-8 w-full text-center border-2 border-gray-200"><p className={`text-6xl font-black ${question.colorClass}`}>{question.text}</p></div>
+                    <div className="grid grid-cols-2 gap-3 w-full">{question.options.map((opt, idx) => (<button key={idx} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-indigo-200 text-indigo-900 hover:bg-indigo-50`}>{opt}</button>))}</div>
+                </div>
+            );
+        };
+
+        // --- 6. 숫자 비교 (Number) ---
+        const NumberGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [q, setQ] = useState(null); const [count, setCount] = useState(0);
+            const generate = () => { const nums = [0,0,0].map(() => Math.floor(Math.random() * 90) + 10); const isMax = Math.random() > 0.5; setQ({ nums, isMax, ans: isMax ? Math.max(...nums) : Math.min(...nums) }); };
+            useEffect(() => { generate(); }, []);
+            const handleAnswer = (val) => { if (val === q.ans) { onCorrect(20); if (count + 1 >= 5) setTimeout(onComplete, 1000); else { setCount(c => c + 1); generate(); } } else onWrong(); };
+            if(!q) return null;
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>세 숫자 중 <span className="text-teal-600">{q.isMax ? "가장 큰" : "가장 작은"}</span> 숫자를 누르세요.</p>
+                    <div className="grid grid-cols-1 gap-4 w-full mt-4">{q.nums.map((n, i) => (<button key={i} onClick={() => handleAnswer(n)} className={`${styles.button} bg-white border-teal-200 text-teal-900 text-5xl h-32`}>{n}</button>))}</div>
+                </div>
+            );
+        }
+
+        // --- 7. 가위바위보 (RPS) ---
+        const RPSGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [q, setQ] = useState(null); const [count, setCount] = useState(0); const rps = ['가위', '바위', '보'];
+            const generate = () => { setQ({ cpu: rps[Math.floor(Math.random()*3)], isWin: Math.random() > 0.5 }); };
+            useEffect(() => { generate(); }, []);
+            const checkWin = (cpu, user) => { if (cpu === user) return 'draw'; if ((user === '가위' && cpu === '보') || (user === '바위' && cpu === '가위') || (user === '보' && cpu === '바위')) return 'win'; return 'lose'; }
+            const handleAnswer = (user) => { const result = checkWin(q.cpu, user); const isCorrect = (q.isWin && result === 'win') || (!q.isWin && result === 'lose'); if (isCorrect) { onCorrect(20); if (count + 1 >= 5) setTimeout(onComplete, 1000); else { setCount(c => c + 1); generate(); } } else onWrong(); };
+            if(!q) return null;
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}><span className="text-orange-600 font-bold text-3xl">{q.cpu}</span>를 상대로 <br/><span className={`text-4xl ${q.isWin ? 'text-blue-600' : 'text-red-600'}`}>{q.isWin ? "이기세요!" : "지세요!"}</span></p>
+                    <div className="flex gap-2 w-full mt-8">{rps.map((r, i) => (<button key={i} onClick={() => handleAnswer(r)} className={`${styles.button} bg-white border-orange-200 text-orange-900`}>{r}</button>))}</div>
+                </div>
+            );
+        }
+
+        // --- 8. 순발력 (Reaction) ---
+        const ReactionGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [state, setState] = useState('wait'); const [count, setCount] = useState(0); const timerRef = useRef(null);
+            const startWait = () => { setState('wait'); timerRef.current = setTimeout(() => { setState('ready'); }, Math.random() * 2000 + 1500); };
+            useEffect(() => { startWait(); return () => clearTimeout(timerRef.current); }, []);
+            const handleClick = () => { if (state === 'ready') { onCorrect(20); if (count + 1 >= 3) setTimeout(onComplete, 1000); else { setCount(c => c + 1); startWait(); } } else { clearTimeout(timerRef.current); onWrong(); setTimeout(startWait, 500); } };
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>배경이 <span className="text-green-600">초록색</span>이 되면<br/>빠르게 누르세요!</p>
+                    <button onMouseDown={handleClick} onTouchStart={handleClick} className={`w-full h-64 rounded-3xl shadow-xl flex items-center justify-center transition-colors duration-200 ${state === 'ready' ? 'bg-green-500 border-b-8 border-green-700' : 'bg-gray-200 border-b-8 border-gray-300'}`}>{state === 'ready' ? <span className="text-white text-5xl font-black">지금!!!</span> : <span className="text-gray-400 text-3xl font-bold">기다리세요...</span>}</button>
+                </div>
+            );
+        }
+
+        // --- 9. 단어 분류 (Category) ---
+        const CategoryGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [q, setQ] = useState(null); const [count, setCount] = useState(0);
+            const data = [
+                { t: '사과', c: '과일' }, { t: '배', c: '과일' }, { t: '포도', c: '과일' }, { t: '수박', c: '과일' }, { t: '바나나', c: '과일' },
+                { t: '배추', c: '채소' }, { t: '무', c: '채소' }, { t: '양파', c: '채소' }, { t: '마늘', c: '채소' }, { t: '파', c: '채소' },
+                { t: '개', c: '동물' }, { t: '고양이', c: '동물' }, { t: '소', c: '동물' }, { t: '말', c: '동물' }, { t: '돼지', c: '동물' },
+                { t: '참새', c: '새' }, { t: '비둘기', c: '새' }, { t: '까치', c: '새' }, { t: '독수리', c: '새' }, { t: '까마귀', c: '새' },
+                { t: '가위', c: '물건' }, { t: '풀', c: '물건' }, { t: '책', c: '물건' }, { t: '연필', c: '물건' }, { t: '지우개', c: '물건' },
+                { t: 'TV', c: '가전' }, { t: '냉장고', c: '가전' }, { t: '세탁기', c: '가전' }, { t: '에어컨', c: '가전' }, { t: '청소기', c: '가전' }
+            ];
+            const cats = ['과일', '채소', '동물', '새', '물건', '가전'];
+            const generate = () => { const item = data[Math.floor(Math.random() * data.length)]; let wrongCat = cats[Math.floor(Math.random() * cats.length)]; while(wrongCat === item.c) wrongCat = cats[Math.floor(Math.random() * cats.length)]; setQ({ item, opts: [item.c, wrongCat].sort(() => Math.random() - 0.5) }); };
+            useEffect(() => { generate(); }, []);
+            const handleAnswer = (cat) => { if (cat === q.item.c) { onCorrect(20); if (count + 1 >= 5) setTimeout(onComplete, 1000); else { setCount(c => c + 1); generate(); } } else onWrong(); };
+            if(!q) return null;
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>다음 단어는 무엇인가요?</p>
+                    <div className="bg-rose-50 px-8 py-10 rounded-2xl mb-8 w-full text-center border-2 border-rose-100"><p className="text-5xl font-black text-rose-900">{q.item.t}</p></div>
+                    <div className="grid grid-cols-2 gap-3 w-full">{q.opts.map((opt, i) => (<button key={i} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-rose-200 text-rose-900 hover:bg-rose-50`}>{opt}</button>))}</div>
+                </div>
+            );
+        }
+
+        // --- 10. 방향 찾기 (Direction) ---
+        const DirectionGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [q, setQ] = useState(null); const [count, setCount] = useState(0);
+            const dirs = ['왼쪽', '오른쪽', '위', '아래', '왼쪽 위', '오른쪽 위', '왼쪽 아래', '오른쪽 아래']; const arrows = {'왼쪽':'←', '오른쪽':'→', '위':'↑', '아래':'↓', '왼쪽 위':'↖', '오른쪽 위':'↗', '왼쪽 아래':'↙', '오른쪽 아래':'↘'};
+            const generate = () => { const target = dirs[Math.floor(Math.random()*dirs.length)]; const opts = [target]; while(opts.length < 4) { let fake = dirs[Math.floor(Math.random()*dirs.length)]; if(!opts.includes(fake)) opts.push(fake); } setQ({ target, opts: opts.sort(() => Math.random() - 0.5) }); };
+            useEffect(() => { generate(); }, []);
+            const handleAnswer = (val) => { if (val === q.target) { onCorrect(20); if (count + 1 >= 5) setTimeout(onComplete, 1000); else { setCount(c => c + 1); generate(); } } else onWrong(); };
+            if(!q) return null;
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>화살표의 <span className="text-cyan-600">방향</span>을 고르세요.</p>
+                    <div className="bg-cyan-50 px-8 py-8 rounded-2xl mb-8 w-full text-center border-2 border-cyan-100"><p className="text-7xl font-black text-cyan-900">{arrows[q.target]}</p></div>
+                    <div className="grid grid-cols-2 gap-3 w-full">{q.opts.map((d, i) => (<button key={i} onClick={() => handleAnswer(d)} className={`${styles.button} bg-white border-cyan-200 text-cyan-900 text-lg py-4`}>{d}</button>))}</div>
+                </div>
+            );
+        }
+
+        // --- 11. 돈 계산 (Money) ---
+        const MoneyGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [q, setQ] = useState(null); const [count, setCount] = useState(0);
+            const generate = () => {
+                const types = [{ name: '만 원', val: 10000, unit: '장' }, { name: '천 원', val: 1000, unit: '장' }, { name: '5백 원', val: 500, unit: '개' }, { name: '1백 원', val: 100, unit: '개' }];
+                const selectedTypes = [...types].sort(() => Math.random() - 0.5).slice(0, Math.floor(Math.random()*2) + 2);
+                let total = 0; let textParts = [];
+                selectedTypes.forEach(t => { const qty = Math.floor(Math.random() * 4) + 1; total += t.val * qty; textParts.push(`${t.name} ${qty}${t.unit}`); });
+                const qStr = textParts.join(', ') + '는 총 얼마일까요?';
+                let opts = [total]; while(opts.length < 4) { let diff = (Math.floor(Math.random() * 5) + 1) * (selectedTypes[selectedTypes.length-1].val); let fake = Math.random() > 0.5 ? total + diff : total - diff; if (fake > 0 && !opts.includes(fake)) opts.push(fake); }
+                setQ({ str: qStr, ans: total, opts: opts.sort(() => Math.random() - 0.5) });
+            };
+            useEffect(() => { generate(); }, []);
+            const handleAnswer = (val) => { if (val === q.ans) { onCorrect(20); if (count + 1 >= 3) setTimeout(onComplete, 1000); else { setCount(c => c + 1); generate(); } } else onWrong(); };
+            if(!q) return null;
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>모두 더하면 <span className="text-emerald-600">얼마</span>일까요?</p>
+                    <div className="bg-emerald-50 px-6 py-8 rounded-2xl mb-8 w-full text-center border-2 border-emerald-100"><p className="text-2xl font-bold text-gray-800 break-keep leading-relaxed">{q.str}</p></div>
+                    <div className="grid grid-cols-2 gap-3 w-full">{q.opts.map((opt, i) => (<button key={i} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-emerald-200 text-emerald-900`}>{opt.toLocaleString()}원</button>))}</div>
+                </div>
+            );
+        };
+
+        // --- 12. 단어 기억 (Word Memory) ---
+        const WordMemoryGame = ({ onComplete, onCorrect, onWrong }) => {
+            const [state, setState] = useState('memorize'); const [q, setQ] = useState(null); const [count, setCount] = useState(0); const timerRef = useRef(null);
+            const words = ['사과', '기차', '호랑이', '피아노', '바다', '우산', '안경', '지갑', '나비', '구두', '모자', '가방', '시계', '연필', '의자', '책상', '수박', '포도', '비행기', '자전거'];
+            const generate = () => {
+                const shuffled = [...words].sort(() => Math.random() - 0.5); const targetWords = shuffled.slice(0, 3); const wrongWords = shuffled.slice(3, 6);
+                const questionWord = targetWords[Math.floor(Math.random() * targetWords.length)]; let opts = [questionWord, ...wrongWords.slice(0, 3)].sort(() => Math.random() - 0.5);
+                setQ({ targets: targetWords, ans: questionWord, opts }); setState('memorize'); timerRef.current = setTimeout(() => { setState('question'); }, 4000);
+            };
+            useEffect(() => { generate(); return () => clearTimeout(timerRef.current); }, []);
+            const handleAnswer = (val) => { if (val === q.ans) { onCorrect(30); if (count + 1 >= 3) setTimeout(onComplete, 1000); else { setCount(c => c + 1); generate(); } } else onWrong(); };
+            if(!q) return null;
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    {state === 'memorize' ? (
+                        <><p className={styles.instruction}>다음 세 단어를 <span className="text-sky-600">기억</span>하세요.</p><div className="flex flex-col gap-4 w-full mt-4">{q.targets.map((w, i) => <div key={i} className="bg-sky-50 py-4 rounded-xl text-center border-2 border-sky-100 text-3xl font-bold text-sky-900">{w}</div>)}</div></>
+                    ) : (
+                        <><p className={styles.instruction}>방금 본 <span className="text-sky-600">단어</span>는 무엇인가요?</p><div className="grid grid-cols-2 gap-4 w-full mt-8">{q.opts.map((opt, i) => (<button key={i} onClick={() => handleAnswer(opt)} className={`${styles.button} bg-white border-sky-200 text-sky-900`}>{opt}</button>))}</div></>
+                    )}
+                </div>
+            );
+        };
+
+        // --- 13. 순서 기억 (Memory) ---
+        const MemoryGame = ({ onComplete, onCorrect, onWrong, playSound }) => {
+            const [sequence, setSequence] = useState([]); const [playerSequence, setPlayerSequence] = useState([]); const [isPlaying, setIsPlaying] = useState(false); const [activeIndex, setActiveIndex] = useState(null); const [round, setRound] = useState(0);
+            const items = [0, 1, 2, 3]; const bgColors = ['bg-pink-400', 'bg-yellow-400', 'bg-sky-400', 'bg-emerald-400'];
+            const startRound = (level) => {
+                setPlayerSequence([]); setIsPlaying(true);
+                const newSeq = []; for(let i=0; i < level + 3; i++) newSeq.push(Math.floor(Math.random() * 4)); setSequence(newSeq);
+                let i = 0;
+                const interval = setInterval(() => {
+                    if (i >= newSeq.length) { clearInterval(interval); setActiveIndex(null); setIsPlaying(false); return; }
+                    setActiveIndex(newSeq[i]); playSound('click'); setTimeout(() => setActiveIndex(null), 600); i++;
+                }, 1000);
+            };
+            useEffect(() => { startRound(round); }, [round]);
+            const handleTap = (idx) => {
+                if (isPlaying) return;
+                setActiveIndex(idx); playSound('click'); setTimeout(() => setActiveIndex(null), 200);
+                const nextIdx = playerSequence.length;
+                if (sequence[nextIdx] === idx) {
+                    const newPlayerSeq = [...playerSequence, idx]; setPlayerSequence(newPlayerSeq);
+                    if (newPlayerSeq.length === sequence.length) { onCorrect(30); if (round + 1 >= 3) { setTimeout(onComplete, 1000); } else { setTimeout(() => setRound(r => r + 1), 1000); } }
+                } else {
+                    onWrong(); setPlayerSequence([]); setTimeout(() => { let i = 0; setIsPlaying(true); const interval = setInterval(() => { if (i >= sequence.length) { clearInterval(interval); setActiveIndex(null); setIsPlaying(false); return; } setActiveIndex(sequence[i]); playSound('click'); setTimeout(() => setActiveIndex(null), 600); i++; }, 1000); }, 1000);
+                }
+            };
+            return (
+                <div className="w-full flex flex-col items-center animate-fade-in">
+                    <p className={styles.instruction}>불이 들어온 <span className="text-pink-600">순서대로</span> 누르세요.</p>
+                    <div className="grid grid-cols-2 gap-4 mb-6">{items.map((item) => (<button key={item} onClick={() => handleTap(item)} disabled={isPlaying} className={`w-32 h-32 rounded-2xl border-b-8 transition-all active:border-b-0 active:translate-y-2 ${activeIndex === item ? 'scale-105 brightness-110 border-gray-600' : 'border-black/10'} ${bgColors[item]} flex items-center justify-center`}><Star fill="white" size={48} className="text-white/80" /></button>))}</div>
+                    <div className="h-8">{isPlaying ? <span className="text-amber-600 font-bold animate-pulse text-2xl">잘 보세요...</span> : <span className="text-green-600 font-bold text-2xl">시작하세요!</span>}</div>
+                </div>
+            );
+        };
+
+        // --- 결과 화면 ---
+        const ResultScreen = ({ score, userName, onRestart, playSound }) => {
+            useEffect(() => { playSound('fanfare'); }, []);
+            const levelInfo = getLevelInfo(score);
+            return (
+                <div className="flex flex-col items-center animate-zoom-in w-full">
+                    <Trophy size={80} className="text-yellow-500 mb-4 drop-shadow-md" />
+                    <h2 className="text-3xl font-bold text-gray-800 mb-2">운동 완료!</h2>
+                    <p className="text-gray-600 mb-2 text-xl text-center">오늘도 수고하셨습니다,<br/><span className="text-green-600 font-bold">{userName} 님!</span></p>
+                    <p className="text-green-600 font-bold text-2xl mb-6">{levelInfo.icon} {levelInfo.text}</p>
+                    <div className="bg-yellow-50 border-2 border-yellow-200 p-6 rounded-2xl w-full text-center mb-8"><p className="text-gray-500 mb-2">획득 점수</p><p className="text-6xl font-black text-amber-600">{score}점</p></div>
+                    <button onClick={onRestart} className={`${styles.button} bg-green-500 text-white border-green-700`}><RotateCcw size={28} />메뉴로 돌아가기</button>
+                </div>
+            );
+        };
+
         // --- 메인 App 컴포넌트 ---
         const App = () => {
             const [gameState, setGameState] = useState('loading'); 
             const [gameQueue, setGameQueue] = useState([]); 
             const [currentQueueIdx, setCurrentQueueIdx] = useState(0);
-            const [gameMode, setGameMode] = useState('course'); 
             const [userName, setUserName] = useState('');
             const [score, setScore] = useState(0);
             const [feedback, setFeedback] = useState(null);
@@ -676,7 +927,7 @@
                 document.body.style.transition = 'background-color 0.5s ease';
             }, [bgIndex]);
 
-            // 초기 데이터 확인 (이름, 날짜 기억 - 당일 유지)
+            // 초기 데이터 확인
             useEffect(() => {
                 const today = new Date().toISOString().split('T')[0];
                 const savedUser = localStorage.getItem('brain_training_user');
@@ -686,9 +937,9 @@
                         if (parsed.userName) {
                             setUserName(parsed.userName);
                             if (parsed.lastOrientationDate === today) {
-                                setGameState('menu'); // 당일 완료시 패스
+                                setGameState('menu'); 
                             } else {
-                                setGameState('orientation'); // 다른 날이면 다시 확인
+                                setGameState('orientation'); 
                             }
                         } else { setGameState('nameInput'); }
                     } catch(e) { setGameState('nameInput'); }
@@ -736,13 +987,13 @@
                 const allGames = ['math', 'word', 'money', 'wordMemory', 'spatial', 'nostalgia', 'grocery', 'reverse', 'stroop', 'memory', 'number', 'rps', 'reaction', 'category', 'direction'];
                 const randomGames = allGames.sort(() => Math.random() - 0.5).slice(0, 5);
                 setGameQueue([...randomGames, 'result']);
-                setCurrentQueueIdx(0); setScore(0); setGameMode('course'); 
+                setCurrentQueueIdx(0); setScore(0); 
                 setBgIndex(Math.floor(Math.random() * pastelBackgrounds.length));
                 setGameState(randomGames[0]); playSound('click');
             };
 
             const startSingleGame = (gameType) => {
-                setGameQueue([gameType, 'result']); setCurrentQueueIdx(0); setScore(0); setGameMode('single'); 
+                setGameQueue([gameType, 'result']); setCurrentQueueIdx(0); setScore(0); 
                 setBgIndex(Math.floor(Math.random() * pastelBackgrounds.length));
                 setGameState(gameType); playSound('click');
             };
@@ -756,7 +1007,6 @@
                 }
             };
             
-            // 오류 방지: confirm 없이 즉시 이동
             const goBackToMenu = () => { 
                 playSound('click');
                 setBgIndex(Math.floor(Math.random() * pastelBackgrounds.length));
@@ -774,7 +1024,6 @@
                         <div className="w-full max-w-md px-2 pt-2 pb-2 flex flex-col gap-2 animate-fade-in z-10">
                             <div className="flex justify-between items-center w-full">
                                 <div className="flex items-center gap-2">
-                                    {/* 홈 버튼 오류 완전 해결 (직접 이동) */}
                                     {gameState !== 'menu' && gameState !== 'result' && gameState !== 'orientation' && (
                                         <button onClick={goBackToMenu} className="bg-white text-indigo-700 font-black py-2 px-4 rounded-full shadow-sm flex items-center gap-1 active:scale-95 border-2 border-indigo-200" title="메뉴로">
                                             <Home size={20} /> 홈
@@ -826,7 +1075,7 @@
                         {gameState === 'category' && <CategoryGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} />}
                         {gameState === 'direction' && <DirectionGame onComplete={handleStageComplete} onCorrect={handleCorrect} onWrong={handleWrong} />}
                         
-                        {gameState === 'result' && <ResultScreen score={score} userName={userName} mode={gameMode} onRestart={goBackToMenu} playSound={playSound} />}
+                        {gameState === 'result' && <ResultScreen score={score} userName={userName} onRestart={goBackToMenu} playSound={playSound} />}
 
                         {feedback && (
                             <div className={styles.feedbackOverlay}>
