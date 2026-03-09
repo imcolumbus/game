@@ -13,7 +13,8 @@
     <!-- 아이콘 -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%2316a34a'/%3E%3Cpath d='M384 224c0-53-43-96-96-96s-96 43-96 96c0 10.6 1.7 20.8 4.9 30.4C183.1 247.1 171.7 243 160 243c-44.2 0-80 35.8-80 80s35.8 80 80 80c9.6 0 18.8-1.7 27.4-4.8C197.8 418.9 220.6 432 246 432c61.9 0 112-50.1 112-112 0-35.3-16.3-67.1-41.9-88.4 39.7-27.1 65.9-72.3 67.9-123.6-1.3.1-2.7.2-4 .2-44.2 0-80-35.8-80-80 0-8.5 1.3-16.6 3.8-24.2C296.2 101.4 286.6 101 277 101c-61.9 0-112 50.1-112 112 0 10.5.9 20.7 2.6 30.6C122.9 253 96 295.6 96 344c0 61.9 50.1 112 112 112 10.3 0 20.3-1.4 29.8-4 17.7 17.6 42.1 28 69.2 28 53 0 96-43 96-96 0-33.5-17.2-63-43.5-80.6z' fill='white'/%3E%3C/svg%3E">
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%2316a34a'/%3E%3Cpath d='M384 224c0-53-43-96-96-96s-96 43-96 96c0 10.6 1.7 20.8 4.9 30.4C183.1 247.1 171.7 243 160 243c-44.2 0-80 35.8-80 80s35.8 80 80 80c9.6 0 18.8-1.7 27.4-4.8C197.8 418.9 220.6 432 246 432c61.9 0 112-50.1 112-112 0-35.3-16.3-67.1-41.9-88.4 39.7-27.1 65.9-72.3 67.9-123.6-1.3.1-2.7.2-4 .2-44.2 0-80-35.8-80-80 0-8.5 1.3-16.6 3.8-24.2C296.2 101.4 286.6 101 277 101c-61.9 0-112 50.1-112 112 0 10.5.9 20.7 2.6 30.6C122.9 253 96 295.6 96 344c0 61.9 50.1 112 112 112 10.3 0 20.3-1.4 29.8-4 17.7 17.6 42.1 28 69.2 28 53 0 96-43 96-96 0-33.5-17.2-63-43.5-80.6z' fill='white'/%3E%3C/svg%3E">
-    
+    <link rel="manifest" href='data:application/manifest+json,{"name":"매일매일 두뇌 튼튼","short_name":"두뇌 튼튼","start_url":".","display":"standalone","background_color":"#ffffff","theme_color":"#16a34a","icons":[{"src":"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 512 512%27%3E%3Crect width=%27512%27 height=%27512%27 rx=%27100%27 fill=%27%2316a34a%27/%3E%3Cpath d=%27M384 224c0-53-43-96-96-96s-96 43-96 96c0 10.6 1.7 20.8 4.9 30.4C183.1 247.1 171.7 243 160 243c-44.2 0-80 35.8-80 80s35.8 80 80 80c9.6 0 18.8-1.7 27.4-4.8C197.8 418.9 220.6 432 246 432c61.9 0 112-50.1 112-112 0-35.3-16.3-67.1-41.9-88.4 39.7-27.1 65.9-72.3 67.9-123.6-1.3.1-2.7.2-4 .2-44.2 0-80-35.8-80-80 0-8.5 1.3-16.6 3.8-24.2C296.2 101.4 286.6 101 277 101c-61.9 0-112 50.1-112 112 0 10.5.9 20.7 2.6 30.6C122.9 253 96 295.6 96 344c0 61.9 50.1 112 112 112 10.3 0 20.3-1.4 29.8-4 17.7 17.6 42.1 28 69.2 28 53 0 96-43 96-96 0-33.5-17.2-63-43.5-80.6z%27 fill=%27white%27/%3E%3C/svg%3E","sizes":"512x512","type":"image/svg+xml"}]}'>
+
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -186,7 +187,7 @@
         const CloudRain = (props) => <IconBase {...props}><line x1="16" y1="13" x2="16" y2="21"></line><line x1="8" y1="13" x2="8" y2="21"></line><line x1="12" y1="15" x2="12" y2="23"></line><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path></IconBase>;
         const Snowflake = (props) => <IconBase {...props}><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line><path d="m20 4-2.5 2.5"/><path d="m4 20 2.5-2.5"/><path d="m4 4 2.5 2.5"/><path d="m20 20-2.5-2.5"/></IconBase>;
 
-        // --- 전역 스타일 ---
+        // --- 전역 스타일 최적화 ---
         const styles = {
             container: "min-h-screen flex flex-col items-center px-4 pt-2 pb-10 font-sans select-none touch-manipulation transition-colors duration-500",
             card: "w-full max-w-md bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl p-6 flex flex-col items-center transition-all duration-300 relative",
@@ -199,7 +200,7 @@
         const praises = ["정말 대단하세요!", "최고입니다!", "아주 훌륭해요!", "뇌가 젊어지고 있어요!", "완벽합니다!", "참 잘하셨어요!", "실력이 좋으시네요!", "놀라운 집중력입니다!"];
         const greetings = ["오늘도 멋진 하루 되세요", "기분 좋은 하루입니다", "두뇌가 반짝반짝 빛나요", "활기차게 시작해볼까요?", "오늘도 화이팅입니다", "미소가 아름다운", "항상 응원합니다", "행복이 가득한 하루 되세요"];
 
-        // 점수별 레벨업 정보
+        // 점수별 레벨업 정보 (다양하고 예쁜 아이콘)
         const getLevelInfo = (score) => {
             if (score >= 500) return { icon: "👑", text: "두뇌 왕", msg: "마스터 등극! 완벽해요!" };
             if (score >= 400) return { icon: "💎", text: "보석", msg: "반짝반짝 빛나는 두뇌!" };
@@ -515,31 +516,31 @@
                     <h1 className="text-xl font-bold text-gray-500 mb-1 text-center">{randomGreeting},</h1>
                     <h2 className="text-3xl font-black text-gray-800 mb-6 text-center">{userName} 님!</h2>
                     
-                    <button onClick={onStartCourse} className="w-full py-4 text-2xl font-bold rounded-2xl bg-green-500 text-white shadow-md flex flex-row items-center justify-center gap-2 active:scale-95 transition-transform border-b-4 border-green-700 active:border-b-0 active:translate-y-1 mb-4">
-                        <Play fill="white" size={28} /> 오늘의 추천 코스
+                    <button onClick={onStartCourse} className="w-full py-5 text-3xl font-black rounded-2xl bg-green-500 text-white shadow-md flex flex-row items-center justify-center gap-2 active:scale-95 transition-transform border-b-4 border-green-700 active:border-b-0 active:translate-y-1 mb-4">
+                        <Play fill="white" size={32} /> 오늘의 추천 코스
                     </button>
 
                     <div className="w-full grid grid-cols-2 gap-2 mb-6">
-                        <button onClick={() => onOpenFeature('record')} className="col-span-2 py-3 bg-orange-50 rounded-xl border-2 border-orange-200 text-orange-800 font-bold text-lg flex items-center justify-center gap-2 active:scale-95 shadow-sm">
-                            <PenTool size={20}/> 오늘의 일기 쓰기
+                        <button onClick={() => onOpenFeature('record')} className="col-span-2 py-4 bg-orange-50 rounded-xl border-2 border-orange-200 text-orange-800 font-black text-xl flex items-center justify-center gap-2 active:scale-95 shadow-sm">
+                            <PenTool size={24}/> 오늘의 일기 쓰기
                         </button>
-                        <button onClick={() => onOpenFeature('english')} className="py-3 bg-sky-50 rounded-xl border-2 border-sky-200 text-sky-800 font-bold text-lg flex items-center justify-center gap-1 active:scale-95 shadow-sm">
-                            <BookA size={20}/> 오늘의 영어
+                        <button onClick={() => onOpenFeature('english')} className="py-4 bg-sky-50 rounded-xl border-2 border-sky-200 text-sky-800 font-black text-xl flex items-center justify-center gap-1 active:scale-95 shadow-sm">
+                            <BookA size={24}/> 오늘의 영어
                         </button>
-                        <button onClick={() => onOpenFeature('reading')} className="py-3 bg-pink-50 rounded-xl border-2 border-pink-200 text-pink-800 font-bold text-lg flex items-center justify-center gap-1 active:scale-95 shadow-sm">
-                            <Quote size={20}/> 읽을거리
+                        <button onClick={() => onOpenFeature('reading')} className="py-4 bg-pink-50 rounded-xl border-2 border-pink-200 text-pink-800 font-black text-xl flex items-center justify-center gap-1 active:scale-95 shadow-sm">
+                            <Quote size={24}/> 읽을거리
                         </button>
                     </div>
 
-                    <div className="w-full text-left mb-2"><span className="text-lg font-bold text-gray-700 border-l-4 border-green-500 pl-2">원하는 운동 고르기 (15종)</span></div>
+                    <div className="w-full text-left mb-2"><span className="text-xl font-black text-gray-700 border-l-4 border-green-500 pl-3">원하는 게임 선택하기 (15종)</span></div>
                     
                     <div className="grid grid-cols-3 gap-2 w-full">
                         {games.map(game => {
                             const GameIcon = game.icon;
                             return (
-                                <button key={game.id} onClick={() => onSelectGame(game.id)} className={`p-2 rounded-xl border-2 ${game.border} hover:${game.bg} flex flex-col items-center justify-center shadow-sm active:scale-95 bg-white transition-colors h-24`}>
-                                    <GameIcon className={`${game.color} mb-1`} size={28}/>
-                                    <span className="font-bold text-[13px] text-gray-800 leading-tight">{game.name}</span>
+                                <button key={game.id} onClick={() => onSelectGame(game.id)} className={`p-1 rounded-2xl border-2 ${game.border} hover:${game.bg} flex flex-col items-center justify-center shadow-sm active:scale-95 bg-white transition-colors min-h-[7.5rem]`}>
+                                    <GameIcon className={`${game.color} mb-1.5`} size={36}/>
+                                    <span className="font-black text-[18px] sm:text-[20px] text-gray-800 leading-tight tracking-tighter break-keep text-center px-0.5">{game.name}</span>
                                 </button>
                             );
                         })}
